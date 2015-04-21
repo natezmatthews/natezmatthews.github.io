@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google sign-in API -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="primeval-jet-91716.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="91681303821-mete37028scfloarkshq95isebnupoat.apps.googleusercontent.com">
     <script>
-      function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+
+      function signinCallback(authResult) {
+        if (authResult['status']['signed_in']) {
+          console.log("Signed in!");
+          // Update the app to reflect a signed in user
+          // Hide the sign-in button now that the user is authorized, for example:
+          document.getElementById('signinButton').setAttribute('style', 'display: none');
+        } else {
+          // Update the app to reflect a signed out user
+          // Possible error values:
+          //   "user_signed_out" - User is signed-out
+          //   "access_denied" - User denied access to your app
+          //   "immediate_failed" - Could not automatically log in the user
+          console.log('Sign-in state: ' + authResult['error']);
+        }
       }
     </script>
     <!-- Bootstrap -->
@@ -23,7 +32,7 @@
 
   <body class="login">
 
-  	<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -48,7 +57,16 @@
     </div>
 
     <!-- Note: Google blocks this buttom from appearing if you run the page locally -->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <span id="signinButton">
+      <span
+        class="g-signin"
+        data-callback="signinCallback"
+        data-clientid="91681303821-mete37028scfloarkshq95isebnupoat.apps.googleusercontent.com"
+        data-cookiepolicy="single_host_origin"
+        data-requestvisibleactions="http://schema.org/AddAction"
+        data-scope="https://www.googleapis.com/auth/plus.login">
+      </span>
+    </span>
 
     <!-- <div class="container-fluid">
         <form class="form-signin">
