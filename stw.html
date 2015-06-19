@@ -78,6 +78,10 @@
             document.getElementById('status').innerHTML =
                 'Thanks for logging in, ' + response.name + '!';
         });
+
+        FB.api('/me/tagged_places', function(response) {
+            console.log(response);
+        });
     }
 </script>
 
