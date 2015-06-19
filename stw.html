@@ -43,6 +43,10 @@
             xfbml      : true,
             version    : 'v2.3'
         });
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
     };
 
     // Now that we've initialized the JavaScript SDK, we call 
@@ -56,10 +60,6 @@
     //    your app or not.
     //
     // These three cases are handled in the callback function.
-
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });
 
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
