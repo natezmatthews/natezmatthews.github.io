@@ -27,6 +27,18 @@
         }
     }
 
+    function button() {
+        FB.login(function(response) {
+            if (response.authResponse) {
+                M.FB.setIsAuthorised(true);
+                //  On success.
+            } else {
+                //  On failure.
+            }         
+        }, {scope: 'public_profile,email,tagged_places'}
+        );
+    }
+
     // This function is called when someone finishes with the Login
     // Button.  See the onlogin handler attached to it in the sample
     // code below.
@@ -87,8 +99,9 @@
 
 <div id="fb-root"></div>
 
-<fb:login-button scope="public_profile,email,tagged_places" onlogin="checkLoginState();">
-</fb:login-button>
+<input id="Fb Login" type="button" value="Fb Login" onclick="button();" />
+<!-- <fb:login-button scope="public_profile,email,tagged_places" onlogin="checkLoginState();">
+</fb:login-button> -->
 
 <div id="status">
 </div>
