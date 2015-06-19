@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FeedMe</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google sign-in API -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="91681303821-mete37028scfloarkshq95isebnupoat.apps.googleusercontent.com">
     <script>
 
       function signinCallback(authResult) {
@@ -24,38 +21,9 @@
         }
       }
     </script>
-    <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!--<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">-->
-    <link href="feedme.css" rel="stylesheet" media="screen">
   </head>
 
-  <body class="login">
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="index.html"><img src="Assets/logo.png" alt="logo" width="230"/></a>
-          <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li class="active"><a href="login.html">Login</a></li>
-                  <li><a href="register.html">Register</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
+  <body>
     <!-- Note: Google blocks this buttom from appearing if you run the page locally -->
     <span id="signinButton">
       <span
@@ -67,20 +35,5 @@
         data-scope="https://www.googleapis.com/auth/plus.login">
       </span>
     </span>
-
-    <!-- <div class="container-fluid">
-        <form class="form-signin">
-          <h2 class="form-signin-heading">Please sign in</h2>
-          <input type="text" class="input-block-level" placeholder="Email address" name="email">
-          <input type="password" class="input-block-level" placeholder="Password" name="password">
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-          <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-        </form>
-      </div> -->
-
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
