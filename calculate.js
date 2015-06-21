@@ -497,8 +497,10 @@ if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
     }
     par=0;
     if (MM) MM=remove(MM);
-    var point = new google.maps.LatLng(midlat, midlng);
-    var h1=formatInfo('<b>' + mTxt[cI] + '</b>', midlat, midlng, -1);
+    var oplat = midlat * -1;
+    var oplng = (((midlng + 180) + 180) % 360) - 180;
+    var point = new google.maps.LatLng(oplat, oplng);
+    var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
     var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
     MM=createMarker(point, h1+h2, 1, 0);
     MM.setMap(map);
