@@ -92,9 +92,10 @@
         });
 
         FB.api('/me/tagged_places', function(response) {
-            for (var i = 0; i < response.data.length; i++) {
-                console.log(response.data[i].place.latitude);
-                console.log(response.data[i].place.longitude);
+            for (elem in response.data) {
+                console.log(elem);
+                console.log(elem.place.latitude);
+                console.log(elem.place.longitude);
             };
         });
     }
