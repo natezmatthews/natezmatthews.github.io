@@ -3,6 +3,12 @@
 <head>
 </head>
 <body>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
+</script>
+<script type="text/javascript" src="calculate.js">
+</script>
+
 <script>
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
@@ -92,28 +98,38 @@
         });
 
         FB.api('/me/tagged_places', function(response) {
+            r.length=0;
             for (element in response.data) {
                 loc = response.data[element].place.location;
                 console.log(loc.city + " " + loc.latitude + " " + loc.longitude);
+                r[r.length-1].lat=loc.latitude;
+                r[r.length-1].lng=loc.longitude;
             }
+
+            if (r.length>0) {
+                appendToList();
+            } else {
+                console.log("Okay, looks like we're in here...");
+                D("ok").value="Ok";
+                toggleDivs(["DR","DB3","DA","DA2","DL","DB","DE","DB2"],2);
+                D("resultslabel").innerHTML = "Select from " + r.length + " results:";
+                dispMsg("", 2);
+                f1.results.focus();
+                pause=1;
+            }
+
+            loopG();
         });
     }
 </script>
 
 <div id="fb-root"></div>
 
-
-
 <fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
 </div>
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
-</script>
-<script type="text/javascript" src="calculate.js">
-</script>
 
 </body>
 </html>

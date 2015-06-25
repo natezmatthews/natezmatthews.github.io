@@ -1,4 +1,159 @@
-var calc='<form id="frm" action="" onsubmit="launch(); return false"><div id="upperleft"><div id="radio1"><input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />Address&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Multiple input&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Latitude/longitude</div><br /><div id="DA"><label for="address0">Address or city:</label><br /><input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" /></div><div id="DA2" class="off"><label for="address1">Addresses (Each on a separate line):</label><br /><textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea></div><div id="DL" class="off"><div class="DFI"><label for="latitude" accesskey="L">Latitude(s):</label><br /><textarea id="latitude" cols="16" rows="2" onfocus="this.select()"></textarea>&nbsp;&nbsp;</div><div class="DMA"><label for="longitude">Longitude(s):</label><br /><textarea id="longitude" cols="17" rows="2" onfocus="this.select()"></textarea></div></div><div id="DR" class="off"><label id="resultslabel" for="results">0 search results:</label><br /><div id="DRF"><select id="results"><option></option></select></div><br style="clear: both" /></div><div id="DB" class="fleft"><input id="add" type="submit" class="btn2" value="Add" accesskey="I" /><input type="button" class="btn2" value="Remove" accesskey="X" onclick="removeOptionSelected()" /><input type="button" class="btn2" value="Clear all" accesskey="0" onclick="clearAll()" /></div><div id="DB2" class="fleft"><input id="add2" type="button" class="btn2" value="Continue" onclick="contin()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="DB3" class="fleft"><input id="ok" type="button" class="btn2" value="Ok" onclick="ok1()" /><input type="button" class="btn2" value="Skip" onclick="skip()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="msg"></div></div><div id="upperright"><div id="radio2"><input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />Weight by time&nbsp;&nbsp;<input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />Other weight</div><br /><div id="DIC"><div id="DT"><div class="DFI"><label for="years0" accesskey="Y">Years:</label><br /><input type="text" id="years0" name="years" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DFI"><label for="months0">Months:</label><br /><input type="text" id="months0" name="months" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DMA"><label for="days0">Days:</label><br /><input type="text" id="days0" name="days" size="5" maxlength="5" onfocus="this.select()" /></div></div><div id="DT2" class="off"><div class="DFI"><label for="years1" accesskey="Y">Years:</label><br /><textarea id="years1" name="years" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DFI"><label for="months1">Months:</label><br /><textarea id="months1" name="months" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DMA"><label for="days1">Days:</label><br /><textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div></div><div id="DW" class="off"><label for="weight0" accesskey="W">Weight:</label><br /><input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" /></div><div id="DW2" class="off"><label for="weight1" accesskey="W">Weight:</label><br /><textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea> </div><a href="javascript:triggerMid()"><img id="micon" src="files/micon.jpg" alt="Midpoint info"></img></a><span>Leave blank for no weight</span></div></div><div class="DCL"></div><div id="map"></div><div id="DLB"><div id="DE" class="off"></div><div id="DP"><label id="placeslabel" for="places" accesskey="P">Your places:</label><br /><select id="places" size="8" onchange="openPlace()"><option>.</option><option>.</option><option>.</option></select></div><br /><br /><input type="checkbox" id="disp" checked="checked" />Display place markers<br /><br /><label for="method">Calculation method:</label><br /><div id="radio3"><input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />Midpoint (Center of gravity)<br /><input type="radio" name="method" onclick="changeMethod()" />Center of minimum distance<br /> <input type="radio" name="method" onclick="changeMethod()" />Average latitude/longitude</div><br /><br /><input type="checkbox" id="large" onclick="switchMap()" />Larger map&nbsp;<input type="button" class="btn" value="Save map" onclick="save(0)" /></div></form>';
+var calc='
+<form id="frm" action="" onsubmit="launch(); return false">
+    <div id="upperleft">
+        <div id="radio1">
+            <input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />
+            Address&nbsp;
+            <input class="even" type="radio" name="radr" onclick="switchLoc()" />
+            Multiple input&nbsp;
+            <input class="even" type="radio" name="radr" onclick="switchLoc()" />
+            Latitude/longitude</div>
+            <br />
+            <div id="DA">
+                <label for="address0">Address or city:</label>
+                <br />
+                <input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" />
+            </div>
+            <div id="DA2" class="off">
+                <label for="address1">Addresses (Each on a separate line):</label>
+                <br />
+                <textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea>
+            </div>
+            <div id="DL" class="off">
+                <div class="DFI">
+                    <label for="latitude" accesskey="L">Latitude(s):</label>
+                    <br />
+                    <textarea id="latitude" cols="16" rows="2" onfocus="this.select()"></textarea>
+                    &nbsp;&nbsp;
+                </div>
+                <div class="DMA">
+                    <label for="longitude">Longitude(s):</label>
+                    <br />
+                    <textarea id="longitude" cols="17" rows="2" onfocus="this.select()"></textarea>
+                </div>
+            </div>
+            <div id="DR" class="off">
+                <label id="resultslabel" for="results">0 search results:</label>
+                <br />
+                <div id="DRF">
+                    <select id="results">
+                        <option></option>
+                    </select>
+                </div>
+                <br style="clear: both" />
+            </div>
+            <div id="DB" class="fleft">
+                <input id="add" type="submit" class="btn2" value="Add" accesskey="I" />
+                <input type="button" class="btn2" value="Remove" accesskey="X" onclick="removeOptionSelected()" />
+                <input type="button" class="btn2" value="Clear all" accesskey="0" onclick="clearAll()" />
+            </div>
+            <div id="DB2" class="fleft">
+                <input id="add2" type="button" class="btn2" value="Continue" onclick="contin()" />
+                <input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" />
+            </div>
+            <div id="DB3" class="fleft">
+                <input id="ok" type="button" class="btn2" value="Ok" onclick="ok1()" />
+                <input type="button" class="btn2" value="Skip" onclick="skip()" />
+                <input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" />
+            </div>
+            <div id="msg"></div>
+        </div>
+        <div id="upperright">
+            <div id="radio2">
+                <input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />
+                Weight by time&nbsp;&nbsp;
+                <input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />
+                Other weight
+            </div>
+            <br />
+            <div id="DIC">
+                <div id="DT">
+                    <div class="DFI">
+                        <label for="years0" accesskey="Y">Years:</label>
+                        <br />
+                        <input type="text" id="years0" name="years" size="5" maxlength="5" onfocus="this.select()" />
+                    </div>
+                    <div class="DFI">
+                        <label for="months0">Months:</label>
+                        <br />
+                        <input type="text" id="months0" name="months" size="5" maxlength="5" onfocus="this.select()" />
+                    </div>
+                    <div class="DMA">
+                        <label for="days0">Days:</label>
+                        <br />
+                        <input type="text" id="days0" name="days" size="5" maxlength="5" onfocus="this.select()" />
+                    </div>
+                </div>
+                <div id="DT2" class="off">
+                    <div class="DFI">
+                        <label for="years1" accesskey="Y">Years:</label>
+                        <br />
+                        <textarea id="years1" name="years" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea>
+                    </div>
+                    <div class="DFI">
+                        <label for="months1">Months:</label>
+                        <br />
+                        <textarea id="months1" name="months" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea>
+                    </div>
+                    <div class="DMA">
+                        <label for="days1">Days:</label>
+                        <br />
+                        <textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea>
+                    </div>
+                </div>
+                <div id="DW" class="off">
+                    <label for="weight0" accesskey="W">Weight:</label>
+                    <br />
+                    <input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" />
+                </div>
+                <div id="DW2" class="off">
+                    <label for="weight1" accesskey="W">Weight:</label>
+                    <br />
+                    <textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea>
+                </div>
+                <a href="javascript:triggerMid()">
+                    <img id="micon" src="files/micon.jpg" alt="Midpoint info"></img>
+                </a>
+                <span>Leave blank for no weight</span>
+            </div>
+        </div>
+        <div class="DCL"></div>
+        <div id="map"></div>
+        <div id="DLB">
+            <div id="DE" class="off"></div>
+            <div id="DP">
+                <label id="placeslabel" for="places" accesskey="P">Your places:</label>
+                <br />
+                <select id="places" size="8" onchange="openPlace()">
+                    <option>.</option>
+                    <option>.</option>
+                    <option>.</option>
+                </select>
+            </div>
+            <br />
+            <br />
+            <input type="checkbox" id="disp" checked="checked" />
+            Display place markers
+            <br />
+            <br />
+            <label for="method">Calculation method:</label>
+            <br />
+            <div id="radio3">
+                <input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />
+                Midpoint (Center of gravity)
+                <br />
+                <input type="radio" name="method" onclick="changeMethod()" />
+                Center of minimum distance<br />
+                <input type="radio" name="method" onclick="changeMethod()" />
+                Average latitude/longitude
+            </div>
+            <br />
+            <br />
+            <input type="checkbox" id="large" onclick="switchMap()" />
+            Larger map&nbsp;
+            <input type="button" class="btn" value="Save map" onclick="save(0)" />
+        </div>
+    </form>';
 
 var map, geocoder, MM;
 var cAddress=document.getElementsByName("address");
@@ -25,145 +180,144 @@ var M=Math;
 var p, infoWindow, geoOverLimit;
 document.write(calc);
 
-
 function initialize() {
-f1=D("frm");
-p=f1.places;
-p.length=0;
-infoWindow= new google.maps.InfoWindow( {
-content: ""
-});
-rI=0;
-wI=0;
-cI=0;
+    f1=D("frm"); // f1 now is the form
+    p=f1.places; // Number of documented places
+    p.length=0;
+    infoWindow= new google.maps.InfoWindow( {
+    content: ""
+    });
+    rI=0;
+    wI=0;
+    cI=0;
 
-var y="", m="", d="", cl="", cn="", z="", x="", c="", w="", p0="", r="", latlng;
-var s=window.location.search.substring(1);
-//s="ml=33.7288&mn=-118.07501&l=33.803244|33.93759|34.007659|33.956234|33.942584|32.56872|32.697083|32.752006|32.761919|32.824002&n=-118.181647|-118.362142|-118.281898|-118.263943|-118.272402|-117.086903|-117.099553|-117.136551|-117.082216|-117.103308&a=924+East+Vernon+Street,+Signal+Hill,+CA+90755,+USA|10816+South+Burl+Avenue,+Inglewood,+CA+90304,+USA|459+West+42nd+Street,+Los+Angeles,+CA+90037,+USA|632+East+88th+Place,+Los+Angeles,+CA+90002,+USA|140+East+103rd+Street,+Los+Angeles,+CA+90003,+USA|1525+Oakden+Drive,+San+Diego,+CA+92154,+USA|4428+Logan+Avenue,+San+Diego,+CA+92113,+USA|4094+Hamilton+Street,+San+Diego,+CA+92104,+USA|5267+Adams+Avenue,+San+Diego,+CA+92115,+USA|5104+Fino+Drive,+San+Diego,+CA+92124,+USA&d=1100|1100|1100|1100|1100|220|220|220|220|220&cl=33.29116&cn=-117.72218&z=8&x=1&c=0&p=1&r=1&w=0 ";
+    var y="", m="", d="", cl="", cn="", z="", x="", c="", w="", p0="", r="", latlng;
+    var s=window.location.search.substring(1);
+    //s="ml=33.7288&mn=-118.07501&l=33.803244|33.93759|34.007659|33.956234|33.942584|32.56872|32.697083|32.752006|32.761919|32.824002&n=-118.181647|-118.362142|-118.281898|-118.263943|-118.272402|-117.086903|-117.099553|-117.136551|-117.082216|-117.103308&a=924+East+Vernon+Street,+Signal+Hill,+CA+90755,+USA|10816+South+Burl+Avenue,+Inglewood,+CA+90304,+USA|459+West+42nd+Street,+Los+Angeles,+CA+90037,+USA|632+East+88th+Place,+Los+Angeles,+CA+90002,+USA|140+East+103rd+Street,+Los+Angeles,+CA+90003,+USA|1525+Oakden+Drive,+San+Diego,+CA+92154,+USA|4428+Logan+Avenue,+San+Diego,+CA+92113,+USA|4094+Hamilton+Street,+San+Diego,+CA+92104,+USA|5267+Adams+Avenue,+San+Diego,+CA+92115,+USA|5104+Fino+Drive,+San+Diego,+CA+92124,+USA&d=1100|1100|1100|1100|1100|220|220|220|220|220&cl=33.29116&cn=-117.72218&z=8&x=1&c=0&p=1&r=1&w=0 ";
 
-s=decodeURI(s.replace(/\+/gi, " "));
-var a3=s.split("&");
-if (a3.length>0) {
-for (j=0; j<a3.length; j++) {
-var a4=a3[j].split("=");
-var q=a4[1];
-switch(a4[0]) {
-case "ml":
-parlat=q;
-break;
-case "mn":
-parlng=q;
-break;
-case "l":
-lats=q.split("|");
-break;
-case "n":
-lons=q.split("|");
-break;
-case "a":
-addresses=q.split("|");
-break;
-case "y":
-y=q.replace(/\|/g,"\n");
-break;
-case "m":
-m=q.replace(/\|/g,"\n");
-break;
-case "d":
-d=q.replace(/\|/g,"\n");
-break;
-case "x":
-x=1;
-f1.large.checked=(q=="1");
-switchMap();
-break;
-case "cl":
-cl=q;
-break;
-case "cn":
-cn=q;
-break;
-case "z":
-z=parseInt(q);
-break;
-case "c":
-c=1;
-f1.method[q].checked=true;
-cI=q;
-break;
-case "p":
-p0=1;
-f1.disp.checked=(q=="1");
-break;
-case "w":
-f1.radw[q].checked=true;
-switchWeight();
-break;
-case "r":
-f1.radr[q].checked=true;
-switchLoc();
-break;
-}
-}
-}
+    s=decodeURI(s.replace(/\+/gi, " ")); // Parsing queries on the end of the URL. Unclear to me why.
+    var a3=s.split("&");
+    if (a3.length>0) {
+    for (j=0; j<a3.length; j++) {
+    var a4=a3[j].split("=");
+    var q=a4[1];
+    switch(a4[0]) {
+    case "ml":
+    parlat=q;
+    break;
+    case "mn":
+    parlng=q;
+    break;
+    case "l":
+    lats=q.split("|");
+    break;
+    case "n":
+    lons=q.split("|");
+    break;
+    case "a":
+    addresses=q.split("|");
+    break;
+    case "y":
+    y=q.replace(/\|/g,"\n");
+    break;
+    case "m":
+    m=q.replace(/\|/g,"\n");
+    break;
+    case "d":
+    d=q.replace(/\|/g,"\n");
+    break;
+    case "x":
+    x=1;
+    f1.large.checked=(q=="1");
+    switchMap();
+    break;
+    case "cl":
+    cl=q;
+    break;
+    case "cn":
+    cn=q;
+    break;
+    case "z":
+    z=parseInt(q);
+    break;
+    case "c":
+    c=1;
+    f1.method[q].checked=true;
+    cI=q;
+    break;
+    case "p":
+    p0=1;
+    f1.disp.checked=(q=="1");
+    break;
+    case "w":
+    f1.radw[q].checked=true;
+    switchWeight();
+    break;
+    case "r":
+    f1.radr[q].checked=true;
+    switchLoc();
+    break;
+    }
+    }
+    }
 
-readCookie('ckData1');
-if (w=="" && ck[2]>=0 && ck[2]<=1) {
-wI=ck[2];
-f1.radw[wI].checked=true;
-switchWeight();
-}
-if (r=="" && ck[1]>=0 && ck[1]<=2) {
-rI=ck[1];
-f1.radr[rI].checked=true;
-}
-switchLoc();
-if (c=="" && ck[3]>=0 && ck[3]<=2) {
-cI = ck[3];
-f1.method[cI].checked = true;
-}
-if (p0=="") {
-f1.disp.checked=(ck[4]==1 || isNaN(ck[4]));
-	}
-if (x=="") {
-f1.large.checked=(ck[0]=="1");
-switchMap()
-}
+    readCookie('ckData1');
+    if (w=="" && ck[2]>=0 && ck[2]<=1) {
+    wI=ck[2];
+    f1.radw[wI].checked=true;
+    switchWeight();
+    }
+    if (r=="" && ck[1]>=0 && ck[1]<=2) {
+    rI=ck[1];
+    f1.radr[rI].checked=true;
+    }
+    switchLoc();
+    if (c=="" && ck[3]>=0 && ck[3]<=2) {
+    cI = ck[3];
+    f1.method[cI].checked = true;
+    }
+    if (p0=="") {
+    f1.disp.checked=(ck[4]==1 || isNaN(ck[4]));
+    	}
+    if (x=="") {
+    f1.large.checked=(ck[0]=="1");
+    switchMap()
+    }
 
-if (cl!="" && cn!="" && cl>=-90 && cl<=90 && cn>=-180 && cn<=180) {
-if (z=="") z=3;
-latlng=new google.maps.LatLng(cl,cn);
-} else if (!isNaN(ck[5]) && !isNaN(ck[6])) {
-latlng=new google.maps.LatLng(ck[5], ck[6]);
-z=ck[7]*1;
-} else {
-latlng=new google.maps.LatLng(39.17,-98.297);
-z=3;
-}
+    if (cl!="" && cn!="" && cl>=-90 && cl<=90 && cn>=-180 && cn<=180) {
+    if (z=="") z=3;
+    latlng=new google.maps.LatLng(cl,cn);
+    } else if (!isNaN(ck[5]) && !isNaN(ck[6])) {
+    latlng=new google.maps.LatLng(ck[5], ck[6]);
+    z=ck[7]*1;
+    } else {
+    latlng=new google.maps.LatLng(39.17,-98.297);
+    z=3;
+    }
 
-geocoder=new google.maps.Geocoder();
-var options= {
-zoom: z,
-center: latlng,
-mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-map=new google.maps.Map(D("map"), options);
+    geocoder=new google.maps.Geocoder();
+    var options= {
+    zoom: z,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map=new google.maps.Map(D("map"), options);
 
-if (lats.length) {
-par=1;
-years=getInput(y, lats.length);
-months=getInput(m, lats.length);
-days=getInput(d, lats.length);
-launch(1);
-} else if (parlat && parlng) {
-par=1;
-calculate();
-}
-if ((MM || p.length) && (cl=="" || cn=="")) setBounds();
+    if (lats.length) {
+    par=1;
+    years=getInput(y, lats.length);
+    months=getInput(m, lats.length);
+    days=getInput(d, lats.length);
+    launch(1);
+    } else if (parlat && parlng) {
+    par=1;
+    calculate();
+    }
+    if ((MM || p.length) && (cl=="" || cn=="")) setBounds();
 }
 
 function unload() {
-setCookie('ckData1', f1.large.checked*1, rI+f1.radr[2].checked*1, wI, cI, f1.disp.checked*1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
+    setCookie('ckData1', f1.large.checked*1, rI+f1.radr[2].checked*1, wI, cI, f1.disp.checked*1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
 }
 
 
@@ -224,52 +378,52 @@ if(map.getZoom()>15) map.setZoom(15);
 }
 
 function createMarker(point, html, ico, d) {
-var icon=null, shadow=null, visible=true;
-if (ico) {
-icon = "images/paleblue_MarkerM.png";
-shadow = {
-url: 'images/shadow50.png',
-size: new google.maps.Size(37, 34),
-origin: new google.maps.Point(0,0),
-anchor: new google.maps.Point(10, 34)
-};
-} else {
-if (!f1.disp.checked) visible=false;
-}
-var marker=new google.maps.Marker({
-position: point,
-map: map,
-icon: icon,
-shadow: shadow,
-visible: visible
-});
-if (d) marker.setDraggable(true);
-google.maps.event.addListener(marker, "click", function() {
-var h="";
-if (!ico) {
-if (marker.dragged!=1) {
-h=formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
-} else {
-h= formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
-}
-} else {
-h=html;
-}
-displayError(h);
-//alert(h);
-infoWindow.content=h;
-//infoWindow.open(map, marker);
-});
-google.maps.event.addListener(marker, 'dragstart', function() {
-saveLatLng(marker.i, marker.getPosition());
-closeInfo();
-});
-google.maps.event.addListener(marker, 'dragend', function() {
-sameMap=1;
-calculate();
-marker.dragged=1;
-});
-return marker;
+    var icon=null, shadow=null, visible=true;
+    if (ico) {
+    icon = "images/paleblue_MarkerM.png";
+    shadow = {
+    url: 'images/shadow50.png',
+    size: new google.maps.Size(37, 34),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(10, 34)
+    };
+    } else {
+    if (!f1.disp.checked) visible=false;
+    }
+    var marker=new google.maps.Marker({
+    position: point,
+    map: map,
+    icon: icon,
+    shadow: shadow,
+    visible: visible
+    });
+    if (d) marker.setDraggable(true);
+    google.maps.event.addListener(marker, "click", function() {
+    var h="";
+    if (!ico) {
+    if (marker.dragged!=1) {
+    h=formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
+    } else {
+    h= formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
+    }
+    } else {
+    h=html;
+    }
+    displayError(h);
+    //alert(h);
+    infoWindow.content=h;
+    //infoWindow.open(map, marker);
+    });
+    google.maps.event.addListener(marker, 'dragstart', function() {
+    saveLatLng(marker.i, marker.getPosition());
+    closeInfo();
+    });
+    google.maps.event.addListener(marker, 'dragend', function() {
+    sameMap=1;
+    calculate();
+    marker.dragged=1;
+    });
+    return marker;
 }
 
 function closeInfo() {
@@ -346,240 +500,240 @@ calculate();
 }
 
 function appendToList() {
-dispMsg("Adding...", addresses.length);
-var r=f1.results;
-var i=M.max(r.selectedIndex, 0);
-var sText=r[i].text;
-if (MM) MM=remove(MM);
-	appendOptionLast("places", sText);
-var l= p.length-1;
-p[l].y= years[addressIndex];
-p[l].m=months[addressIndex];
-p[l].d=days[addressIndex];
-var point = new google.maps.LatLng(roundx(r[i].lat,6), roundx(r[i].lng,6));
-p[l].marker=createMarker(point, "", null, 1);
-p[l].marker.i=l;
-dispCount();
-if (!l)lockWeights();
+    dispMsg("Adding...", addresses.length);
+    var r=f1.results;
+    var i=M.max(r.selectedIndex, 0);
+    var sText=r[i].text;
+    if (MM) MM=remove(MM);
+    appendOptionLast("places", sText);
+    var l= p.length-1;
+    p[l].y= years[addressIndex];
+    p[l].m=months[addressIndex];
+    p[l].d=days[addressIndex];
+    var point = new google.maps.LatLng(roundx(r[i].lat,6), roundx(r[i].lng,6));
+    p[l].marker=createMarker(point, "", null, 1);
+    p[l].marker.i=l;
+    dispCount();
+    if (!l)lockWeights();
 }
 
 function calculate() {
-if (p.length>1 || par) {
-var midlat=0, midlng=0;
-var x = 0;
-var y = 0;
-var z = 0;
-var x1, y1, z1;
-var pt=new Object();
-pt.lat=0;
-pt.lon=0;
-var totdays=0;
-var lats1 = new Array();
-var lons1 = new Array();
-var days1 = new Array();
-var sinlats = new Array();
-var coslats = new Array();
-with (Math) {
-	for (i=0; i<p.length; i++) {
-lats1[i]=rad(p[i].marker.getPosition().lat());
-lons1[i]=rad(p[i].marker.getPosition().lng());
-sinlats[i]=sin(lats1[i]);
-coslats[i]=cos(lats1[i]);
-days1[i]= p[i].y*365.25 + p[i].m*30.4375 + p[i].d*1;
-if (days1[i] == 0) {
-days1[i] = 1;
-}
-totdays=totdays+days1[i];
-x1=coslats[i]*cos(lons1[i]);
-y1=coslats[i]*sin(lons1[i]);
-z1=sinlats[i];
-x+=x1 * days1[i];
-y += y1 * days1[i];
-z += z1 * days1[i];
-}
-x=x/totdays;
-y=y/totdays;
-z=z/totdays;
-midlng=atan2(y, x);
-hyp=sqrt(x*x + y*y);
-midlat=atan2(z, hyp);
-if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
-    if (MM) MM=remove(MM);
-    displayError('The midpoint is the center of the earth.');
-} else {
-    if (cI==2) {
-        y=0;
-        x=0;
-        for(i=0; i<lats1.length; i++) {
-        y=y + lats1[i] * days1[i];
-        x=x + normalizeLongitude(lons1[i]-midlng) * days1[i];
+    if (p.length>1 || par) {
+        var midlat=0, midlng=0;
+        var x = 0;
+        var y = 0;
+        var z = 0;
+        var x1, y1, z1;
+        var pt=new Object();
+        pt.lat=0;
+        pt.lon=0;
+        var totdays=0;
+        var lats1 = new Array();
+        var lons1 = new Array();
+        var days1 = new Array();
+        var sinlats = new Array();
+        var coslats = new Array();
+        with (Math) {
+        for (i=0; i<p.length; i++) {
+            lats1[i]=rad(p[i].marker.getPosition().lat());
+            lons1[i]=rad(p[i].marker.getPosition().lng());
+            sinlats[i]=sin(lats1[i]);
+            coslats[i]=cos(lats1[i]);
+            days1[i]= p[i].y*365.25 + p[i].m*30.4375 + p[i].d*1;
+            if (days1[i] == 0) {
+            days1[i] = 1;
+            }
+            totdays=totdays+days1[i];
+            x1=coslats[i]*cos(lons1[i]);
+            y1=coslats[i]*sin(lons1[i]);
+            z1=sinlats[i];
+            x+=x1 * days1[i];
+            y += y1 * days1[i];
+            z += z1 * days1[i];
         }
-        midlat= y/totdays;
-        midlng= normalizeLongitude(x/totdays+midlng);
-    } else if (cI==1) {
-        if (lats1.length>2 || lats1.length==2 & days1[0] != days1[1]) {
-            var tries=0;
-            lats1[lats1.length]=midlat;
-            lons1[lons1.length]=midlng;
-            var distrad=rad90;
-            var mindist=1.0e07;
-            var sum, gMindist, lat2, slat, cdist, minlat, minlon;
-            var t= new Array(8, 6, 7, 2, 0, 1, 5, 3, 4);
-            var scale= new Array(0.7071, 0.7071, 1, 0.7071, 0.7071, 1, 1, 1, 1);
-            var testcenter=true;
-            i=lats1.length+8;
-            while (distrad > 2.0e-08 && tries<5000) {
-            if (i<0) {
-                i=8;
+        x=x/totdays;
+        y=y/totdays;
+        z=z/totdays;
+        midlng=atan2(y, x);
+        hyp=sqrt(x*x + y*y);
+        midlat=atan2(z, hyp);
+        if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
+            if (MM) MM=remove(MM);
+            displayError('The midpoint is the center of the earth.');
+        } else {
+            if (cI==2) {
+                y=0;
+                x=0;
+                for(i=0; i<lats1.length; i++) {
+                    y=y + lats1[i] * days1[i];
+                    x=x + normalizeLongitude(lons1[i]-midlng) * days1[i];
+                }
+                midlat= y/totdays;
+                midlng= normalizeLongitude(x/totdays+midlng);
+            } else if (cI==1) {
+                if (lats1.length>2 || lats1.length==2 & days1[0] != days1[1]) {
+                    var tries=0;
+                    lats1[lats1.length]=midlat;
+                    lons1[lons1.length]=midlng;
+                    var distrad=rad90;
+                    var mindist=1.0e07;
+                    var sum, gMindist, lat2, slat, cdist, minlat, minlon;
+                    var t= new Array(8, 6, 7, 2, 0, 1, 5, 3, 4);
+                    var scale= new Array(0.7071, 0.7071, 1, 0.7071, 0.7071, 1, 1, 1, 1);
+                    var testcenter=true;
+                    i=lats1.length+8;
+                    while (distrad > 2.0e-08 && tries<5000) {
+                    if (i<0) {
+                        i=8;
+                    }
+                    while (i>=0) {
+                    	if(i<9) {
+                    y=floor(t[i]/3)-1;
+                    x= t[i] % 3;
+                    switch (x) {
+                    case 1:
+                    pt.lon=midlng;
+                    pt.lat= midlat - y*distrad;
+                    pt=normalizeLatitude(pt);
+                    break
+                    case 0:
+                    pt.lon=midlng;
+                    pt.lat= midlat - y*distrad*scale[i];
+                    pt=normalizeLatitude(pt);
+                    lat2=pt.lat;
+                    slat=sin(lat2);
+                    cdist = cos(distrad*scale[i]);
+                    pt.lat = asin(slat*cdist);
+                    pt.lon=normalizeLongitude(pt.lon+atan2(-sin(distrad*scale[i])*cos(lat2),cdist-slat* sin(pt.lat))); 
+                    break
+                    case 2:
+                    pt.lon=normalizeLongitude(midlng+normalizeLongitude(midlng-pt.lon));
+                    }
+                    } else {
+                    pt.lat=lats1[i-9];
+                    pt.lon=lons1[i-9];
+                    }
+                    if(pt.lon != midlng || pt.lat != midlat || testcenter) {
+                    sum=0;
+                    for(j=0; j<lats1.length-1; j++) {
+                    sum += acos(sinlats[j]*sin(pt.lat) + coslats[j]*cos(pt.lat) *cos(pt.lon-lons1[j]))*days1[j];
+                    }
+                    if (!testcenter) {
+                    if (sum<mindist) {
+                    mindist=sum;
+                    minlat=pt.lat;
+                    minlon=pt.lon;
+                    }
+                    } else {
+                    gMindist=sum;
+                    testcenter=false;
+                    }
+                    }
+                    i--;
+                    }
+                    if (mindist-gMindist< -4.0e-14) {
+                    midlat=minlat;
+                    midlng=minlon;
+                    gMindist=mindist;
+                    } else {
+                    distrad=distrad * 0.5;
+                    }
+                    tries++
+                    }
+                }
             }
-            while (i>=0) {
-            	if(i<9) {
-            y=floor(t[i]/3)-1;
-            x= t[i] % 3;
-            switch (x) {
-            case 1:
-            pt.lon=midlng;
-            pt.lat= midlat - y*distrad;
-            pt=normalizeLatitude(pt);
-            break
-            case 0:
-            pt.lon=midlng;
-            pt.lat= midlat - y*distrad*scale[i];
-            pt=normalizeLatitude(pt);
-            lat2=pt.lat;
-            slat=sin(lat2);
-            cdist = cos(distrad*scale[i]);
-            pt.lat = asin(slat*cdist);
-            pt.lon=normalizeLongitude(pt.lon+atan2(-sin(distrad*scale[i])*cos(lat2),cdist-slat* sin(pt.lat))); 
-            break
-            case 2:
-            pt.lon=normalizeLongitude(midlng+normalizeLongitude(midlng-pt.lon));
-            }
+            if (!par) {
+            midlat=deg(midlat);
+            midlng=deg(midlng);
             } else {
-            pt.lat=lats1[i-9];
-            pt.lon=lons1[i-9];
+            midlat=parlat;
+            midlng=parlng;
             }
-            if(pt.lon != midlng || pt.lat != midlat || testcenter) {
-            sum=0;
-            for(j=0; j<lats1.length-1; j++) {
-            sum += acos(sinlats[j]*sin(pt.lat) + coslats[j]*cos(pt.lat) *cos(pt.lon-lons1[j]))*days1[j];
-            }
-            if (!testcenter) {
-            if (sum<mindist) {
-            mindist=sum;
-            minlat=pt.lat;
-            minlon=pt.lon;
-            }
-            } else {
-            gMindist=sum;
-            testcenter=false;
-            }
-            }
-            i--;
-            }
-            if (mindist-gMindist< -4.0e-14) {
-            midlat=minlat;
-            midlng=minlon;
-            gMindist=mindist;
-            } else {
-            distrad=distrad * 0.5;
-            }
-            tries++
-            }
+            par=0;
+            if (MM) MM=remove(MM);
+            var oplat = midlat * -1;
+            var oplng = (((midlng + 180) + 180) % 360) - 180;
+            var point = new google.maps.LatLng(oplat, oplng);
+            var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
+            var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
+            MM=createMarker(point, h1+h2, 1, 0);
+            MM.setMap(map);
+            MM.h1=h1;
+            MM.h2=h2;
+            geocoder.geocode({'latLng': point}, revGeoCallback);
+        }
+        if (tries>=5000) {
+        displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
+        }
         }
     }
-    if (!par) {
-    midlat=deg(midlat);
-    midlng=deg(midlng);
-    } else {
-    midlat=parlat;
-    midlng=parlng;
+    if (!par && !sameMap) {
+        setBounds();
     }
-    par=0;
-    if (MM) MM=remove(MM);
-    var oplat = midlat * -1;
-    var oplng = (((midlng + 180) + 180) % 360) - 180;
-    var point = new google.maps.LatLng(oplat, oplng);
-    var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
-    var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
-    MM=createMarker(point, h1+h2, 1, 0);
-    MM.setMap(map);
-    MM.h1=h1;
-    MM.h2=h2;
-    geocoder.geocode({'latLng': point}, revGeoCallback);
-}
-if (tries>=5000) {
-displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
-}
-}
-}
-if (!par && !sameMap) {
-setBounds();
-}
-sameMap=0;
+    sameMap=0;
 }	
 
 function saveLatLng(i, ll) {
-if (isNaN(p[i].lat)) {
-p[i].lat=ll.lat();
-p[i].lng=ll.lng();
-}
+    if (isNaN(p[i].lat)) {
+        p[i].lat=ll.lat();
+        p[i].lng=ll.lng();
+    }
 }
 
 function reset(i) {
-closeInfo();
-p[i].marker.dragged=0;
-var point = new google.maps.LatLng(p[i].lat, p[i].lng);
-p[i].marker.setPosition(point);
-calculate();
+    closeInfo();
+    p[i].marker.dragged=0;
+    var point = new google.maps.LatLng(p[i].lat, p[i].lng);
+    p[i].marker.setPosition(point);
+    calculate();
 }
 
 function r5(i) {
-p.selectedIndex=i;
-removeOptionSelected();
+    p.selectedIndex=i;
+    removeOptionSelected();
 }
 
 function remove(obj) {
-if (obj) {
-obj.setMap(null);
-}
-return null;
+    if (obj) {
+        obj.setMap(null);
+    }
+    return null;
 }
 
 function appendOptionLast(combo, item) {
-var elOptNew = document.createElement('option');
-elOptNew.text = item;
-elOptNew.value = item;
-var elSel = D(combo);
-try {
-elSel.add(elOptNew, null);
-}
-catch(ex) {
-elSel.add(elOptNew);
-}
+    var elOptNew = document.createElement('option');
+    elOptNew.text = item;
+    elOptNew.value = item;
+    var elSel = D(combo);
+    try {
+        elSel.add(elOptNew, null);
+    }
+    catch(ex) {
+        elSel.add(elOptNew);
+    }
 }
 
 function dispCount() {
-var l=p.length;
-var m="s";
-switch(l) {
-case 1:
-m="";
-break;
-case 0:
-l="";
-}
-D("placeslabel").innerHTML="Your " + l + " place" + m + ":";
+    var l=p.length;
+    var m="s";
+    switch(l) {
+        case 1:
+        m="";
+        break;
+        case 0:
+        l="";
+    }
+    D("placeslabel").innerHTML="Your " + l + " place" + m + ":";
 }
 
 function dispMsg(s, l) {
-if (l>1) D("msg").innerHTML=s;
+    if (l>1) D("msg").innerHTML=s;
 }
 
 function displayError(e) {
-D("DE").innerHTML= e;
-toggleDivs(["DE"], 1);
-//alert(e);
+    D("DE").innerHTML= e;
+    toggleDivs(["DE"], 1);
+    //alert(e);
 }
 
 function rad(dg) {
@@ -591,144 +745,145 @@ function deg(rd) {
 }
 
 function splitAddress(s) {
-var t=s.split(/,/);
-if (t.length>3 || t.length>2 && /\d/g.test(t[0])) {
-s=t[0]+ "<br>";
-for (j=1; j<t.length; j++) {
-if (j>1) s += ", ";
-s += trim(t[j]);
-}
-}
-return s;
+    var t=s.split(/,/);
+    if (t.length>3 || t.length>2 && /\d/g.test(t[0])) {
+        s=t[0]+ "<br>";
+        for (j=1; j<t.length; j++) {
+            if (j>1) s += ", ";
+            s += trim(t[j]);
+        }
+    }
+    return s;
 }
 
 function normalizeLongitude(lon) {
-var n=Math.PI;
-if (lon > n) {
-lon = lon - 2*n
-} else if (lon < -n) {
-lon = lon + 2*n
-}
-return lon;
+    var n=Math.PI;
+    if (lon > n) {
+        lon = lon - 2*n
+    } else if (lon < -n) {
+        lon = lon + 2*n
+    }
+    return lon;
 }
 
 function normalizeLatitude(point) {
-if (Math.abs(point.lat)>rad90) {
-point.lat=rad180-point.lat-2*rad180*(point.lat<-rad90);
-point.lon=normalizeLongitude(point.lon-rad180);
-}
-return point;
+    if (Math.abs(point.lat)>rad90) {
+        point.lat=rad180-point.lat-2*rad180*(point.lat<-rad90);
+        point.lon=normalizeLongitude(point.lon-rad180);
+    }
+    return point;
 }
 
 function trim(s) {
-if (s.charCodeAt(0)>32 && s.charCodeAt(s.length-1)>32)
-return s;
-else
-return s.replace(/^\s+|\s+$/g, '');
+    if (s.charCodeAt(0)>32 && s.charCodeAt(s.length-1)>32)
+    return s;
+    else
+    return s.replace(/^\s+|\s+$/g, '');
 }
 
 function rTrim(s) {
-if (s.charCodeAt(s.length-1)>32)
-return s;
-else
-return s.replace(/\s+$/g, '');
+    if (s.charCodeAt(s.length-1)>32)
+    return s;
+    else
+    return s.replace(/\s+$/g, '');
 }
 
 function roundx(n, exp) {
-return M.round(n*M.pow(10,exp))/M.pow(10,exp);
+    return M.round(n*M.pow(10,exp))/M.pow(10,exp);
 }
 
 function lockWeights() {
-f1.w0.disabled=(p.length>0);
-f1.w1.disabled=(p.length>0);
+    f1.w0.disabled=(p.length>0);
+    f1.w1.disabled=(p.length>0);
 }
 
+// Toggle which divs of the menu are shown
 function toggleDivs(divs, block) {
-for (i=0; i<divs.length; i++) {
-if (i<block) {
-D(divs[i]).style.display="block";
-} else {
-D(divs[i]).style.display="none";
-}
-}
+    for (i=0; i<divs.length; i++) {
+        if (i<block) {
+            D(divs[i]).style.display="block";
+        } else {
+            D(divs[i]).style.display="none";
+        }
+    }
 }
 
 function D(id) {
-return document.getElementById(id);
+    return document.getElementById(id);
 }
 
 function switchLoc() {
-var prev=rI;
-if (f1.radr[0].checked) {
-toggleDivs(["DA","DB","DA2","DR","DB2","DB3","DL"], 2);
-rI=0;
-} else if (f1.radr[1].checked) {
-toggleDivs(["DA2","DB","DA","DR","DB2","DB3","DL"], 2);
-rI=1;
-} else {
-toggleDivs(["DL","DB","DA","DA2","DR","DB2","DB3"], 2);
-rI=1;
-}
-if (prev != rI) clearGeocode();
-switchWeight();
+    var prev=rI;
+    if (f1.radr[0].checked) {
+        toggleDivs(["DA","DB","DA2","DR","DB2","DB3","DL"], 2);
+        rI=0;
+    } else if (f1.radr[1].checked) {
+        toggleDivs(["DA2","DB","DA","DR","DB2","DB3","DL"], 2);
+        rI=1;
+    } else {
+        toggleDivs(["DL","DB","DA","DA2","DR","DB2","DB3"], 2);
+        rI=1;
+    }
+    if (prev != rI) clearGeocode();
+    switchWeight();
 }
 
 function switchWeight() {
-var prev=wI;
-if (f1.radw[0].checked) {
-if (f1.radr[0].checked) {
-toggleDivs(["DT","DT2","DW","DW2"], 1);
-} else {
-toggleDivs(["DT2","DT","DW","DW2"], 1);
-}
-wI=0;
-} else {
-if (f1.radr[0].checked) {
-toggleDivs(["DW","DW2","DT","DT2"], 1);
-} else {
-toggleDivs(["DW2","DW","DT","DT2"], 1);
-}
-wI=1;
-}
-if (prev != wI) clearWeights();
+    var prev=wI;
+    if (f1.radw[0].checked) {
+        if (f1.radr[0].checked) {
+            toggleDivs(["DT","DT2","DW","DW2"], 1);
+        } else {
+            toggleDivs(["DT2","DT","DW","DW2"], 1);
+        }
+        wI=0;
+    } else {
+        if (f1.radr[0].checked) {
+            toggleDivs(["DW","DW2","DT","DT2"], 1);
+        } else {
+            toggleDivs(["DW2","DW","DT","DT2"], 1);
+        }
+        wI=1;
+    }
+    if (prev != wI) clearWeights();
 }
 
 function changeMethod() {
-closeInfo();
-if (f1.method[2].checked) {
-cI=2;
-} else if (f1.method[1].checked) {
-cI=1;
-} else {
-cI=0;
-}   
-if (p.length>1) calculate()
+    closeInfo();
+    if (f1.method[2].checked) {
+        cI=2;
+    } else if (f1.method[1].checked) {
+        cI=1;
+    } else {
+        cI=0;
+    }   
+    if (p.length>1) calculate()
 }
 
 function switchMap() {
-if (f1.large.checked) {
-D("map").style.width="48em";
-D("map").style.height="29.4em";
-} else {
-D("map").style.width="30.1em";
-D("map").style.height="24.1em";
-}
-if (map) {
-google.maps.event.trigger(map, 'resize');
-}
-if (p.length>0) {
-setBounds();
-}
+    if (f1.large.checked) {
+        D("map").style.width="48em";
+        D("map").style.height="29.4em";
+    } else {
+        D("map").style.width="30.1em";
+        D("map").style.height="24.1em";
+    }
+    if (map) {
+        google.maps.event.trigger(map, 'resize');
+    }
+    if (p.length>0) {
+        setBounds();
+    }
 }
 
 function getTimes(l) {
-years=getInput(cYear[rI].value, l);
-months=getInput(cMonth[rI].value, l);
-if (wI==1) {
-days=getInput(cWeight[rI].value, l);
-} else {
-days=getInput(cDay[rI].value, l);
-}
+    years=getInput(cYear[rI].value, l);
+    months=getInput(cMonth[rI].value, l);
+    if (wI==1) {
+        days=getInput(cWeight[rI].value, l);
+    } else {
+        days=getInput(cDay[rI].value, l);
+    }
 }
 
 function getInput(s, l) {
@@ -786,205 +941,206 @@ return true;
 }
 
 function launch(p1) {
-if (!p1) par=0; 
-var l;
-if (!map) return;
-closeInfo();
-request=-2;
-pause=0;
-cancel=0;
-if (f1.radr[2].checked || par) {
-if (!par) {
-lats=getInput(f1.latitude.value, 0);
-lons=getInput(f1.longitude.value, 0);
-getTimes(lats.length);
-}
-if (lats.length != lons.length) {
-displayError('The number of latitudes is not the same as the number of longitudes. Please check your data.');
-return false;
-}
-if (lats.length==0 || lons.length==0) {
-displayError('You must specify a latitude and longitude before continuing.');
-return false;
-}
-for (j=0; j<lats.length; j++) {
-if (!validateLl(lats[j], 0)) {
-displayError("The entry \'" + lats[j] + "\' for latitude #" + parseInt(j+1) + " is invalid.");
-return false;
-}
-if (!validateLl(lons[j], 1)) {
-displayError("The entry \'" + lons[j] + "\' for longitude #" + parseInt(j+1) + " is invalid.");
-return false;
-}
-}
-if (!validateTimes("location", lats.length)) return false;
-addressIndex=-1
-if (lats.length>1) {
-dispProceed();
-dispMsg("Adding...", 2);
-}
-if (MM) MM=remove(MM);
-launchL();
-return false;
-} else {
-addresses=getInput(cAddress[rI].value, 0);
-getTimes(addresses.length);
-if (addresses.length ==0) {
-displayError('You must specify an address before continuing.');
-return false;
-}
-if (!validateTimes("address", addresses.length)) return false;
-}	
-addressIndex=0;
-if (addresses.length>1) {
-dispProceed();
-dispMsg("Searching...", 2);
-}
-launchG()
+    if (!p1) par=0; 
+    var l;
+    if (!map) return;
+    closeInfo();
+    request=-2;
+    pause=0;
+    cancel=0;
+    if (f1.radr[2].checked || par) {
+        if (!par) {
+            lats=getInput(f1.latitude.value, 0);
+            lons=getInput(f1.longitude.value, 0);
+            getTimes(lats.length);
+        }
+        if (lats.length != lons.length) {
+            displayError('The number of latitudes is not the same as the number of longitudes. Please check your data.');
+            return false;
+        }
+        if (lats.length==0 || lons.length==0) {
+            displayError('You must specify a latitude and longitude before continuing.');
+            return false;
+        }
+        for (j=0; j<lats.length; j++) {
+            if (!validateLl(lats[j], 0)) {
+                displayError("The entry \'" + lats[j] + "\' for latitude #" + parseInt(j+1) + " is invalid.");
+                return false;
+            }
+            if (!validateLl(lons[j], 1)) {
+                displayError("The entry \'" + lons[j] + "\' for longitude #" + parseInt(j+1) + " is invalid.");
+                return false;
+            }
+        }
+        if (!validateTimes("location", lats.length)) return false;
+        addressIndex=-1
+        if (lats.length>1) {
+            dispProceed();
+            dispMsg("Adding...", 2);
+        }
+        if (MM) MM=remove(MM);
+        launchL();
+        return false;
+    } else {
+        addresses=getInput(cAddress[rI].value, 0);
+        getTimes(addresses.length);
+        if (addresses.length ==0) {
+            displayError('You must specify an address before continuing.');
+            return false;
+        }
+        if (!validateTimes("address", addresses.length)) return false;
+    }	
+    addressIndex=0;
+    if (addresses.length>1) {
+    dispProceed();
+    dispMsg("Searching...", 2);
+    }
+    launchG()
 }
 
 function launchL() {
-if (addressIndex>=lats.length-1 || cancel) {
-clearWeights();
-	clearGeocode();
-if (!par || parlat && parlng) calculate();
-dispStart();
-dispMsg("", 2);
-return false;
-} else {
-addressIndex++;
-}
-if (request>=addressIndex) return false;
-request=addressIndex;
-D("DE").style.display="none";
-if (par) {
-appendOptionLast("places", addresses[addressIndex]);
-} else {
-	appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
-}
-var l= p.length-1;
-p[l].y=parseFloat(years[addressIndex]);
-p[l].m=parseFloat(months[addressIndex]);
-p[l].d=parseFloat(days[addressIndex]);
-var point = new google.maps.LatLng(latLonToDecimal(lats[addressIndex]), latLonToDecimal(lons[addressIndex]));
-p[l].marker=createMarker(point, "", null, 1);
-p[l].marker.i=l;
-dispCount();
-window.setTimeout(launchL, 15);
-if (!l) lockWeights();
+    if (addressIndex>=lats.length-1 || cancel) {
+        clearWeights();
+        clearGeocode();
+        if (!par || parlat && parlng) calculate();
+        dispStart();
+        dispMsg("", 2);
+        return false;
+    } else {
+        addressIndex++;
+    }
+    if (request>=addressIndex) return false;
+    request=addressIndex;
+    D("DE").style.display="none";
+    if (par) {
+        appendOptionLast("places", addresses[addressIndex]);
+    } else {
+    	appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
+    }
+    var l= p.length-1;
+    p[l].y=parseFloat(years[addressIndex]);
+    p[l].m=parseFloat(months[addressIndex]);
+    p[l].d=parseFloat(days[addressIndex]);
+    var point = new google.maps.LatLng(latLonToDecimal(lats[addressIndex]), latLonToDecimal(lons[addressIndex]));
+    p[l].marker=createMarker(point, "", null, 1);
+    p[l].marker.i=l;
+    dispCount();
+    window.setTimeout(launchL, 15);
+    if (!l) lockWeights();
 }
 
 function launchG() {
-D("DE").style.display="none";
-geocoder.geocode({'address': addresses[addressIndex]}, gCallback);
+    D("DE").style.display="none";
+    geocoder.geocode({'address': addresses[addressIndex]}, gCallback);
 }
+    
 function gCallback(res, status) {
-if (cancel || request>=addressIndex) return false;
-var r=f1.results;
-if (status != "OK") {
-D("ok").value="Retry";
-switch(status) {
-case "ZERO_RESULTS":
-displayError('Address #' + parseInt(addressIndex+1) + ' \'' + addresses[addressIndex] + '\' was not found.');
-break;
-case "OVER_QUERY_LIMIT":
-if (!geoOverLimit) {
-displayError('Google geocoder speed limit. Click \'Resume\' each time calculator stops.');
-geoOverLimit=1;
-}
-D("ok").value="Resume";
-break;
-case "REQUEST_DENIED":
-displayError('Request denied');
-break;
-case "INVALID_REQUEST":
-displayError('Invalid request');
-break;
-}
-dispMsg("", 2);
-r.length=0;
-pause=1;
-toggleDivs(["DB3","DB","DB2"],1);
-return;
-}
+    if (cancel || request>=addressIndex) return false;
+    var r=f1.results;
+    if (status != "OK") {
+        D("ok").value="Retry";
+        switch(status) {
+            case "ZERO_RESULTS":
+            displayError('Address #' + parseInt(addressIndex+1) + ' \'' + addresses[addressIndex] + '\' was not found.');
+            break;
+            case "OVER_QUERY_LIMIT":
+            if (!geoOverLimit) {
+            displayError('Google geocoder speed limit. Click \'Resume\' each time calculator stops.');
+            geoOverLimit=1;
+            }
+            D("ok").value="Resume";
+            break;
+            case "REQUEST_DENIED":
+            displayError('Request denied');
+            break;
+            case "INVALID_REQUEST":
+            displayError('Invalid request');
+            break;
+        }
+        dispMsg("", 2);
+        r.length=0;
+        pause=1;
+        toggleDivs(["DB3","DB","DB2"],1);
+        return;
+    }
 
-request=addressIndex;
-var addr, loc, ind=0;
-r.length=0;
+    request=addressIndex;
+    var addr, loc, ind=0;
+    r.length=0;
 
-for (i=0; i<res.length; i++) {
-addr=res[i].formatted_address;
-if (!addr) {
-addr=addresses[addressIndex];
-}
-try {
-if(res[i].types[0]=="street_address") {
-ind=addr.indexOf(",");
-if (ind>-1) {
-ind += 2;
-}
-}
-}
-catch(err0) {
-ind=-1;
-}
-appendOptionLast("results", addr);
-r[r.length-1].lat=res[i].geometry.location.lat();
-r[r.length-1].lng=res[i].geometry.location.lng();
-r[r.length-1].i=ind;
-}
+    for (i=0; i<res.length; i++) {
+        addr=res[i].formatted_address;
+        if (!addr) {
+            addr=addresses[addressIndex];
+        }
+        try {]
+            if(res[i].types[0]=="street_address") {
+                ind=addr.indexOf(",");
+                if (ind>-1) {
+                    ind += 2;
+                }
+            }
+        }
+        catch(err0) {
+            ind=-1;
+        }
+        appendOptionLast("results", addr);
+        r[r.length-1].lat=res[i].geometry.location.lat();
+        r[r.length-1].lng=res[i].geometry.location.lng();
+        r[r.length-1].i=ind;
+    }
 
-if (r.length>0) {
-appendToList();
-} else {
-D("ok").value="Ok";
-toggleDivs(["DR","DB3","DA","DA2","DL","DB","DE","DB2"],2);
-D("resultslabel").innerHTML = "Select from " + r.length + " results:";
-dispMsg("", 2);
-f1.results.focus();
-pause=1;
-}
+    if (r.length>0) {
+        appendToList();
+    } else {
+        D("ok").value="Ok";
+        toggleDivs(["DR","DB3","DA","DA2","DL","DB","DE","DB2"],2);
+        D("resultslabel").innerHTML = "Select from " + r.length + " results:";
+        dispMsg("", 2);
+        f1.results.focus();
+        pause=1;
+    }
 
-loopG();
+    loopG();
 }
 
 function loopG() {
-if (!pause) {
-if (addressIndex<addresses.length-1 && !cancel) {
-addressIndex++;
-window.setTimeout(launchG, 60);
-} else {
-calculate();
-clearWeights();
-	clearGeocode();
-dispStart();
-dispMsg("", 2);
-}
-}
+    if (!pause) {
+        if (addressIndex<addresses.length-1 && !cancel) {
+            addressIndex++;
+            window.setTimeout(launchG, 60);
+        } else {
+            calculate();
+            clearWeights();
+            clearGeocode();
+            dispStart();
+            dispMsg("", 2);
+        }
+    }
 }
 
 function dispStart() {
-switchLoc();
-toggleDivs(["DB","DB2","DB3"],1);
-f1.add.focus();
+    switchLoc();
+    toggleDivs(["DB","DB2","DB3"],1);
+    f1.add.focus();
 }
 
 function dispProceed() {
-switchLoc();
-toggleDivs(["DB2","DB","DB3"],1);
+    switchLoc();
+    toggleDivs(["DB2","DB","DB3"],1);
 }
 
 function ok1() {
-D("DE").style.display="none";
-pause=0;
-if (addresses.length>1) dispProceed();
-if (D("ok").value=="Retry" || D("ok").value=="Resume") {
-request=-1;
-launchG();
-return false;
-}
-appendToList();
-loopG();
+    D("DE").style.display="none";
+    pause=0;
+    if (addresses.length>1) dispProceed();
+    if (D("ok").value=="Retry" || D("ok").value=="Resume") {
+    request=-1;
+    launchG();
+    return false;
+    }
+    appendToList();
+    loopG();
 }
 
 function skip() {
@@ -1043,9 +1199,9 @@ google.maps.event.trigger(p[i].marker, 'click');
 }
 
 function triggerMid() {
-if (MM) {
-google.maps.event.trigger(MM, 'click');
-}
+    if (MM) {
+        google.maps.event.trigger(MM, 'click');
+    }
 }
 
 function save(meet) {
