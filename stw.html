@@ -104,6 +104,7 @@
             for (element in response.data) {
                 loc = response.data[element].place.location;
                 console.log(loc.city + " " + loc.latitude + " " + loc.longitude);
+                appendOptionLast("results", loc.city);
                 r[r.length-1].lat=loc.latitude;
                 r[r.length-1].lng=loc.longitude;
             }
