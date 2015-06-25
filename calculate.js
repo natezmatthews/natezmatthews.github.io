@@ -918,7 +918,7 @@ function gCallback(res, status) {
         if (!addr) {
             addr=addresses[addressIndex];
         }
-        try {]
+        try {
             if(res[i].types[0]=="street_address") {
                 ind=addr.indexOf(",");
                 if (ind>-1) {
