@@ -121,7 +121,11 @@
                 pause=1;
             }
 
-            loopG();
+            calculate();
+            clearWeights();
+            clearGeocode();
+            dispStart();
+            dispMsg("", 2);
         });
     }
 </script>
