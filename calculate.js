@@ -130,33 +130,33 @@ function initialize() {
     }
 
     if (cl!="" && cn!="" && cl>=-90 && cl<=90 && cn>=-180 && cn<=180) {
-    if (z=="") z=3;
-    latlng=new google.maps.LatLng(cl,cn);
+        if (z=="") z=3;
+        latlng=new google.maps.LatLng(cl,cn);
     } else if (!isNaN(ck[5]) && !isNaN(ck[6])) {
-    latlng=new google.maps.LatLng(ck[5], ck[6]);
-    z=ck[7]*1;
+        latlng=new google.maps.LatLng(ck[5], ck[6]);
+        z=ck[7]*1;
     } else {
-    latlng=new google.maps.LatLng(39.17,-98.297);
-    z=3;
+        latlng=new google.maps.LatLng(39.17,-98.297);
+        z=3;
     }
 
     geocoder=new google.maps.Geocoder();
     var options= {
-    zoom: z,
-    center: latlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: z,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map=new google.maps.Map(D("map"), options);
 
     if (lats.length) {
-    par=1;
-    years=getInput(y, lats.length);
-    months=getInput(m, lats.length);
-    days=getInput(d, lats.length);
-    launch(1);
+        par=1;
+        years=getInput(y, lats.length);
+        months=getInput(m, lats.length);
+        days=getInput(d, lats.length);
+        launch(1);
     } else if (parlat && parlng) {
-    par=1;
-    calculate();
+        par=1;
+        calculate();
     }
     if ((MM || p.length) && (cl=="" || cn=="")) setBounds();
 }
@@ -167,41 +167,40 @@ function unload() {
 
 
 function readCookie(cookieName) {
- var theCookie=""+document.cookie;
- var ind=theCookie.indexOf(cookieName);
- if (ind==-1 || cookieName=="") return "";
- var ind1=theCookie.indexOf(';',ind);
- if (ind1==-1) ind1=theCookie.length; 
- var s= unescape(theCookie.substring(ind+cookieName.length+1,ind1));
-ck = s.split("|");
+    var theCookie=""+document.cookie;
+    var ind=theCookie.indexOf(cookieName);
+    if (ind==-1 || cookieName=="") return "";
+    var ind1=theCookie.indexOf(';',ind);
+    if (ind1==-1) ind1=theCookie.length; 
+    var s= unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+    ck = s.split("|");
 }
 
 function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
-var nDays = 2500;
- var today = new Date();
- var expire = new Date();
- expire.setTime(today.getTime() + 3600000*24*nDays);
-var cookieValue = x + "|" + r + "|" + w + "|" + c + "|" + p0 + "|" + cl + "|" + cn + "|" + z;
- document.cookie = cookieName+"="+escape(cookieValue)
-+ ";expires="+expire.toGMTString();
+    var nDays = 2500;
+    var today = new Date();
+    var expire = new Date();
+    expire.setTime(today.getTime() + 3600000*24*nDays);
+    var cookieValue = x + "|" + r + "|" + w + "|" + c + "|" + p0 + "|" + cl + "|" + cn + "|" + z;
+    document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
 }
 
-function selectText(myDiv){
-if (window.getSelection) {
-var selection = window.getSelection();
-if (selection.setBaseAndExtent) {
-selection.setBaseAndExtent(myDiv, 0, myDiv, 1);
-} else {
-var range = document.createRange();
-range.selectNodeContents(myDiv);
-selection.removeAllRanges();
-selection.addRange(range);
-}
-} else {
-var range = document.body.createTextRange();
-range.moveToElementText(myDiv);
-range.select();
-}
+    function selectText(myDiv){
+    if (window.getSelection) {
+        var selection = window.getSelection();
+        if (selection.setBaseAndExtent) {
+            selection.setBaseAndExtent(myDiv, 0, myDiv, 1);
+        } else {
+            var range = document.createRange();
+            range.selectNodeContents(myDiv);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    } else {
+        var range = document.body.createTextRange();
+        range.moveToElementText(myDiv);
+        range.select();
+    }
 }
 
 function setBounds() {
@@ -272,14 +271,14 @@ function createMarker(point, html, ico, d) {
 }
 
 function closeInfo() {
-D("DE").style.display="none";
+    D("DE").style.display="none";
 }
 
 function clearAll() {
-par=0;
-closeInfo();
-dispMsg('Clearing...',2);
-clear2();
+    par=0;
+    closeInfo();
+    dispMsg('Clearing...',2);
+    clear2();
 }
 
 function clear2() {
@@ -322,26 +321,26 @@ days.length=0;
 }
 
 function removeOptionSelected() {
-par=0;
-closeInfo();
-var i=p.selectedIndex;
-dispMsg("", 2);
-D("DE").style.display="none";
-if (i>=0) {
-p[i].marker.setMap(null);
-p.remove(i);
-if (p.length==0) {
-clearAll();
-return false;
-} else if (p.length==1) {
-if (MM) MM=remove(MM);
-}
-for (j=i; j<p.length; j++) {
-p[j].marker.i=j;
-}
-dispCount();
-calculate();
-}
+    par=0;
+    closeInfo();
+    var i=p.selectedIndex;
+    dispMsg("", 2);
+    D("DE").style.display="none";
+    if (i>=0) {
+        p[i].marker.setMap(null);
+        p.remove(i);
+        if (p.length==0) {
+            clearAll();
+            return false;
+        } else if (p.length==1) {
+            if (MM) MM=remove(MM);
+        }
+        for (j=i; j<p.length; j++) {
+            p[j].marker.i=j;
+        }
+        dispCount();
+        calculate();
+    }
 }
 
 function appendToList() {
@@ -489,14 +488,15 @@ function calculate() {
                 }
             }
             if (!par) {
-            midlat=deg(midlat);
-            midlng=deg(midlng);
+                midlat=deg(midlat);
+                midlng=deg(midlng);
             } else {
-            midlat=parlat;
-            midlng=parlng;
+                midlat=parlat;
+                midlng=parlng;
             }
             par=0;
             if (MM) MM=remove(MM);
+            // My flipping code:
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
             var point = new google.maps.LatLng(oplat, oplng);
@@ -509,7 +509,7 @@ function calculate() {
             geocoder.geocode({'latLng': point}, revGeoCallback);
         }
         if (tries>=5000) {
-        displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
+            displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
         }
         }
     }
@@ -734,57 +734,57 @@ function getTimes(l) {
 }
 
 function getInput(s, l) {
-var sText =rTrim(s);
-sText=sText.replace(/\r\n/g, '\n');
-var r=sText.split('\n');
-if (l) {
-if (r.length != l) {
-r.length=l;
-s=r.join().replace(/undefined/g,"");
-r=s.split(',');
-}
-} else {
-if (sText.length==0) r.length=0;
-}
-return r;
+    var sText =rTrim(s);
+    sText=sText.replace(/\r\n/g, '\n');
+    var r=sText.split('\n');
+    if (l) {
+        if (r.length != l) {
+            r.length=l;
+            s=r.join().replace(/undefined/g,"");
+            r=s.split(',');
+        }
+    } else {
+        if (sText.length==0) r.length=0;
+    }
+    return r;
 }
 
 function validateTimes(a, l) {
-var a1="", m=["time","weight"];
-var n=["day","weight"];
-if (p.length) {
-var first=!p[0].y && !p[0].m && !p[0].d;
-} else {
-var first=!parseFloat(years[0]) && !parseFloat(months[0]) && !parseFloat(days[0]);
-}
-for(i=0; i<l; i++) {
-if (a=="address") a1=addresses[i];
-if (isNaN(years[i])) {
-displayError("The year \'" + years[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
-return;
-}
-if (isNaN(months[i])) {
-displayError("The month \'" + months[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
-return;
-}
-if (isNaN(days[i])) {
-displayError("The " + n[wI] + " \'" + days[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
-return;
-}
-years[i]= +years[i];
-months[i]= +months[i];
-days[i]= +days[i];
-cur= !years[i] && !months[i] && !days[i];
-if (!first && cur) {
-displayError("A " + m[wI] + " must be specified for " + a + " #" + parseInt(i+1) + " " + addresses[i] + ".");
-return false;
-}
-if (first && !cur) {
-displayError('You must either enter a time for all locations in Your Places, or leave the time blank or zero for all locations.');
-return false;
-}
-}
-return true;
+    var a1="", m=["time","weight"];
+    var n=["day","weight"];
+    if (p.length) {
+        var first=!p[0].y && !p[0].m && !p[0].d;
+    } else {
+        var first=!parseFloat(years[0]) && !parseFloat(months[0]) && !parseFloat(days[0]);
+    }
+    for(i=0; i<l; i++) {
+        if (a=="address") a1=addresses[i];
+        if (isNaN(years[i])) {
+            displayError("The year \'" + years[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
+            return;
+        }
+        if (isNaN(months[i])) {
+            displayError("The month \'" + months[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
+            return;
+        }
+        if (isNaN(days[i])) {
+            displayError("The " + n[wI] + " \'" + days[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
+            return;
+        }
+        years[i]= +years[i];
+        months[i]= +months[i];
+        days[i]= +days[i];
+        cur= !years[i] && !months[i] && !days[i];
+        if (!first && cur) {
+            displayError("A " + m[wI] + " must be specified for " + a + " #" + parseInt(i+1) + " " + addresses[i] + ".");
+            return false;
+        }
+        if (first && !cur) {
+            displayError('You must either enter a time for all locations in Your Places, or leave the time blank or zero for all locations.');
+            return false;
+        }
+    }
+    return true;
 }
 
 function launch(p1) {
@@ -839,8 +839,8 @@ function launch(p1) {
     }	
     addressIndex=0;
     if (addresses.length>1) {
-    dispProceed();
-    dispMsg("Searching...", 2);
+        dispProceed();
+        dispMsg("Searching...", 2);
     }
     launchG()
 }
