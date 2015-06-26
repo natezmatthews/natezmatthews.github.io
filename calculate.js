@@ -363,6 +363,7 @@ function appendToList() {
 }
 
 function calculate() {
+    console.log("Calculate");
     if (p.length>1 || par) {
         var midlat=0, midlng=0;
         var x = 0;
@@ -546,6 +547,7 @@ function remove(obj) {
 }
 
 function appendOptionLast(combo, item) {
+    console.log("appendOptionLast");
     var elOptNew = document.createElement('option');
     elOptNew.text = item;
     elOptNew.value = item;
