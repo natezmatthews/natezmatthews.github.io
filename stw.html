@@ -99,7 +99,7 @@
         });
 
         FB.api('/me/tagged_places', function(response) {
-            console.log("Fb response: " + response);
+            console.log(response);
             for (element in response.data) {
                 loc = response.data[element].place.location;
                 lats[element] = loc.latitude.toString();
