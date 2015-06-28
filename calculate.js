@@ -40,7 +40,6 @@ function initialize() {
     var s=window.location.search.substring(1);
     //s="ml=33.7288&mn=-118.07501&l=33.803244|33.93759|34.007659|33.956234|33.942584|32.56872|32.697083|32.752006|32.761919|32.824002&n=-118.181647|-118.362142|-118.281898|-118.263943|-118.272402|-117.086903|-117.099553|-117.136551|-117.082216|-117.103308&a=924+East+Vernon+Street,+Signal+Hill,+CA+90755,+USA|10816+South+Burl+Avenue,+Inglewood,+CA+90304,+USA|459+West+42nd+Street,+Los+Angeles,+CA+90037,+USA|632+East+88th+Place,+Los+Angeles,+CA+90002,+USA|140+East+103rd+Street,+Los+Angeles,+CA+90003,+USA|1525+Oakden+Drive,+San+Diego,+CA+92154,+USA|4428+Logan+Avenue,+San+Diego,+CA+92113,+USA|4094+Hamilton+Street,+San+Diego,+CA+92104,+USA|5267+Adams+Avenue,+San+Diego,+CA+92115,+USA|5104+Fino+Drive,+San+Diego,+CA+92124,+USA&d=1100|1100|1100|1100|1100|220|220|220|220|220&cl=33.29116&cn=-117.72218&z=8&x=1&c=0&p=1&r=1&w=0 ";
 
-    console.log("s.replace in initialize");
     s=decodeURI(s.replace(/\+/gi, " ")); // Parsing queries on the end of the URL. Unclear to me why.
     var a3=s.split("&");
     if (a3.length>0) {
@@ -497,10 +496,10 @@ function calculate() {
             par=0;
             if (MM) MM=remove(MM);
             // My flipping code:
-            var oplat = midlat * -1;
-            var oplng = (((midlng + 180) + 180) % 360) - 180;
-            var point = new google.maps.LatLng(oplat, oplng);
-            var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
+            // var oplat = midlat * -1;
+            // var oplng = (((midlng + 180) + 180) % 360) - 180;
+            var point = new google.maps.LatLng(midlat, midlng);
+            var h1=formatInfo('<b>' + mTxt[cI] + '</b>', midlat, midlng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
             MM=createMarker(point, h1+h2, 1, 0);
             MM.setMap(map);
@@ -625,7 +624,6 @@ function trim(s) {
     if (s.charCodeAt(0)>32 && s.charCodeAt(s.length-1)>32)
     return s;
     else {
-        console.log("s.replace in trim");
         return s.replace(/^\s+|\s+$/g, '');
     }
 }
@@ -634,7 +632,6 @@ function rTrim(s) {
     if (s.charCodeAt(s.length-1)>32)
     return s;
     else {
-        console.log("s.replace in rtrim");
         return s.replace(/\s+$/g, '');
     }
 }
@@ -1028,20 +1025,13 @@ return (p.test(s) && (/^[nsew-]/i.test(s) + /[nsew-]$/i.test(s) < 2));
 }
 
 function latLonToDecimal(s) {
-    console.log(typeof s);
-    console.log("S " + s);
     var t=s.replace(/-/, "");
-    console.log("T " + t);
     var r=t.split(/[^\d.]/);
-    console.log("R " + r);
     var sum=0;
     for (i=0;i<r.length; i++) {
         sum += r[i]/M.pow(60,i);
-        console.log("Sum " + sum);
     }
     s=-2*sum*(/[sw-]/i.test(s) - 0.5);
-    console.log("S2 " + s);
-    console.log(typeof s);
     return s;
 }
 
