@@ -496,10 +496,14 @@ function calculate() {
             par=0;
             if (MM) MM=remove(MM);
             //My flipping code:
+            console.log(typeof midlat + " " + typeof midlng);
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
+            console.log(typeof oplat + " " + typeof oplng);
             try {
-                var point = new google.maps.LatLng(oplat, oplng);
+                if (!isNaN(oplat) && !isNaN(oplng)) {
+                    var point = new google.maps.LatLng(oplat, oplng);
+                }
             } catch(err) {
                 console.log(err);
             }
