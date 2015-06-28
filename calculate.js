@@ -1044,14 +1044,18 @@ return (p.test(s) && (/^[nsew-]/i.test(s) + /[nsew-]$/i.test(s) < 2));
 }
 
 function latLonToDecimal(s) {
-    console.log("s.replace in latLonToDecimal");
+    console.log("S " + s);
     var t=s.replace(/-/, "");
+    console.log("T " + t);
     var r=t.split(/[^\d.]/);
+    console.log("R " + r);
     var sum=0;
     for (i=0;i<r.length; i++) {
         sum += r[i]/M.pow(60,i);
+        console.log("Sum " + sum);
     }
     s=-2*sum*(/[sw-]/i.test(s) - 0.5);
+    console.log("S2 " + s);
     return s;
 }
 

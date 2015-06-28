@@ -98,50 +98,50 @@
                 'Thanks for logging in, ' + response.name + '!';
         });
 
-        FB.api('/me/tagged_places', function(response) {
-            for (element in response.data) {
-                console.log("Index?: " + element);
-                loc = response.data[element].place.location;
-                lats[element] = loc.latitude;
-                lons[element] = loc.longitude;
-            }
+        // FB.api('/me/tagged_places', function(response) {
+        //     for (element in response.data) {
+        //         console.log("Index?: " + element);
+        //         loc = response.data[element].place.location;
+        //         lats[element] = loc.latitude;
+        //         lons[element] = loc.longitude;
+        //     }
 
-            par=1;
-            years=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
-            months=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
-            days=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,7);
-            launch(1);
-            if ((MM || p.length) && (cl=="" || cn=="")) setBounds();
+        //     par=1;
+        //     years=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
+        //     months=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
+        //     days=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,7);
+        //     launch(1);
+        //     if ((MM || p.length) && (cl=="" || cn=="")) setBounds();
 
-            // var r=f1.results;
-            // console.log(r);
-            // r.length=0;
-            // for (element in response.data) {
-            //     loc = response.data[element].place.location;
-            //     console.log(loc.city + " " + loc.latitude + " " + loc.longitude);
-            //     appendOptionLast("results", loc.city);
-            //     r[r.length-1].lat=loc.latitude;
-            //     r[r.length-1].lng=loc.longitude;
-            // }
+        //     // var r=f1.results;
+        //     // console.log(r);
+        //     // r.length=0;
+        //     // for (element in response.data) {
+        //     //     loc = response.data[element].place.location;
+        //     //     console.log(loc.city + " " + loc.latitude + " " + loc.longitude);
+        //     //     appendOptionLast("results", loc.city);
+        //     //     r[r.length-1].lat=loc.latitude;
+        //     //     r[r.length-1].lng=loc.longitude;
+        //     // }
 
-            // if (r.length>0) {
-            //     appendToList();
-            // } else {
-            //     console.log("Okay, looks like we're in here...");
-            //     D("ok").value="Ok";
-            //     toggleDivs(["DR","DB3","DA","DA2","DL","DB","DE","DB2"],2);
-            //     D("resultslabel").innerHTML = "Select from " + r.length + " results:";
-            //     dispMsg("", 2);
-            //     f1.results.focus();
-            //     pause=1;
-            // }
+        //     // if (r.length>0) {
+        //     //     appendToList();
+        //     // } else {
+        //     //     console.log("Okay, looks like we're in here...");
+        //     //     D("ok").value="Ok";
+        //     //     toggleDivs(["DR","DB3","DA","DA2","DL","DB","DE","DB2"],2);
+        //     //     D("resultslabel").innerHTML = "Select from " + r.length + " results:";
+        //     //     dispMsg("", 2);
+        //     //     f1.results.focus();
+        //     //     pause=1;
+        //     // }
 
-            // calculate();
-            // clearWeights();
-            // clearGeocode();
-            // dispStart();
-            // dispMsg("", 2);
-        });
+        //     // calculate();
+        //     // clearWeights();
+        //     // clearGeocode();
+        //     // dispStart();
+        //     // dispMsg("", 2);
+        // });
     }
 </script>
 
