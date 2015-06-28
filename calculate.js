@@ -27,14 +27,14 @@ document.write(calc);
 
 function initialize() {
     f1=D("frm"); // f1 now is the form
-    p=f1.places; // Number of documented places
+    p=f1.places;
     p.length=0;
     infoWindow= new google.maps.InfoWindow( {
-    content: ""
+        content: ""
     });
-    rI=0;
-    wI=0;
-    cI=0;
+    rI=0; // Input
+    wI=0; // Weight
+    cI=0; // Calculation method
 
     var y="", m="", d="", cl="", cn="", z="", x="", c="", w="", p0="", r="", latlng;
     var s=window.location.search.substring(1);
@@ -43,90 +43,90 @@ function initialize() {
     s=decodeURI(s.replace(/\+/gi, " ")); // Parsing queries on the end of the URL. Unclear to me why.
     var a3=s.split("&");
     if (a3.length>0) {
-    for (j=0; j<a3.length; j++) {
-    var a4=a3[j].split("=");
-    var q=a4[1];
-    switch(a4[0]) {
-    case "ml":
-    parlat=q;
-    break;
-    case "mn":
-    parlng=q;
-    break;
-    case "l":
-    lats=q.split("|");
-    break;
-    case "n":
-    lons=q.split("|");
-    break;
-    case "a":
-    addresses=q.split("|");
-    break;
-    case "y":
-    y=q.replace(/\|/g,"\n");
-    break;
-    case "m":
-    m=q.replace(/\|/g,"\n");
-    break;
-    case "d":
-    d=q.replace(/\|/g,"\n");
-    break;
-    case "x":
-    x=1;
-    f1.large.checked=(q=="1");
-    switchMap();
-    break;
-    case "cl":
-    cl=q;
-    break;
-    case "cn":
-    cn=q;
-    break;
-    case "z":
-    z=parseInt(q);
-    break;
-    case "c":
-    c=1;
-    f1.method[q].checked=true;
-    cI=q;
-    break;
-    case "p":
-    p0=1;
-    f1.disp.checked=(q=="1");
-    break;
-    case "w":
-    f1.radw[q].checked=true;
-    switchWeight();
-    break;
-    case "r":
-    f1.radr[q].checked=true;
-    switchLoc();
-    break;
-    }
-    }
+        for (j=0; j<a3.length; j++) {
+            var a4=a3[j].split("=");
+            var q=a4[1];
+            switch(a4[0]) {
+                case "ml":
+                    parlat=q;
+                    break;
+                case "mn":
+                    parlng=q;
+                    break;
+                case "l":
+                    lats=q.split("|");
+                    break;
+                case "n":
+                    lons=q.split("|");
+                    break;
+                case "a":
+                    addresses=q.split("|");
+                    break;
+                case "y":
+                    y=q.replace(/\|/g,"\n");
+                    break;
+                case "m":
+                    m=q.replace(/\|/g,"\n");
+                    break;
+                case "d":
+                    d=q.replace(/\|/g,"\n");
+                    break;
+                case "x":
+                    x=1;
+                    f1.large.checked=(q=="1");
+                    switchMap();
+                    break;
+                case "cl":
+                    cl=q;
+                    break;
+                case "cn":
+                    cn=q;
+                    break;
+                case "z":
+                    z=parseInt(q);
+                    break;
+                case "c":
+                    c=1;
+                    f1.method[q].checked=true;
+                    cI=q;
+                    break;
+                case "p":
+                    p0=1;
+                    f1.disp.checked=(q=="1");
+                    break;
+                case "w":
+                    f1.radw[q].checked=true;
+                    switchWeight();
+                    break;
+                case "r":
+                    f1.radr[q].checked=true;
+                    switchLoc();
+                    break;
+            }
+        }
     }
 
     readCookie('ckData1');
     if (w=="" && ck[2]>=0 && ck[2]<=1) {
-    wI=ck[2];
-    f1.radw[wI].checked=true;
-    switchWeight();
+        wI=ck[2];
+        f1.radw[wI].checked=true;
+        switchWeight();
     }
     if (r=="" && ck[1]>=0 && ck[1]<=2) {
-    rI=ck[1];
-    f1.radr[rI].checked=true;
+        rI=ck[1];
+        f1.radr[rI].checked=true;
     }
     switchLoc();
     if (c=="" && ck[3]>=0 && ck[3]<=2) {
-    cI = ck[3];
-    f1.method[cI].checked = true;
+        cI = ck[3];
+        f1.method[cI].checked = true;
     }
     if (p0=="") {
-    f1.disp.checked=(ck[4]==1 || isNaN(ck[4]));
-    	}
+        f1.disp.checked=(ck[4]==1 || isNaN(ck[4]));
+    }
     if (x=="") {
-    f1.large.checked=(ck[0]=="1");
-    switchMap()
+        f1.large.checked=(ck[0]=="1");
+        switchMap()
     }
 
     if (cl!="" && cn!="" && cl>=-90 && cl<=90 && cn>=-180 && cn<=180) {
@@ -184,8 +184,8 @@ function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
     var cookieValue = x + "|" + r + "|" + w + "|" + c + "|" + p0 + "|" + cl + "|" + cn + "|" + z;
     document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
 }
-
-    function selectText(myDiv){
+ 
+function selectText(myDiv){
     if (window.getSelection) {
         var selection = window.getSelection();
         if (selection.setBaseAndExtent) {
@@ -204,68 +204,68 @@ function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
 }
 
 function setBounds() {
-var bounds = new google.maps.LatLngBounds();
-var point;
-if (p.length || MM) {
-if (MM) {
-point=MM.getPosition();
-bounds.extend(point); 
-}
-for (i=0; i<p.length; i++) {
-var point=new google.maps.LatLng(p[i].marker.getPosition().lat(), p[i].marker.getPosition().lng());
-bounds.extend(point); 
-}  
-mapLoaded=false;
-map.fitBounds(bounds);
-if(map.getZoom()>15) map.setZoom(15);
-}
+    var bounds = new google.maps.LatLngBounds();
+    var point;
+    if (p.length || MM) {
+        if (MM) {
+            point=MM.getPosition();
+            bounds.extend(point); 
+        }
+        for (i=0; i<p.length; i++) {
+            var point=new google.maps.LatLng(p[i].marker.getPosition().lat(), p[i].marker.getPosition().lng());
+            bounds.extend(point); 
+        }  
+        mapLoaded=false;
+        map.fitBounds(bounds);
+        if(map.getZoom()>15) map.setZoom(15);
+    }
 }
 
 function createMarker(point, html, ico, d) {
     var icon=null, shadow=null, visible=true;
     if (ico) {
-    icon = "images/paleblue_MarkerM.png";
-    shadow = {
-    url: 'images/shadow50.png',
-    size: new google.maps.Size(37, 34),
-    origin: new google.maps.Point(0,0),
-    anchor: new google.maps.Point(10, 34)
-    };
+        icon = "images/paleblue_MarkerM.png";
+        shadow = {
+            url: 'images/shadow50.png',
+            size: new google.maps.Size(37, 34),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(10, 34)
+        };
     } else {
-    if (!f1.disp.checked) visible=false;
+        if (!f1.disp.checked) visible=false;
     }
     var marker=new google.maps.Marker({
-    position: point,
-    map: map,
-    icon: icon,
-    shadow: shadow,
-    visible: visible
+        position: point,
+        map: map,
+        icon: icon,
+        shadow: shadow,
+        visible: visible
     });
     if (d) marker.setDraggable(true);
     google.maps.event.addListener(marker, "click", function() {
-    var h="";
-    if (!ico) {
-    if (marker.dragged!=1) {
-    h=formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
-    } else {
-    h= formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
-    }
-    } else {
-    h=html;
-    }
-    displayError(h);
-    //alert(h);
-    infoWindow.content=h;
-    //infoWindow.open(map, marker);
+        var h="";
+        if (!ico) {
+            if (marker.dragged!=1) {
+                h=formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
+            } else {
+                h= formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
+            }
+        } else {
+            h=html;
+        }
+        displayError(h);
+        //alert(h);
+        infoWindow.content=h;
+        //infoWindow.open(map, marker);
     });
     google.maps.event.addListener(marker, 'dragstart', function() {
-    saveLatLng(marker.i, marker.getPosition());
-    closeInfo();
+        saveLatLng(marker.i, marker.getPosition());
+        closeInfo();
     });
     google.maps.event.addListener(marker, 'dragend', function() {
-    sameMap=1;
-    calculate();
-    marker.dragged=1;
+        sameMap=1;
+        calculate();
+        marker.dragged=1;
     });
     return marker;
 }
@@ -282,42 +282,42 @@ function clearAll() {
 }
 
 function clear2() {
-D("DE").style.display="none";
-for (i=p.length-1; i>=0; i--) {
-p[i].marker.setMap(null);
-}
-MM=remove(MM);
-p.length=0;
-dispCount();
-clearGeocode();
-clearWeights();
-lockWeights();
-addresses.length=0;
-lats.length=0;
-lons.length=0;
-years.length=0;
-months.length=0;
-days.length=0;
-dispMsg("", 2);
+    D("DE").style.display="none";
+    for (i=p.length-1; i>=0; i--) {
+        p[i].marker.setMap(null);
+    }
+    MM=remove(MM);
+    p.length=0;
+    dispCount();
+    clearGeocode();
+    clearWeights();
+    lockWeights();
+    addresses.length=0;
+    lats.length=0;
+    lons.length=0;
+    years.length=0;
+    months.length=0;
+    days.length=0;
+    dispMsg("", 2);
 }
 
 function clearGeocode() {
-cAddress[0].value="";
-cAddress[1].value="";
-f1.latitude.value="";
-f1.longitude.value="";
+    cAddress[0].value="";
+    cAddress[1].value="";
+    f1.latitude.value="";
+    f1.longitude.value="";
 }
 
 function clearWeights() {
-for(i=0; i<2; i++) {
-cYear[i].value="";
-cMonth[i].value="";
-cDay[i].value="";
-cWeight[i].value="";
-}
-years.length=0;
-months.length=0;
-days.length=0;
+    for(i=0; i<2; i++) {
+        cYear[i].value="";
+        cMonth[i].value="";
+        cDay[i].value="";
+        cWeight[i].value="";
+    }
+    years.length=0;
+    months.length=0;
+    days.length=0;
 }
 
 function removeOptionSelected() {
@@ -351,7 +351,7 @@ function appendToList() {
     if (MM) MM=remove(MM);
     appendOptionLast("places", sText);
     var l= p.length-1;
-    p[l].y= years[addressIndex];
+    p[l].y=years[addressIndex];
     p[l].m=months[addressIndex];
     p[l].d=days[addressIndex];
     var point = new google.maps.LatLng(roundx(r[i].lat,6), roundx(r[i].lng,6));
@@ -991,18 +991,18 @@ function ok1() {
 }
 
 function skip() {
-D("DE").style.display="none";
-pause=0;
-if (addresses.length>1) dispProceed();
-loopG();
+    D("DE").style.display="none";
+    pause=0;
+    if (addresses.length>1) dispProceed();
+    loopG();
 }
 
 function cancelGeocode() {
-D("DE").style.display="none";
-cancel=1;
-if (p.length>1) calculate();
-dispStart();
-dispMsg("", 2);
+    D("DE").style.display="none";
+    cancel=1;
+    if (p.length>1) calculate();
+    dispStart();
+    dispMsg("", 2);
 }
 
 function contin() {
@@ -1035,14 +1035,14 @@ return s;
 }
 
 function openPlace() {
-var i=p.selectedIndex;
-if (i>-1) {
-closeInfo();
-if (p[i].marker.getVisible() == false) {
-p[i].marker.setVisible(true);
-}
-google.maps.event.trigger(p[i].marker, 'click');
-}
+    var i=p.selectedIndex;
+    if (i>-1) {
+        closeInfo();
+        if (p[i].marker.getVisible() == false) {
+            p[i].marker.setVisible(true);
+        }
+        google.maps.event.trigger(p[i].marker, 'click');
+    }
 }
 
 function triggerMid() {
