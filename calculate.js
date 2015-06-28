@@ -252,7 +252,7 @@ function createMarker(point, html, ico, d) {
     }
     var marker=new google.maps.Marker({
         position: point,
-        map: map,fun
+        map: map,
         icon: icon,
         shadow: shadow,
         visible: visible
