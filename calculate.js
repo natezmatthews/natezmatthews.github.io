@@ -863,6 +863,7 @@ function launch(p1) {
 }
 
 function launchL() {
+    console.log("LaunchL: " + par);
     if (addressIndex>=lats.length-1 || cancel) {
         clearWeights();
         clearGeocode();
@@ -879,6 +880,7 @@ function launchL() {
     if (par) {
         appendOptionLast("places", addresses[addressIndex]);
     } else {
+        console.log("LatLng");
     	appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
     }
     var l= p.length-1;
