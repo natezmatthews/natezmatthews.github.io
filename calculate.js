@@ -149,23 +149,7 @@ function initialize() {
     };
     map=new google.maps.Map(D("map"), options);
 
-    console.log("About to try If FB");
-    if (FB) {
-        console.log("If FB worked");
-        FB.api('/me/tagged_places', function(response) {
-            for (element in response.data) {
-                loc = response.data[element].place.location;
-                lats[element] = loc.latitude;
-                lons[element] = loc.longitude;
-            }
-
-            par=1;
-            years=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
-            months=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
-            days=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,7);
-            launch(1);
-        });
-    } else if (lats.length) {
+    if (lats.length) {
         par=1;
         years=getInput(y, lats.length);
         months=getInput(m, lats.length);
