@@ -274,6 +274,7 @@ function closeInfo() {
 }
 
 function clearAll() {
+    console.log("clearAll: " + p1 + " " + par);
     par=0;
     closeInfo();
     dispMsg('Clearing...',2);
@@ -320,6 +321,7 @@ days.length=0;
 }
 
 function removeOptionSelected() {
+    console.log("removeOptionSelected: " + par);
     par=0;
     closeInfo();
     var i=p.selectedIndex;
@@ -361,7 +363,7 @@ function appendToList() {
 }
 
 function calculate() {
-    console.log("Calculate");
+    console.log("Calculate: " + par);
     if (p.length>1 || par) {
         var midlat=0, midlng=0;
         console.log("A: " + midlat + " " + midlng);
@@ -802,6 +804,7 @@ function validateTimes(a, l) {
 }
 
 function launch(p1) {
+    console.log("Launch: " + p1 + " " + par);
     if (!p1) par=0; 
     var l;
     if (!map) return;
