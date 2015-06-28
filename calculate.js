@@ -1044,6 +1044,7 @@ return (p.test(s) && (/^[nsew-]/i.test(s) + /[nsew-]$/i.test(s) < 2));
 }
 
 function latLonToDecimal(s) {
+    console.log(typeof s);
     console.log("S " + s);
     var t=s.replace(/-/, "");
     console.log("T " + t);
@@ -1056,6 +1057,7 @@ function latLonToDecimal(s) {
     }
     s=-2*sum*(/[sw-]/i.test(s) - 0.5);
     console.log("S2 " + s);
+    console.log(typeof s);
     return s;
 }
 
