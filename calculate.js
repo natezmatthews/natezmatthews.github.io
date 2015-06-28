@@ -495,11 +495,15 @@ function calculate() {
             }
             par=0;
             if (MM) MM=remove(MM);
-            // My flipping code:
-            // var oplat = midlat * -1;
-            // var oplng = (((midlng + 180) + 180) % 360) - 180;
-            var point = new google.maps.LatLng(midlat, midlng);
-            var h1=formatInfo('<b>' + mTxt[cI] + '</b>', midlat, midlng, -1);
+            //My flipping code:
+            var oplat = midlat * -1;
+            var oplng = (((midlng + 180) + 180) % 360) - 180;
+            try {
+                var point = new google.maps.LatLng(oplat, oplng);
+            } catch(err) {
+                console.log(err);
+            }
+            var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
             MM=createMarker(point, h1+h2, 1, 0);
             MM.setMap(map);
@@ -1130,18 +1134,19 @@ D("frm2").submit();
 }
 
 function revGeoCallback(results, status) {
-if (status == google.maps.GeocoderStatus.OK) {
-if (results[0]) {
-	var near='<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
-var h1=MM.h1;
-var h2=MM.h2;
-MM.setMap(null);
-MM=createMarker(MM.getPosition(),h1+near+h2,1,0);
-MM.setMap(map);
-MM.h1=h1;
-MM.h2=h2;
-}
-}
+    console.log("revGeoCallback" + status);
+    if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+        	var near='<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
+            var h1=MM.h1;
+            var h2=MM.h2;
+            MM.setMap(null);
+            MM=createMarker(MM.getPosition(),h1+near+h2,1,0);
+            MM.setMap(map);
+            MM.h1=h1;
+            MM.h2=h2;
+        }
+    }
 }
 
 function formatInfo(s, lat, lng, i) {
