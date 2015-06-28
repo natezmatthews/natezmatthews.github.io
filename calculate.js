@@ -364,6 +364,7 @@ function calculate() {
     console.log("Calculate");
     if (p.length>1 || par) {
         var midlat=0, midlng=0;
+        console.log("A: " + midlat + " " + midlng);
         var x = 0;
         var y = 0;
         var z = 0;
@@ -401,6 +402,7 @@ function calculate() {
         midlng=atan2(y, x);
         hyp=sqrt(x*x + y*y);
         midlat=atan2(z, hyp);
+        console.log("B: " + midlat + " " + midlng);
         if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
             if (MM) MM=remove(MM);
             displayError('The midpoint is the center of the earth.');
@@ -414,6 +416,7 @@ function calculate() {
                 }
                 midlat= y/totdays;
                 midlng= normalizeLongitude(x/totdays+midlng);
+                console.log("C: " + midlat + " " + midlng);
             } else if (cI==1) {
                 if (lats1.length>2 || lats1.length==2 & days1[0] != days1[1]) {
                     var tries=0;
@@ -478,6 +481,7 @@ function calculate() {
                     if (mindist-gMindist< -4.0e-14) {
                     midlat=minlat;
                     midlng=minlon;
+                    console.log("D: " + midlat + " " + midlng);
                     gMindist=mindist;
                     } else {
                     distrad=distrad * 0.5;
@@ -489,17 +493,18 @@ function calculate() {
             if (!par) {
                 midlat=deg(midlat);
                 midlng=deg(midlng);
+                console.log("E: " + midlat + " " + midlng);
             } else {
                 midlat=parlat;
                 midlng=parlng;
+                console.log("F: " + midlat + " " + midlng);
             }
             par=0;
             if (MM) MM=remove(MM);
+            console.log("G: " + midlat + " " + midlng);
             //My flipping code:
-            console.log(typeof midlat + " " + typeof midlng);
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
-            console.log(typeof oplat + " " + typeof oplng);
             try {
                 if (!isNaN(oplat) && !isNaN(oplng)) {
                     var point = new google.maps.LatLng(oplat, oplng);
