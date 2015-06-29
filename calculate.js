@@ -497,6 +497,11 @@ function calculate() {
             //My flipping code:
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "api.geonames.org/findNearbyWikipedia?lat=" + oplat + "&lng=" + oplng + "&username=demo", false );
+            xmlHttp.send( null );
+            console.log("Wiki: " + xmlHttp.responseText);
+
             var point = new google.maps.LatLng(oplat, oplng);
             var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';

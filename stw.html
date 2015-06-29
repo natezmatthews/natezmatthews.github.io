@@ -113,11 +113,6 @@
             launch(1);
             par=0;
             calculate();
-
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "api.geonames.org/findNearbyWikipedia?lat=" + oplat + "&lng=" + oplng + "&username=demo", false );
-            xmlHttp.send( null );
-            console.log(xmlHttp.responseText);
         });
     }
 </script>
