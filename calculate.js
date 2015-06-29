@@ -497,13 +497,7 @@ function calculate() {
             //My flipping code:
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
-            var xmlHttp = new XMLHttpRequest();
-            url = "http://api.geonames.org/findNearbyWikipedia?lat=" + oplat.toString() + "&lng=" + oplng.toString() + "&username=demo";
-            console.log(url);
-            xmlHttp.open( "GET", url, false );
-            xmlHttp.send( null );
-            console.log("Wiki: " + xmlHttp.responseText);
-
+            getWiki(oplat, oplng);
             var point = new google.maps.LatLng(oplat, oplng);
             var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
@@ -522,7 +516,24 @@ function calculate() {
         setBounds();
     }
     sameMap=0;
-}	
+}
+
+function getWiki(wlat, wlng) {
+    url = "http://api.geonames.org/findNearbyWikipedia?lat=" + wlat.toString() + "&lng=" + wlng.toString() + "&username=natezmatthews";
+    console.log(url);
+    var client = new XMLHttpRequest();
+    client.onload = handler;
+    client.open("GET", url);
+    client.send();
+}
+
+function handler() {
+    if(this.status == 200 &&
+    this.responseXML != null &&
+    this.responseXML.getElementById('test').textContent) {
+        console.log(this.responseXML.getElementById('test').textContent);
+    }
+}
 
 function saveLatLng(i, ll) {
     if (isNaN(p[i].lat)) {
