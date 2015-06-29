@@ -529,9 +529,8 @@ function getWiki(wlat, wlng) {
 
 function handler() {
     if(this.status == 200 &&
-    this.responseXML != null &&
-    this.responseXML.getElementById('test').textContent) {
-        console.log(this.responseXML.getElementById('test').textContent);
+    this.responseXML != null) {
+        console.log(this.responseXML);
     }
 }
 
