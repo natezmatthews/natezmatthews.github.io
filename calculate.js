@@ -498,7 +498,9 @@ function calculate() {
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "api.geonames.org/findNearbyWikipedia?lat=" + oplat + "&lng=" + oplng + "&username=demo", false );
+            url = "http://api.geonames.org/findNearbyWikipedia?lat=" + oplat.toString() + "&lng=" + oplng.toString() + "&username=demo";
+            console.log(url);
+            xmlHttp.open( "GET", url, false );
             xmlHttp.send( null );
             console.log("Wiki: " + xmlHttp.responseText);
 
