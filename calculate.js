@@ -203,21 +203,21 @@ function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
 }
 
 function setBounds() {
-var bounds = new google.maps.LatLngBounds();
-var point;
-if (p.length || MM) {
-if (MM) {
-point=MM.getPosition();
-bounds.extend(point); 
-}
-for (i=0; i<p.length; i++) {
-var point=new google.maps.LatLng(p[i].marker.getPosition().lat(), p[i].marker.getPosition().lng());
-bounds.extend(point); 
-}  
-mapLoaded=false;
-map.fitBounds(bounds);
-if(map.getZoom()>15) map.setZoom(15);
-}
+    var bounds = new google.maps.LatLngBounds();
+    var point;
+    if (p.length || MM) {
+        if (MM) {
+            point=MM.getPosition();
+            bounds.extend(point); 
+        }
+        for (i=0; i<p.length; i++) {
+            var point=new google.maps.LatLng(p[i].marker.getPosition().lat(), p[i].marker.getPosition().lng());
+            bounds.extend(point); 
+        }  
+        mapLoaded=false;
+        map.fitBounds(bounds);
+        if(map.getZoom()>15) map.setZoom(15);
+    }
 }
 
 function createMarker(point, html, ico, d) {
@@ -1001,9 +1001,9 @@ function ok1() {
     pause=0;
     if (addresses.length>1) dispProceed();
     if (D("ok").value=="Retry" || D("ok").value=="Resume") {
-    request=-1;
-    launchG();
-    return false;
+        request=-1;
+        launchG();
+        return false;
     }
     appendToList();
     loopG();
