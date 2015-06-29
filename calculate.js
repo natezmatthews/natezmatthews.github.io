@@ -274,7 +274,6 @@ function closeInfo() {
 }
 
 function clearAll() {
-    console.log("clearAll: " + p1 + " " + par);
     par=0;
     closeInfo();
     dispMsg('Clearing...',2);
@@ -321,7 +320,6 @@ days.length=0;
 }
 
 function removeOptionSelected() {
-    console.log("removeOptionSelected: " + par);
     par=0;
     closeInfo();
     var i=p.selectedIndex;
@@ -363,10 +361,8 @@ function appendToList() {
 }
 
 function calculate() {
-    console.log("Calculate: " + par);
     if (p.length>1 || par) {
         var midlat=0, midlng=0;
-        console.log("A: " + midlat + " " + midlng);
         var x = 0;
         var y = 0;
         var z = 0;
@@ -404,7 +400,6 @@ function calculate() {
         midlng=atan2(y, x);
         hyp=sqrt(x*x + y*y);
         midlat=atan2(z, hyp);
-        console.log("B: " + midlat + " " + midlng);
         if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
             if (MM) MM=remove(MM);
             displayError('The midpoint is the center of the earth.');
@@ -418,7 +413,6 @@ function calculate() {
                 }
                 midlat= y/totdays;
                 midlng= normalizeLongitude(x/totdays+midlng);
-                console.log("C: " + midlat + " " + midlng);
             } else if (cI==1) {
                 if (lats1.length>2 || lats1.length==2 & days1[0] != days1[1]) {
                     var tries=0;
@@ -483,7 +477,6 @@ function calculate() {
                     if (mindist-gMindist< -4.0e-14) {
                     midlat=minlat;
                     midlng=minlon;
-                    console.log("D: " + midlat + " " + midlng);
                     gMindist=mindist;
                     } else {
                     distrad=distrad * 0.5;
@@ -495,25 +488,16 @@ function calculate() {
             if (!par) {
                 midlat=deg(midlat);
                 midlng=deg(midlng);
-                console.log("E: " + midlat + " " + midlng);
             } else {
                 midlat=parlat;
                 midlng=parlng;
-                console.log("F: " + midlat + " " + midlng);
             }
             par=0;
             if (MM) MM=remove(MM);
-            console.log("G: " + midlat + " " + midlng);
             //My flipping code:
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
-            try {
-                if (!isNaN(oplat) && !isNaN(oplng)) {
-                    var point = new google.maps.LatLng(oplat, oplng);
-                }
-            } catch(err) {
-                console.log(err);
-            }
+            var point = new google.maps.LatLng(oplat, oplng);
             var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
             MM=createMarker(point, h1+h2, 1, 0);
@@ -561,7 +545,6 @@ function remove(obj) {
 }
 
 function appendOptionLast(combo, item) {
-    console.log("appendOptionLast");
     var elOptNew = document.createElement('option');
     elOptNew.text = item;
     elOptNew.value = item;
@@ -804,7 +787,6 @@ function validateTimes(a, l) {
 }
 
 function launch(p1) {
-    console.log("Launch: " + p1 + " " + par);
     if (!p1) par=0; 
     var l;
     if (!map) return;
@@ -863,7 +845,6 @@ function launch(p1) {
 }
 
 function launchL() {
-    console.log("LaunchL: " + par);
     if (addressIndex>=lats.length-1 || cancel) {
         clearWeights();
         clearGeocode();
@@ -880,7 +861,6 @@ function launchL() {
     if (par) {
         appendOptionLast("places", addresses[addressIndex]);
     } else {
-        console.log("LatLng");
     	appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
     }
     var l= p.length-1;
@@ -1148,7 +1128,6 @@ D("frm2").submit();
 }
 
 function revGeoCallback(results, status) {
-    console.log("revGeoCallback" + status);
     if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
         	var near='<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
