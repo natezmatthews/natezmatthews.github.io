@@ -542,7 +542,8 @@ function getWiki(wlat, wlng) {
       alert("Error creating request object");
     }
     request.onreadystatechange = handler;
-    request.open("GET", url);
+    request.open("GET", url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send();
 }
 
