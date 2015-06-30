@@ -521,16 +521,39 @@ function calculate() {
 function getWiki(wlat, wlng) {
     url = "http://api.geonames.org/findNearbyWikipediaJSON?lat=" + wlat.toString() + "&lng=" + wlng.toString() + "&username=natezmatthews";
     console.log(url);
-    var client = new XMLHttpRequest();
-    client.onload = handler;
-    client.open("GET", url);
-    client.send();
+    var request;
+    try {
+      request = new XMLHttpRequest();
+    }
+    catch (ms1) { // yes, exception handling is supported in JavaScript
+      try {
+        request = new ActiveXObject("Msxml2.XMLHTTP");
+      }
+      catch (ms2) {
+        try {
+          request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch (ex) {
+          request = null;
+        }
+      }
+    }
+    if (request == null) {
+      alert("Error creating request object");
+    }
+    request.onload = handler;
+    request.open("GET", url);
+    request.send();
 }
 
 function handler() {
-    if(this.status == 200 &&
-    this.responseXML != null) {
-        console.log(this.responseXML);
+    if (request.readyState == 4 && request.status == 200) {
+        converted = JSON.parse(request.responseText);
+        if ( (typeof converted === "undefined") || ("error" in converted)) {
+            alert("Error: Something wrong with the sent data");
+        } else {
+            console.log(converted);
+        }
     }
 }
 
