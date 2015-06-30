@@ -518,7 +518,11 @@ function calculate() {
     sameMap=0;
 }
 
-function getWiki(wlat, wlng) {
+function getWiki(wlat, wlng, attempt) {
+    if (attempt >= 8) {
+        console.log("8 Attempts");
+        return;
+    }
     var request;
     try {
       request = new XMLHttpRequest();
@@ -539,19 +543,19 @@ function getWiki(wlat, wlng) {
     if (request == null) {
       alert("Error creating request object");
     }
-    north = wlat + 5;
-    south = wlat - 5;
-    east = wlng + 5;
-    west = wlng - 5;
+    north = wlat + (attempt * 5);
+    south = wlat - (attempt * 5);
+    east = wlng + (attempt * 5);
+    west = wlng - (attempt * 5);
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=de&username=natezmatthews";
     console.log(url);
-    request.onreadystatechange = handler(wlat, wlng);
+    request.onreadystatechange = handler(wlat, wlng, attempt);
     request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send();
 }
 
-function handler(wlat, wlng) {
+function handler(wlat, wlng, attempt) {
     console.log("Handler!");
     console.log(request);
     console.log(request.readyState);
@@ -565,7 +569,7 @@ function handler(wlat, wlng) {
             console.log(converted);
         }
     }
-    getWiki(wlat, wlng);
+    getWiki(wlat, wlng, attempt + 1);
 }
 
 function saveLatLng(i, ll) {
