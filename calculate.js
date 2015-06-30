@@ -550,7 +550,7 @@ function getWiki(wlat, wlng, attempt) {
     params = "north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
     console.log(params);
     request.onreadystatechange = handler(wlat, wlng, attempt);
-    request.open("POST", "api.geonames.org/citiesJSON", true);
+    request.open("GET", "api.geonames.org/citiesJSON", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(params);
 }
