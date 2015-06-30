@@ -543,34 +543,50 @@ function getWiki(wlat, wlng, attempt) {
     if (request == null) {
       alert("Error creating request object");
     }
-    north = wlat + (attempt * 5);
-    south = wlat - (attempt * 5);
-    east = wlng + (attempt * 5);
-    west = wlng - (attempt * 5);
-    params = "north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
-    console.log(params);
-    request.onreadystatechange = handler(wlat, wlng, attempt);
-    request.open("POST", "http://api.geonames.org/citiesJSON", true);
+    // north = wlat + (attempt * 5);
+    // south = wlat - (attempt * 5);
+    // east = wlng + (attempt * 5);
+    // west = wlng - (attempt * 5);
+    // params = "north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
+    // console.log(params);
+    request.onreadystatechange = handler; //handler(wlat, wlng, attempt);
+    request.open("GET", "http://www.example.com", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(params);
+    request.send();
 }
 
-function handler(wlat, wlng, attempt) {
+function handler() {
     console.log("Handler!");
     console.log(request);
     console.log(request.readyState);
     console.log(request.status);
     console.log(request.responseText);
-    if (request.readyState == 4 && request.status == 200) {
-        converted = JSON.parse(request.responseText);
-        if ( (typeof converted === "undefined") || ("error" in converted)) {
-            alert("Error: Something wrong with the sent data");
-        } else {
-            console.log(converted);
-        }
-    }
-    getWiki(wlat, wlng, attempt + 1);
+    // if (request.readyState == 4 && request.status == 200) {
+    //     // converted = JSON.parse(request.responseText);
+    //     if ( (typeof converted === "undefined") || ("error" in converted)) {
+    //         alert("Error: Something wrong with the sent data");
+    //     } else {
+    //         console.log(converted);
+    //     }
+    // }
 }
+
+// function handler(wlat, wlng, attempt) {
+//     console.log("Handler!");
+//     console.log(request);
+//     console.log(request.readyState);
+//     console.log(request.status);
+//     console.log(request.responseText);
+//     if (request.readyState == 4 && request.status == 200) {
+//         converted = JSON.parse(request.responseText);
+//         if ( (typeof converted === "undefined") || ("error" in converted)) {
+//             alert("Error: Something wrong with the sent data");
+//         } else {
+//             console.log(converted);
+//         }
+//     }
+//     getWiki(wlat, wlng, attempt + 1);
+// }
 
 function saveLatLng(i, ll) {
     if (isNaN(p[i].lat)) {
