@@ -519,7 +519,7 @@ function calculate() {
 }
 
 function getWiki(wlat, wlng) {
-    url = "http://api.geonames.org/findNearbyWikipedia?lat=" + wlat.toString() + "&lng=" + wlng.toString() + "&username=natezmatthews";
+    url = "http://api.geonames.org/findNearbyWikipediaJSON?lat=" + wlat.toString() + "&lng=" + wlng.toString() + "&username=natezmatthews";
     console.log(url);
     var client = new XMLHttpRequest();
     client.onload = handler;
