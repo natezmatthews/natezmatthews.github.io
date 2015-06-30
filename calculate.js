@@ -545,13 +545,13 @@ function getWiki(wlat, wlng) {
     west = wlng - 5;
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=de&username=natezmatthews";
     console.log(url);
-    request.onreadystatechange = handler;
+    request.onreadystatechange = handler(wlat, wlng);
     request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send();
 }
 
-function handler() {
+function handler(wlat, wlng) {
     console.log("Handler!");
     console.log(request);
     console.log(request.readyState);
