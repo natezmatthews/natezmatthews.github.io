@@ -560,9 +560,9 @@ function getWiki(wlat, wlng, attempt) {
         console.log(request.status);
         console.log(request.responseText);
     };
-    request.open("GET", "http://api.geonames.org/citiesJSON", true);
+    request.open("GET", "http://api.geonames.org/citiesJSON?" + params, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(params);
+    request.send(null);
 }
 
 // function handler(wlat, wlng, attempt) {
