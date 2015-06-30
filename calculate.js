@@ -547,6 +547,8 @@ function getWiki(wlat, wlng) {
 }
 
 function handler() {
+    console.log("Handler!");
+    console.log(request);
     if (request.readyState == 4 && request.status == 200) {
         converted = JSON.parse(request.responseText);
         if ( (typeof converted === "undefined") || ("error" in converted)) {
