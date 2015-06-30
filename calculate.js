@@ -549,6 +549,10 @@ function getWiki(wlat, wlng, attempt) {
     west = wlng - (attempt * 5);
     params = "north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
     console.log(params);
+    console.log(request);
+    console.log(request.readyState);
+    console.log(request.status);
+    console.log(request.responseText);
     request.onreadystatechange = handler(wlat, wlng, attempt);
     request.open("GET", "http://api.geonames.org/citiesJSON", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -557,10 +561,10 @@ function getWiki(wlat, wlng, attempt) {
 
 function handler(wlat, wlng, attempt) {
     console.log("Handler!");
-    console.log(request);
-    console.log(request.readyState);
-    console.log(request.status);
-    console.log(request.responseText);
+    // console.log(request);
+    // console.log(request.readyState);
+    // console.log(request.status);
+    // console.log(request.responseText);
     if (request.readyState == 4 && request.status == 200) {
         converted = JSON.parse(request.responseText);
         if ( (typeof converted === "undefined") || ("error" in converted)) {
