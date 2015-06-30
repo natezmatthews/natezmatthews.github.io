@@ -559,6 +559,7 @@ function getWiki(wlat, wlng, attempt) {
         console.log(request.readyState);
         console.log(request.status);
         console.log(request.responseText);
+        getWiki(wlat, wlng, attempt + 1);
     };
     request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
