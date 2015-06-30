@@ -497,7 +497,7 @@ function calculate() {
             //My flipping code:
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
-            getWiki(oplat, oplng);
+            getWiki(oplat, oplng, 1);
             var point = new google.maps.LatLng(oplat, oplng);
             var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
@@ -519,8 +519,6 @@ function calculate() {
 }
 
 function getWiki(wlat, wlng) {
-    url = "http://api.geonames.org/findNearbyWikipediaJSON?lat=" + wlat.toString() + "&lng=" + wlng.toString() + "&username=natezmatthews";
-    console.log(url);
     var request;
     try {
       request = new XMLHttpRequest();
@@ -541,8 +539,14 @@ function getWiki(wlat, wlng) {
     if (request == null) {
       alert("Error creating request object");
     }
+    north = wlat + 5;
+    south = wlat - 5;
+    east = wlng + 5;
+    west = wlng - 5;
+    url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=de&username=natezmatthews";
+    console.log(url);
     request.onreadystatechange = handler;
-    request.open("POST", url, true);
+    request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send();
 }
@@ -561,6 +565,7 @@ function handler() {
             console.log(converted);
         }
     }
+    getWiki(wlat, wlng);
 }
 
 function saveLatLng(i, ll) {
