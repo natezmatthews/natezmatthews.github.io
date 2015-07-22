@@ -551,7 +551,9 @@ function getWiki(wlat, wlng, attempt) {
     west = wlng - (attempt * 5);
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
     request.onreadystatechange = function() {
-        console.log("Readystate:" + request.readyState + " Status: " + request.status + " Attempt: " + attempt);
+        if (request.readyState != 1 && request.status != 0) {
+            console.log("Readystate:" + request.readyState + " Status: " + request.status + " Attempt: " + attempt);
+        }
         console.log(request.responseText);
         if (request.readyState == 4 && request.status == 200) {
             foundWiki = 1;
