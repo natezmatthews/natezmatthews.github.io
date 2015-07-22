@@ -519,6 +519,10 @@ function calculate() {
 }
 
 function getWiki(wlat, wlng, attempt) {
+    if (attempt > 7 ) {
+        console.log("8 Attempts");
+        return;
+    }
     var request;
     try {
       request = new XMLHttpRequest();
