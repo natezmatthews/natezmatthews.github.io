@@ -554,9 +554,9 @@ function getWiki(wlat, wlng, attempt) {
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var resp = JSON.parse(request.responseText);
-            console.log("Resp: " + resp);
+            console.log("Resp: ");
+            console.log(resp);
             for (place in resp.geonames) {
-                console.log("Place: " + place);
                 if (place.wikipedia) {
                     console.log("Wiki: " + place.wikipedia);
                     return;
