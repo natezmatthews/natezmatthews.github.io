@@ -565,41 +565,48 @@ function getWiki(wlat, wlng, attempt) {
 }
 
 function getText(uri) {
-    var request;
-    try {
-      request = new XMLHttpRequest();
-    }
-    catch (ms1) { // yes, exception handling is supported in JavaScript
-      try {
-        request = new ActiveXObject("Msxml2.XMLHTTP");
-      }
-      catch (ms2) {
-        try {
-          request = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        catch (ex) {
-          request = null;
-        }
-      }
-    }
-    if (request == null) {
-      alert("Error creating request object");
-    }
     title = encodeURI(uri.substr(uri.lastIndexOf("/") + 1));
-    query = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + title;
-    console.log("Query: " + query);
-    request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-            var resp = JSON.parse(request.responseText);
-            console.log("Response: ");
-            console.log(resp);
-            console.log(resp.query.pages);
-            console.log(resp.query.pages[0].extract);
+    $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?", 
+        function(data) {
+            console.log(data);
         }
-    };
-    request.open("GET", query, true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(null);
+    );
+
+    // var request;
+    // try {
+    //   request = new XMLHttpRequest();
+    // }
+    // catch (ms1) { // yes, exception handling is supported in JavaScript
+    //   try {
+    //     request = new ActiveXObject("Msxml2.XMLHTTP");
+    //   }
+    //   catch (ms2) {
+    //     try {
+    //       request = new ActiveXObject("Microsoft.XMLHTTP");
+    //     }
+    //     catch (ex) {
+    //       request = null;
+    //     }
+    //   }
+    // }
+    // if (request == null) {
+    //   alert("Error creating request object");
+    // }
+    // title = encodeURI(uri.substr(uri.lastIndexOf("/") + 1));
+    // query = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + title;
+    // console.log("Query: " + query);
+    // request.onreadystatechange = function() {
+    //     if (request.readyState == 4 && request.status == 200) {
+    //         var resp = JSON.parse(request.responseText);
+    //         console.log("Response: ");
+    //         console.log(resp);
+    //         console.log(resp.query.pages);
+    //         console.log(resp.query.pages[0].extract);
+    //     }
+    // };
+    // request.open("GET", query, true);
+    // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // request.send(null);
 }
 
 // function handler(wlat, wlng, attempt) {
