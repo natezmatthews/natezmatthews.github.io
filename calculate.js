@@ -557,6 +557,8 @@ function getWiki(wlat, wlng, attempt) {
             console.log("Resp: ");
             console.log(resp);
             for (place in resp.geonames) {
+                console.log(place);
+                console.log(place.wikipedia);
                 if (place.wikipedia) {
                     console.log("Wiki: " + place.wikipedia);
                     return;
