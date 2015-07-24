@@ -571,11 +571,11 @@ function getText(uri) {
             console.log(data);
         }
     );
-    $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title))+"&callback=?",
+    $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title)+"&callback=?",
         function(data) {
             console.log(data);
         }
-    };
+    );
 
     // var request;
     // try {
