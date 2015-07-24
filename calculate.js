@@ -587,9 +587,12 @@ function getText(uri) {
     }
     title = encodeURI(uri.substr(uri.lastIndexOf("/") + 1));
     query = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + title;
+    console.log("Query: " + query);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var resp = JSON.parse(request.responseText);
+            console.log("Response: ");
+            console.log(resp);
             console.log(resp.query.pages);
             console.log(resp.query.pages[0].extract);
         }
