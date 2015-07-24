@@ -565,6 +565,26 @@ function getWiki(wlat, wlng, attempt) {
 }
 
 function getText(uri) {
+    var request;
+    try {
+      request = new XMLHttpRequest();
+    }
+    catch (ms1) { // yes, exception handling is supported in JavaScript
+      try {
+        request = new ActiveXObject("Msxml2.XMLHTTP");
+      }
+      catch (ms2) {
+        try {
+          request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        catch (ex) {
+          request = null;
+        }
+      }
+    }
+    if (request == null) {
+      alert("Error creating request object");
+    }
     title = encodeURI(uri.substr(uri.lastIndexOf("/") + 1));
     query = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + title;
     request.onreadystatechange = function() {
