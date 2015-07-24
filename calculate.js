@@ -571,6 +571,11 @@ function getText(uri) {
             console.log(data);
         }
     );
+    $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title))+"&callback=?",
+        function(data) {
+            console.log(data);
+        }
+    };
 
     // var request;
     // try {
@@ -608,23 +613,6 @@ function getText(uri) {
     // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // request.send(null);
 }
-
-// function handler(wlat, wlng, attempt) {
-//     console.log("Handler!");
-//     // console.log(request);
-//     // console.log(request.readyState);
-//     // console.log(request.status);
-//     // console.log(request.responseText);
-//     if (request.readyState == 4 && request.status == 200) {
-//         converted = JSON.parse(request.responseText);
-//         if ( (typeof converted === "undefined") || ("error" in converted)) {
-//             alert("Error: Something wrong with the sent data");
-//         } else {
-//             console.log(converted);
-//         }
-//     }
-//     getWiki(wlat, wlng, attempt + 1);
-// }
 
 function saveLatLng(i, ll) {
     if (isNaN(p[i].lat)) {
