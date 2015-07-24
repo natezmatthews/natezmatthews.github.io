@@ -568,12 +568,22 @@ function getText(uri) {
     title = uri.substr(uri.lastIndexOf("/") + 1);
     $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles="+title+"&format=json&callback=?", 
         function(data) {
-            console.log(data);
+            for (i in data.query.pages) {
+                if (data.query.pages[i].extract) {
+                    console.log(data.query.pages[i].extract);
+                    break;
+                }
+            }
         }
     );
     $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title)+"&callback=?",
         function(data) {
-            console.log(data);
+            for (i in data.responseData.results) {
+                if (data.responseData.results[i].url) {
+                    console.log(data.responseData.results[i].url);
+                    break;
+                }
+            }
         }
     );
 
