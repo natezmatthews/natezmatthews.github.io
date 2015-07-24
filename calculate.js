@@ -521,10 +521,6 @@ function calculate() {
 }
 
 function getWiki(wlat, wlng, attempt) {
-    if (foundWiki) {
-        console.log("foundWiki");
-        return;
-    }
     var request;
     try {
       request = new XMLHttpRequest();
@@ -550,32 +546,33 @@ function getWiki(wlat, wlng, attempt) {
     east = wlng + (attempt * 3);
     west = wlng - (attempt * 3);
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
-    console.log(url);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var resp = JSON.parse(request.responseText);
-            console.log("Resp: ");
-            console.log(resp);
             for (i in resp.geonames) {
                 if (resp.geonames[i].wikipedia) {
-                    console.log("Wiki: " + resp.geonames[i].wikipedia);
-                    return;
+                    console.log(resp.geonames[i].wikipedia);
+                    getText(resp.geonames[i].wikipedia);
+                    return resp.geonames[i].wikipedia;
                 }
             }
-            console.log("Calling getWiki again");
             getWiki(wlat, wlng, attempt + 1);
         }
-        // if (request.readyState != 1 && request.status != 0) {
-        //     console.log("Readystate:" + request.readyState + " Status: " + request.status + " Attempt: " + attempt);
-        //     console.log(request.responseText);
-        // }
-        // if (request.readyState == 4 && request.status == 200) {
-        //     foundWiki = 1;
-        //     return;
-        // } else {
-        //     "Calling getWiki again"
-        //     getWiki(wlat, wlng, attempt + 1);
-        // }
+    };
+    request.open("GET", url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send(null);
+}
+
+function getText(uri) {
+    title = encodeURI(uri.substr(uri.lastIndexOf("/") + 1));
+    query = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + title;
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            var resp = JSON.parse(request.responseText);
+            console.log(resp.query.pages);
+            console.log(resp.query.pages[0].extract);
+        }
     };
     request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
