@@ -565,7 +565,7 @@ function getWiki(wlat, wlng, attempt) {
 }
 
 function getText(uri) {
-    title = encodeURI(uri.substr(uri.lastIndexOf("/") + 1));
+    title = uri.substr(uri.lastIndexOf("/") + 1);
     $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?", 
         function(data) {
             console.log(data);
