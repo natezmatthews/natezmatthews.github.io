@@ -555,14 +555,14 @@ function getWiki(wlat, wlng, attempt) {
         if (request.readyState == 4 && request.status == 200) {
             var resp = JSON.parse(request.responseText);
             console.log(resp);
-            // for (place in resp.geonames) {
-            //     if (place.wikipedia) {
-            //         console.log(place.wikipedia);
-            //         return;
-            //     }
-            // }
-            // console.log("Calling getWiki again");
-            // getWiki(wlat, wlng, attempt + 1);
+            for (place in resp) {
+                if (place.wikipedia) {
+                    console.log(place.wikipedia);
+                    return;
+                }
+            }
+            console.log("Calling getWiki again");
+            getWiki(wlat, wlng, attempt + 1);
         }
         // if (request.readyState != 1 && request.status != 0) {
         //     console.log("Readystate:" + request.readyState + " Status: " + request.status + " Attempt: " + attempt);
