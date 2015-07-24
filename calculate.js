@@ -597,7 +597,7 @@ function getText(uri) {
             console.log(resp.query.pages[0].extract);
         }
     };
-    request.open("GET", url, true);
+    request.open("GET", query, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(null);
 }
