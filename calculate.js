@@ -552,17 +552,28 @@ function getWiki(wlat, wlng, attempt) {
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
     console.log(url);
     request.onreadystatechange = function() {
-        if (request.readyState != 1 && request.status != 0) {
-            console.log("Readystate:" + request.readyState + " Status: " + request.status + " Attempt: " + attempt);
-            console.log(request.responseText);
-        }
         if (request.readyState == 4 && request.status == 200) {
-            foundWiki = 1;
-            return;
-        } else {
-            "Calling getWiki again"
+            var resp = JSON.parse(request.responseText);
+            for (place in resp.geonames) {
+                if (place.wikipedia) {
+                    console.log(place.wikipedia);
+                    return;
+                }
+            }
+            console.log("Calling getWiki again");
             getWiki(wlat, wlng, attempt + 1);
         }
+        // if (request.readyState != 1 && request.status != 0) {
+        //     console.log("Readystate:" + request.readyState + " Status: " + request.status + " Attempt: " + attempt);
+        //     console.log(request.responseText);
+        // }
+        // if (request.readyState == 4 && request.status == 200) {
+        //     foundWiki = 1;
+        //     return;
+        // } else {
+        //     "Calling getWiki again"
+        //     getWiki(wlat, wlng, attempt + 1);
+        // }
     };
     request.open("GET", url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
