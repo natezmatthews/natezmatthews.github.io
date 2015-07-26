@@ -497,7 +497,7 @@ function calculate() {
             //My flipping code:
             var oplat = midlat * -1;
             var oplng = (((midlng + 180) + 180) % 360) - 180;
-            getWiki(oplat, oplng, 1);
+            geoNames(oplat, oplng, 1);
             var point = new google.maps.LatLng(oplat, oplng);
             var h1=formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
             var h2='<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
@@ -518,7 +518,7 @@ function calculate() {
     sameMap=0;
 }
 
-function getWiki(wlat, wlng, attempt) {
+function geoNames(wlat, wlng, attempt) {
     var request;
     try {
       request = new XMLHttpRequest();
@@ -548,14 +548,13 @@ function getWiki(wlat, wlng, attempt) {
         if (request.readyState == 4 && request.status == 200) {
             var resp = JSON.parse(request.responseText);
             for (i in resp.geonames) {
-                console.log(resp.geonames);
                 if (resp.geonames[i].wikipedia) {
                     console.log(resp.geonames[i].wikipedia);
-                    getText(resp.geonames[i].wikipedia);
+                    getInfoForWindow(resp.geonames[i].wikipedia, resp.geonames[i].lat, resp.geonames[i].lng);
                     return resp.geonames[i].wikipedia;
                 }
             }
-            getWiki(wlat, wlng, attempt + 1);
+            geoNames(wlat, wlng, attempt + 1);
         }
     };
     request.open("GET", url, true);
@@ -563,14 +562,14 @@ function getWiki(wlat, wlng, attempt) {
     request.send(null);
 }
 
-function getText(uri) {
+function getInfoForWindow(uri, lat, lng) {
     title = uri.substr(uri.lastIndexOf("/") + 1);
     $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles="+title+"&format=json&callback=?", 
         function(data) {
             for (i in data.query.pages) {
                 if (data.query.pages[i].extract) {
                     console.log(data.query.pages[i].extract);
-                    makeInfoWindow(data.query.pages[i].extract);
+                    makeInfoWindow(data.query.pages[i].extract, lat, lng, title);
                     break;
                 }
             }
@@ -588,13 +587,18 @@ function getText(uri) {
     );
 }
 
-function makeInfoWindow(text) {
+function makeInfoWindow(text, lat, lng, title) {
     var contentString = "<div>"+text+"</div>";
-
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
-
+    var cityLatlng = new google.maps.LatLng(lat,lng);
+    var marker = new google.maps.Marker({
+        position: cityLatlng,
+        map: map,
+        title: title
+    });
+    infowindow.open(map,marker);
 }
 
 function saveLatLng(i, ll) {
