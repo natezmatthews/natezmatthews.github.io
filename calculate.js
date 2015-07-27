@@ -592,7 +592,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
     });
 }
 
-function makeInfoWindow(extract, imgurl, lat, lng, title) {
+function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
     var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+title+"</h1><div>"+extract+"</div><div>"+wikiurl+"</div>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
