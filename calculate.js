@@ -539,10 +539,10 @@ function geoNames(wlat, wlng, attempt) {
     if (request == null) {
       alert("Error creating request object");
     }
-    north = wlat + (attempt * 1);
-    south = wlat - (attempt * 1);
-    east = wlng + (attempt * 1);
-    west = wlng - (attempt * 1);
+    north = wlat + (attempt * 4);
+    south = wlat - (attempt * 4);
+    east = wlng + (attempt * 4);
+    west = wlng - (attempt * 4);
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
@@ -563,13 +563,14 @@ function geoNames(wlat, wlng, attempt) {
 }
 
 function getInfoForWindow(wikiurl, lat, lng) {
-    title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
+    var extract, imgurl, title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
     $.when(
         $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles="+title+"&format=json&callback=?", 
             function(data) {
                 for (i in data.query.pages) {
                     if (data.query.pages[i].extract) {
                         console.log(data.query.pages[i].extract);
+                        extract = data.query.pages[i].extract;
                         break;
                     }
                 }
@@ -580,18 +581,19 @@ function getInfoForWindow(wikiurl, lat, lng) {
                 for (i in data2.responseData.results) {
                     if (data2.responseData.results[i].url) {
                         console.log(data2.responseData.results[i].url);
+                        imgurl = data2.responseData.results[i].url;
                         break;
                     }
                 }
             }
         )
     ).then(function() {
-        makeInfoWindow(data.query.pages[i].extract, data2.responseData.results[i].url, wikiurl, lat, lng, title);
+        makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title);
     });
 }
 
-function makeInfoWindow(text, imgurl, lat, lng, title) {
-    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+title+"</h1><div>"+text+"</div><div>"+wikiurl+"</div>";
+function makeInfoWindow(extract, imgurl, lat, lng, title) {
+    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+title+"</h1><div>"+extract+"</div><div>"+wikiurl+"</div>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
