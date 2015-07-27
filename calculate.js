@@ -549,9 +549,10 @@ function geoNames(wlat, wlng, attempt) {
             var resp = JSON.parse(request.responseText);
             for (i in resp.geonames) {
                 if (resp.geonames[i].wikipedia) {
-                    console.log(resp.geonames[i].wikipedia);
-                    getInfoForWindow(resp.geonames[i].wikipedia, resp.geonames[i].lat, resp.geonames[i].lng);
-                    return resp.geonames[i].wikipedia;
+                    p = resp.geonames[i];
+                    console.log(p.wikipedia);
+                    getInfoForWindow(p.wikipedia, p.lat, p.lng);
+                    return;
                 }
             }
             geoNames(wlat, wlng, attempt + 1);
@@ -576,7 +577,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
                 }
             }
         ),
-        $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title)+"&callback=?",
+        $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+title+"&callback=?",
             function(data2) {
                 for (i in data2.responseData.results) {
                     if (data2.responseData.results[i].url) {
@@ -593,7 +594,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
 }
 
 function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
-    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+title+"</h1><div>"+extract+"</div><div>"+wikiurl+"</div>";
+    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+decodeURI(title)+"</h1><div>"+extract+"</div><a href='"+wikiurl+"'>"+wikiurl+"</a>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
