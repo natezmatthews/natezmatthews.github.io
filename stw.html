@@ -93,7 +93,7 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
-        document.write(calc);
+        writeForm();
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
@@ -118,22 +118,26 @@
             calculate();
         });
     }
+
+    function writeForm() {
+        $( ".forform" ).append(calc);
+    }
 </script>
 
 <div id="fb-root"></div>
 
+<div id="forform"></div>
+
+<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
 <a href="#" class="button">
     <span onclick="button()">Facebook (quicker)</span>
+</a>
+<a href="#" class="button">
+    <span onclick="writeForm()">Manual (More Accurate)</span>
 </a>
 
 <div id="status">
 </div>
-
-<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-
-<a href="#" class="button">
-    <span onclick="document.write(calc)">Manual (More Accurate)</span>
-</a>
 
 </body>
 </html>
