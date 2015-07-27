@@ -574,7 +574,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
                     }
                 }
             }
-        );
+        ),
         $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title)+"&callback=?",
             function(data2) {
                 for (i in data2.responseData.results) {
@@ -584,7 +584,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
                     }
                 }
             }
-        );
+        )
     ).then(function() {
         makeInfoWindow(data.query.pages[i].extract, data2.responseData.results[i].url, wikiurl, lat, lng, title);
     });
