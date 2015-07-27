@@ -37,6 +37,7 @@
     }
 
     function button() {
+        document.write(calc);
         FB.login(function(response) {
             if (response.authResponse) {
                 M.FB.setIsAuthorised(true);
@@ -122,8 +123,9 @@
 
 <div id="fb-root"></div>
 
-<fb:login-button scope="user_tagged_places" onlogin="checkLoginState();">
-</fb:login-button>
+<a href="#" class="button">
+    <span onclick="button()">Manual (More Accurate)</span>
+</a>
 
 <div id="status">
 </div>
