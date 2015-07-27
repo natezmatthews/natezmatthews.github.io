@@ -562,33 +562,36 @@ function geoNames(wlat, wlng, attempt) {
     request.send(null);
 }
 
-function getInfoForWindow(uri, lat, lng) {
-    title = uri.substr(uri.lastIndexOf("/") + 1);
-    $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles="+title+"&format=json&callback=?", 
-        function(data) {
-            for (i in data.query.pages) {
-                if (data.query.pages[i].extract) {
-                    console.log(data.query.pages[i].extract);
-                    makeInfoWindow(data.query.pages[i].extract, lat, lng, title);
-                    break;
+function getInfoForWindow(wikiurl, lat, lng) {
+    title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
+    $.when(
+        $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles="+title+"&format=json&callback=?", 
+            function(data) {
+                for (i in data.query.pages) {
+                    if (data.query.pages[i].extract) {
+                        console.log(data.query.pages[i].extract);
+                        break;
+                    }
                 }
             }
-        }
-    );
-    $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title)+"&callback=?",
-        function(data) {
-            for (i in data.responseData.results) {
-                if (data.responseData.results[i].url) {
-                    console.log(data.responseData.results[i].url);
-                    break;
+        );
+        $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+encodeURI(title)+"&callback=?",
+            function(data2) {
+                for (i in data2.responseData.results) {
+                    if (data2.responseData.results[i].url) {
+                        console.log(data2.responseData.results[i].url);
+                        break;
+                    }
                 }
             }
-        }
-    );
+        );
+    ).then(function() {
+        makeInfoWindow(data.query.pages[i].extract, data2.responseData.results[i].url, wikiurl, lat, lng, title);
+    });
 }
 
-function makeInfoWindow(text, lat, lng, title) {
-    var contentString = "<div>"+text+"</div>";
+function makeInfoWindow(text, imgurl, lat, lng, title) {
+    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+title+"</h1><div>"+text+"</div><div>"+wikiurl+"</div>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
@@ -598,6 +601,7 @@ function makeInfoWindow(text, lat, lng, title) {
         map: map,
         title: title
     });
+    setZoom(4);
     infowindow.open(map,marker);
 }
 
