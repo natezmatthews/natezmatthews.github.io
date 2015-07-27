@@ -39,9 +39,9 @@ p.info {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    -webkit-box-shadow:    0 8px 0 #FFFFFF, 0 15px 20px rgba(0, 0, 0, .35);
-    -moz-box-shadow: 0 8px 0 #FFFFFF, 0 15px 20px rgba(0, 0, 0, .35);
-    box-shadow: 0 8px 0 #FFFFFF, 0 15px 20px rgba(0, 0, 0, .35);
+    -webkit-box-shadow:    0 8px 0 #29A329, 0 15px 20px rgba(0, 0, 0, .35);
+    -moz-box-shadow: 0 8px 0 #29A329, 0 15px 20px rgba(0, 0, 0, .35);
+    box-shadow: 0 8px 0 #29A329, 0 15px 20px rgba(0, 0, 0, .35);
     -webkit-transition: -webkit-box-shadow .1s ease-in-out;
     -moz-transition: -moz-box-shadow .1s ease-in-out;
     -o-transition: -o-box-shadow .1s ease-in-out;
@@ -53,7 +53,7 @@ p.info {
 .button span {
     display: inline-block;
     padding: 20px 30px;
-    background-color: #00CC00;
+    background-color: #FFFFFF;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(hsla(338, 90%, 80%, .8)), to(hsla(338, 90%, 70%, .2)));
     background-image: -webkit-linear-gradient(hsla(338, 90%, 80%, .8), hsla(338, 90%, 70%, .2));
     background-image: -moz-linear-gradient(hsla(338, 90%, 80%, .8), hsla(338, 90%, 70%, .2));
@@ -74,14 +74,14 @@ p.info {
 }
 
 .button:hover span {
-    background-color: #19AC19;
+    background-color: #000000;
     text-shadow: 0 -1px 1px rgba(175, 49, 95, .9), 0 0 5px rgba(255, 255, 255, .8);
 }
 
 .button:active, .button:focus {
-    -webkit-box-shadow:    0 8px 0 #FFFFFF, 0 12px 10px rgba(0, 0, 0, .3);
-    -moz-box-shadow: 0 8px 0 #FFFFFF, 0 12px 10px rgba(0, 0, 0, .3);
-    box-shadow:    0 8px 0 #FFFFFF, 0 12px 10px rgba(0, 0, 0, .3);
+    -webkit-box-shadow:    0 8px 0 #29A329, 0 12px 10px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 8px 0 #29A329, 0 12px 10px rgba(0, 0, 0, .3);
+    box-shadow:    0 8px 0 #29A329, 0 12px 10px rgba(0, 0, 0, .3);
 }
 
 .button:active span {
