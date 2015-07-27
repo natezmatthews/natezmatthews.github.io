@@ -603,7 +603,7 @@ function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
         map: map,
         title: title
     });
-    setZoom(4);
+    map.setZoom(4);
     infowindow.open(map,marker);
 }
 
