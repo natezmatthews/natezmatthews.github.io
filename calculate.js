@@ -550,7 +550,6 @@ function geoNames(wlat, wlng, attempt) {
             for (i in resp.geonames) {
                 if (resp.geonames[i].wikipedia) {
                     p = resp.geonames[i];
-                    console.log(p.wikipedia);
                     getInfoForWindow(p.wikipedia, p.lat, p.lng);
                     return;
                 }
@@ -570,7 +569,6 @@ function getInfoForWindow(wikiurl, lat, lng) {
             function(data) {
                 for (i in data.query.pages) {
                     if (data.query.pages[i].extract) {
-                        console.log(data.query.pages[i].extract);
                         extract = data.query.pages[i].extract;
                         break;
                     }
@@ -581,7 +579,6 @@ function getInfoForWindow(wikiurl, lat, lng) {
             function(data2) {
                 for (i in data2.responseData.results) {
                     if (data2.responseData.results[i].url) {
-                        console.log(data2.responseData.results[i].url);
                         imgurl = data2.responseData.results[i].url;
                         break;
                     }
