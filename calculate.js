@@ -594,7 +594,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
 }
 
 function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
-    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+decodeURI(title)+"</h1><div>"+extract+"</div><a href='"+wikiurl+"'>"+wikiurl+"</a>";
+    var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+decodeURI(title)+"</h1><div>"+extract+"</div><a href='http://"+wikiurl+"'>"+wikiurl+"</a>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
