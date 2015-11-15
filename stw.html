@@ -4,7 +4,6 @@
 </head>
 <body>
 
-<link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
 </script>
@@ -43,7 +42,7 @@
             } else {
                 //  On failure.
             }         
-        }, {scope: 'tagged_places'}
+        }, {scope: 'public_profile,email,tagged_places'}
         );
     }
 
@@ -93,7 +92,6 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
-        writeForm();
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
@@ -118,23 +116,12 @@
             calculate();
         });
     }
-
-    function writeForm() {
-        $( ".forform" ).append(calc);
-    }
 </script>
 
 <div id="fb-root"></div>
 
-<div id="forform"></div>
-
-<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-<a href="#" class="button">
-    <span onclick="button()">Facebook (quicker)</span>
-</a>
-<a href="#" class="button">
-    <span onclick="writeForm()">Manual (More Accurate)</span>
-</a>
+<fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
+</fb:login-button>
 
 <div id="status">
 </div>
