@@ -23,7 +23,7 @@ var rad90=rad(90);
 var rad180=rad(180);
 var M=Math;
 var p, infoWindow, geoOverLimit;
-document.write(calc);
+// document.write(calc);
 
 function initialize() {
     f1=D("frm"); // f1 now is the form
