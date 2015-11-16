@@ -181,7 +181,7 @@ Although you can use them, for a more unique website, replace these images with 
 						</ul>
 					</li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="#contact_anchor">Contact</a>
                     </li>
                 </ul>
                 
@@ -197,13 +197,7 @@ Although you can use them, for a more unique website, replace these images with 
                 <p>Where should you go if you want to farthest away from anywhere you've ever been?</p>
                 <p>Scroll down to find out.</p>
                 <!-- <a href="#" class="btn btn-primary btn-lg">Engage Now</a> -->
-                <div id="fb-root"></div>
 
-<fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
             </div>
         </div>
     </header>
@@ -216,6 +210,15 @@ Although you can use them, for a more unique website, replace these images with 
                 	<!-- <span class="glyphicon glyphicon-apple" style="font-size: 60px"></span>
                     <h2 class="section-heading">Completely synergize resource taxing relationships</h2>
                     <p class="text-light">Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p> -->
+<p class="lead text-muted">Click here to import your tagged places from facebook. Otherwise, enter where you have been below.</p>
+<div id="fb-root"></div>
+
+<fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
+
 <form id="frm" action="" onsubmit="launch(); return false">
     <div id="upperleft">
         <div id="radio1">
@@ -453,6 +456,7 @@ Although you can use them, for a more unique website, replace these images with 
     
     	<!-- Contact Us -->
         <div class="contact">
+            <a name="contact_anchor"></a>
         	<div class="container">
 				<h2 class="section-heading">Contact Us</h2>
 				<p><span class="glyphicon glyphicon-envelope"></span><br> contact@smalltheworld.com</p>
