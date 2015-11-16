@@ -63,17 +63,26 @@ Although you can use them, for a more unique website, replace these images with 
         }
     }
 
-    function button() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-                M.FB.setIsAuthorised(true);
-                //  On success.
-            } else {
-                //  On failure.
-            }         
-        }, {scope: 'public_profile,email,tagged_places'}
-        );
-    }
+    // function logout() {
+    //     FB.logout(function(response){
+    //         console.log('About to show fb logout response:');
+    //         console.log(response);
+    //         document.getElementById('status').innerHTML =
+    //             response.name + 'is now logged out of facebook.';
+    //     });
+    // }
+
+    // function button() {
+    //     FB.login(function(response) {
+    //         if (response.authResponse) {
+    //             M.FB.setIsAuthorised(true);
+    //             //  On success.
+    //         } else {
+    //             //  On failure.
+    //         }         
+    //     }, {scope: 'public_profile,email,tagged_places'}
+    //     );
+    // }
 
     // This function is called when someone finishes with the Login
     // Button.  See the onlogin handler attached to it in the sample
@@ -166,7 +175,7 @@ Although you can use them, for a more unique website, replace these images with 
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active">
+                    <!-- <li class="active">
                         <a href="#">Home</a>
                     </li>
                     <li>
@@ -179,7 +188,7 @@ Although you can use them, for a more unique website, replace these images with 
 							<li><a href="#">Pontificate</a></li>
 							<li><a href="#">Synergize</a></li>
 						</ul>
-					</li>
+					</li> -->
                     <li>
                         <a href="#contact">Contact</a>
                     </li>
@@ -387,7 +396,7 @@ Although you can use them, for a more unique website, replace these images with 
     </section>
 
 	<!-- Content 2 -->
-     <section class="content content-2">
+     <!-- <section class="content content-2">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -401,10 +410,10 @@ Although you can use them, for a more unique website, replace these images with 
                 
             </div>
         </div>
-    </section>    
+    </section>    --> 
 
     <!-- Promos -->
-	<div class="container-fluid">
+	<!-- <div class="container-fluid">
         <div class="row promo">
         	<a href="#">
 				<div class="col-md-4 promo-item item-1">
@@ -429,17 +438,17 @@ Although you can use them, for a more unique website, replace these images with 
 				</div>
             </a>
         </div>
-    </div><!-- /.container-fluid -->
+    </div> --><!-- /.container-fluid -->
 
 	<!-- Content 3 -->
-     <section class="content content-3">
+     <!-- <section class="content content-3">
         <div class="container">
 			<h2 class="section-header"><span class="glyphicon glyphicon-pushpin text-primary"></span><br> Sanity Check</h2>
 			<p class="lead text-muted">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p> 
                     <a href="#" class="btn btn-primary btn-lg">Check Now</a>               
             </div>
         </div>
-    </section>
+    </section> -->
     
 	<!-- Footer -->
     <footer class="page-footer">
