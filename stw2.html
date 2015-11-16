@@ -134,7 +134,7 @@ Although you can use them, for a more unique website, replace these images with 
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+                'Thanks for letting us import your places from facebook ' + response.name + '.';
         });
 
         FB.api('/me/tagged_places', function(response) {
@@ -219,7 +219,7 @@ Although you can use them, for a more unique website, replace these images with 
                 	<!-- <span class="glyphicon glyphicon-apple" style="font-size: 60px"></span>
                     <h2 class="section-heading">Completely synergize resource taxing relationships</h2>
                     <p class="text-light">Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p> -->
-<p class="lead text-muted">Click here to import your tagged places from facebook. Otherwise, enter where you have been below.</p>
+<p id="status" class="lead text-muted">Click here to import your tagged places from facebook. Otherwise, enter where you have been below.</p>
 <div id="fb-root"></div>
 
 <!-- <fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
@@ -227,8 +227,8 @@ Although you can use them, for a more unique website, replace these images with 
 
 <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 
-<div id="status">
-</div>
+<!-- <div id="status">
+</div> -->
                 </div>
             </div>
         </div>
