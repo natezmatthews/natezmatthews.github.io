@@ -133,7 +133,6 @@ Although you can use them, for a more unique website, replace these images with 
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
-            console.log(response);
             document.getElementById('status').innerHTML =
                 'Thanks for letting us import your places from facebook ' + response.name + '.';
         });
