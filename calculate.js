@@ -759,28 +759,28 @@ function switchLoc() {
         rI=1;
     }
     if (prev != rI) clearGeocode();
-    switchWeight();
+    // switchWeight();
 }
 
-function switchWeight() {
-    var prev=wI;
-    if (f1.radw[0].checked) {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DT","DT2","DW","DW2"], 1);
-        } else {
-            toggleDivs(["DT2","DT","DW","DW2"], 1);
-        }
-        wI=0;
-    } else {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DW","DW2","DT","DT2"], 1);
-        } else {
-            toggleDivs(["DW2","DW","DT","DT2"], 1);
-        }
-        wI=1;
-    }
-    if (prev != wI) clearWeights();
-}
+// function switchWeight() {
+//     var prev=wI;
+//     if (f1.radw[0].checked) {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DT","DT2","DW","DW2"], 1);
+//         } else {
+//             toggleDivs(["DT2","DT","DW","DW2"], 1);
+//         }
+//         wI=0;
+//     } else {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DW","DW2","DT","DT2"], 1);
+//         } else {
+//             toggleDivs(["DW2","DW","DT","DT2"], 1);
+//         }
+//         wI=1;
+//     }
+//     if (prev != wI) clearWeights();
+// }
 
 function changeMethod() {
     closeInfo();
