@@ -96,7 +96,7 @@ function initialize() {
     break;
     case "w":
     f1.radw[q].checked=true;
-    switchWeight();
+    // switchWeight();
     break;
     case "r":
     f1.radr[q].checked=true;
@@ -110,7 +110,7 @@ function initialize() {
     if (w=="" && ck[2]>=0 && ck[2]<=1) {
     wI=ck[2];
     f1.radw[wI].checked=true;
-    switchWeight();
+    // switchWeight();
     }
     if (r=="" && ck[1]>=0 && ck[1]<=2) {
     rI=ck[1];
@@ -749,50 +749,50 @@ function D(id) {
 function switchLoc() {
     var prev=rI;
     if (f1.radr[0].checked) {
-        toggleDivs(["DA","DB","DA2","DR","DB2","DB3","DL"], 2);
+        toggleDivs(["DA","DB","DR","DB2","DB3","DL"], 2);
         rI=0;
     } else if (f1.radr[1].checked) {
-        toggleDivs(["DA2","DB","DA","DR","DB2","DB3","DL"], 2);
+        toggleDivs(["DB","DA","DR","DB2","DB3","DL"], 1);
         rI=1;
     } else {
-        toggleDivs(["DL","DB","DA","DA2","DR","DB2","DB3"], 2);
+        toggleDivs(["DL","DB","DA","DR","DB2","DB3"], 2);
         rI=1;
     }
     if (prev != rI) clearGeocode();
-    switchWeight();
+    // switchWeight();
 }
 
-function switchWeight() {
-    var prev=wI;
-    if (f1.radw[0].checked) {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DT","DT2","DW","DW2"], 1);
-        } else {
-            toggleDivs(["DT2","DT","DW","DW2"], 1);
-        }
-        wI=0;
-    } else {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DW","DW2","DT","DT2"], 1);
-        } else {
-            toggleDivs(["DW2","DW","DT","DT2"], 1);
-        }
-        wI=1;
-    }
-    if (prev != wI) clearWeights();
-}
+// function switchWeight() {
+//     var prev=wI;
+//     if (f1.radw[0].checked) {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DT","DT2","DW","DW2"], 1);
+//         } else {
+//             toggleDivs(["DT2","DT","DW","DW2"], 1);
+//         }
+//         wI=0;
+//     } else {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DW","DW2","DT","DT2"], 1);
+//         } else {
+//             toggleDivs(["DW2","DW","DT","DT2"], 1);
+//         }
+//         wI=1;
+//     }
+//     if (prev != wI) clearWeights();
+// }
 
-function changeMethod() {
-    closeInfo();
-    if (f1.method[2].checked) {
-        cI=2;
-    } else if (f1.method[1].checked) {
-        cI=1;
-    } else {
-        cI=0;
-    }   
-    if (p.length>1) calculate()
-}
+// function changeMethod() {
+//     closeInfo();
+//     if (f1.method[2].checked) {
+//         cI=2;
+//     } else if (f1.method[1].checked) {
+//         cI=1;
+//     } else {
+//         cI=0;
+//     }   
+//     if (p.length>1) calculate()
+// }
 
 function switchMap() {
     if (f1.large.checked) {
@@ -1028,7 +1028,7 @@ function gCallback(res, status) {
         appendToList();
     } else {
         D("ok").value="Ok";
-        toggleDivs(["DR","DB3","DA","DA2","DL","DB","DE","DB2"],2);
+        toggleDivs(["DR","DB3","DA","DL","DB","DE","DB2"],2);
         D("resultslabel").innerHTML = "Select from " + r.length + " results:";
         dispMsg("", 2);
         f1.results.focus();
