@@ -26,6 +26,7 @@ var p, infoWindow, geoOverLimit;
 // document.write(calc);
 
 function initialize() {
+console.log("function initialize() {");
     f1 = D("frm"); // f1 now is the form
     p = f1.places; // Number of documented places
     p.length = 0;
@@ -173,10 +174,12 @@ function initialize() {
 }
 
 function unload() {
+console.log("function unload() {");
     setCookie('ckData1', f1.large.checked * 1, rI + f1.radr[2].checked * 1, wI, cI, f1.disp.checked * 1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
 }
 
 function readCookie(cookieName) {
+console.log("function readCookie(cookieName) {");
     var theCookie = "" + document.cookie;
     var ind = theCookie.indexOf(cookieName);
     if (ind == -1 || cookieName == "") return "";
@@ -187,6 +190,7 @@ function readCookie(cookieName) {
 }
 
 function setCookie(cookieName, x, r, w, c, p0, cl, cn, z) {
+console.log("function setCookie(cookieName, x, r, w, c, p0, cl, cn, z) {");
     var nDays = 2500;
     var today = new Date();
     var expire = new Date();
@@ -196,6 +200,7 @@ function setCookie(cookieName, x, r, w, c, p0, cl, cn, z) {
 }
 
 function selectText(myDiv) {
+console.log("function selectText(myDiv) {");
     if (window.getSelection) {
         var selection = window.getSelection();
         if (selection.setBaseAndExtent) {
@@ -214,6 +219,7 @@ function selectText(myDiv) {
 }
 
 function setBounds() {
+console.log("function setBounds() {");
     var bounds = new google.maps.LatLngBounds();
     var point;
     if (p.length || MM) {
@@ -232,6 +238,7 @@ function setBounds() {
 }
 
 function createMarker(point, html, ico, d) {
+console.log("function createMarker(point, html, ico, d) {");
     var icon = null,
         shadow = null,
         visible = true;
@@ -283,10 +290,12 @@ function createMarker(point, html, ico, d) {
 }
 
 function closeInfo() {
+console.log("function closeInfo() {");
     D("DE").style.display = "none";
 }
 
 function clearAll() {
+console.log("function clearAll() {");
     par = 0;
     closeInfo();
     dispMsg('Clearing...', 2);
@@ -294,6 +303,7 @@ function clearAll() {
 }
 
 function clear2() {
+console.log("function clear2() {");
     D("DE").style.display = "none";
     for (i = p.length - 1; i >= 0; i--) {
         p[i].marker.setMap(null);
@@ -314,6 +324,7 @@ function clear2() {
 }
 
 function clearGeocode() {
+console.log("function clearGeocode() {");
     cAddress[0].value = "";
     cAddress[1].value = "";
     f1.latitude.value = "";
@@ -321,6 +332,7 @@ function clearGeocode() {
 }
 
 function clearWeights() {
+console.log("function clearWeights() {");
     for (i = 0; i < 2; i++) {
         cYear[i].value = "";
         cMonth[i].value = "";
@@ -333,6 +345,7 @@ function clearWeights() {
 }
 
 function removeOptionSelected() {
+console.log("function removeOptionSelected() {");
     par = 0;
     closeInfo();
     var i = p.selectedIndex;
@@ -356,6 +369,7 @@ function removeOptionSelected() {
 }
 
 function appendToList() {
+console.log("function appendToList() {");
     dispMsg("Adding...", addresses.length);
     var r = f1.results;
     var i = M.max(r.selectedIndex, 0);
@@ -374,6 +388,7 @@ function appendToList() {
 }
 
 function calculate() {
+console.log("function calculate() {");
     if (p.length > 1 || par) {
         var midlat = 0,
             midlng = 0;
@@ -535,6 +550,7 @@ function calculate() {
 }
 
 function geoNames(wlat, wlng, attempt) {
+console.log("function geoNames(wlat, wlng, attempt) {");
     var request;
     try {
         request = new XMLHttpRequest();
@@ -576,6 +592,7 @@ function geoNames(wlat, wlng, attempt) {
 }
 
 function getInfoForWindow(wikiurl, lat, lng) {
+console.log("function getInfoForWindow(wikiurl, lat, lng) {");
     var extract, imgurl, title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
     $.when(
         $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles=" + title + "&format=json&callback=?",
@@ -604,6 +621,7 @@ function getInfoForWindow(wikiurl, lat, lng) {
 }
 
 function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
+console.log("function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {");
     var contentString = "<img src='" + imgurl + "' style='width:370px;'><h1>" + decodeURI(title) + "</h1><div>" + extract + "</div><a href='http://" + wikiurl + "'>" + wikiurl + "</a>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -619,6 +637,7 @@ function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
 }
 
 function saveLatLng(i, ll) {
+console.log("function saveLatLng(i, ll) {");
     if (isNaN(p[i].lat)) {
         p[i].lat = ll.lat();
         p[i].lng = ll.lng();
@@ -626,6 +645,7 @@ function saveLatLng(i, ll) {
 }
 
 function reset(i) {
+console.log("function reset(i) {");
     closeInfo();
     p[i].marker.dragged = 0;
     var point = new google.maps.LatLng(p[i].lat, p[i].lng);
@@ -634,11 +654,13 @@ function reset(i) {
 }
 
 function r5(i) {
+console.log("function r5(i) {");
     p.selectedIndex = i;
     removeOptionSelected();
 }
 
 function remove(obj) {
+console.log("function remove(obj) {");
     if (obj) {
         obj.setMap(null);
     }
@@ -646,6 +668,7 @@ function remove(obj) {
 }
 
 function appendOptionLast(combo, item) {
+console.log("function appendOptionLast(combo, item) {");
     var elOptNew = document.createElement('option');
     elOptNew.text = item;
     elOptNew.value = item;
@@ -658,6 +681,7 @@ function appendOptionLast(combo, item) {
 }
 
 function dispCount() {
+console.log("function dispCount() {");
     var l = p.length;
     var m = "s";
     switch (l) {
@@ -671,24 +695,29 @@ function dispCount() {
 }
 
 function dispMsg(s, l) {
+console.log("function dispMsg(s, l) {");
     if (l > 1) D("msg").innerHTML = s;
 }
 
 function displayError(e) {
+console.log("function displayError(e) {");
     D("DE").innerHTML = e;
     toggleDivs(["DE"], 1);
     //alert(e);
 }
 
 function rad(dg) {
+console.log("function rad(dg) {");
     return (dg * Math.PI / 180);
 }
 
 function deg(rd) {
+console.log("function deg(rd) {");
     return (rd * 180 / Math.PI);
 }
 
 function splitAddress(s) {
+console.log("function splitAddress(s) {");
     var t = s.split(/,/);
     if (t.length > 3 || t.length > 2 && /\d/g.test(t[0])) {
         s = t[0] + "<br>";
@@ -701,6 +730,7 @@ function splitAddress(s) {
 }
 
 function normalizeLongitude(lon) {
+console.log("function normalizeLongitude(lon) {");
     var n = Math.PI;
     if (lon > n) {
         lon = lon - 2 * n
@@ -711,6 +741,7 @@ function normalizeLongitude(lon) {
 }
 
 function normalizeLatitude(point) {
+console.log("function normalizeLatitude(point) {");
     if (Math.abs(point.lat) > rad90) {
         point.lat = rad180 - point.lat - 2 * rad180 * (point.lat < -rad90);
         point.lon = normalizeLongitude(point.lon - rad180);
@@ -719,6 +750,7 @@ function normalizeLatitude(point) {
 }
 
 function trim(s) {
+console.log("function trim(s) {");
     if (s.charCodeAt(0) > 32 && s.charCodeAt(s.length - 1) > 32)
         return s;
     else {
@@ -727,6 +759,7 @@ function trim(s) {
 }
 
 function rTrim(s) {
+console.log("function rTrim(s) {");
     if (s.charCodeAt(s.length - 1) > 32)
         return s;
     else {
@@ -735,16 +768,19 @@ function rTrim(s) {
 }
 
 function roundx(n, exp) {
+console.log("function roundx(n, exp) {");
     return M.round(n * M.pow(10, exp)) / M.pow(10, exp);
 }
 
 function lockWeights() {
+console.log("function lockWeights() {");
     f1.w0.disabled = (p.length > 0);
     f1.w1.disabled = (p.length > 0);
 }
 
 // Toggle which divs of the menu are shown
 function toggleDivs(divs, block) {
+console.log("function toggleDivs(divs, block) {");
     for (i = 0; i < divs.length; i++) {
         if (i < block) {
             D(divs[i]).style.display = "block";
@@ -755,10 +791,12 @@ function toggleDivs(divs, block) {
 }
 
 function D(id) {
+console.log("function D(id) {");
     return document.getElementById(id);
 }
 
 function switchLoc() {
+console.log("function switchLoc() {");
     var prev = rI;
     if (f1.radr[0].checked) {
         toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
@@ -775,6 +813,7 @@ function switchLoc() {
 }
 
 function switchWeight() {
+console.log("function switchWeight() {");
     var prev = wI;
     if (f1.radw[0].checked) {
         if (f1.radr[0].checked) {
@@ -795,6 +834,7 @@ function switchWeight() {
 }
 
 function changeMethod() {
+console.log("function changeMethod() {");
     closeInfo();
     if (f1.method[2].checked) {
         cI = 2;
@@ -807,6 +847,7 @@ function changeMethod() {
 }
 
 function switchMap() {
+console.log("function switchMap() {");
     if (f1.large.checked) {
         D("map").style.width = "48em";
         D("map").style.height = "29.4em";
@@ -823,6 +864,7 @@ function switchMap() {
 }
 
 function getTimes(l) {
+console.log("function getTimes(l) {");
     years = getInput(cYear[rI].value, l);
     months = getInput(cMonth[rI].value, l);
     if (wI == 1) {
@@ -833,6 +875,7 @@ function getTimes(l) {
 }
 
 function getInput(s, l) {
+console.log("function getInput(s, l) {");
     var sText = rTrim(s);
     sText = sText.replace(/\r\n/g, '\n');
     var r = sText.split('\n');
@@ -849,6 +892,7 @@ function getInput(s, l) {
 }
 
 function validateTimes(a, l) {
+console.log("function validateTimes(a, l) {");
     var a1 = "",
         m = ["time", "weight"];
     var n = ["day", "weight"];
@@ -888,6 +932,7 @@ function validateTimes(a, l) {
 }
 
 function launch(p1) {
+console.log("function launch(p1) {");
     if (!p1) par = 0;
     var l;
     if (!map) return;
@@ -946,6 +991,7 @@ function launch(p1) {
 }
 
 function launchL() {
+console.log("function launchL() {");
     if (addressIndex >= lats.length - 1 || cancel) {
         clearWeights();
         clearGeocode();
@@ -977,6 +1023,7 @@ function launchL() {
 }
 
 function launchG() {
+console.log("function launchG() {");
     D("DE").style.display = "none";
     geocoder.geocode({
         'address': addresses[addressIndex]
@@ -984,6 +1031,7 @@ function launchG() {
 }
 
 function gCallback(res, status) {
+console.log("function gCallback(res, status) {");
     if (cancel || request >= addressIndex) return false;
     var r = f1.results;
     if (status != "OK") {
@@ -1053,6 +1101,7 @@ function gCallback(res, status) {
 }
 
 function loopG() {
+console.log("function loopG() {");
     if (!pause) {
         if (addressIndex < addresses.length - 1 && !cancel) {
             addressIndex++;
@@ -1068,17 +1117,20 @@ function loopG() {
 }
 
 function dispStart() {
+console.log("function dispStart() {");
     switchLoc();
     toggleDivs(["DB", "DB2", "DB3"], 1);
     f1.add.focus();
 }
 
 function dispProceed() {
+console.log("function dispProceed() {");
     switchLoc();
     toggleDivs(["DB2", "DB", "DB3"], 1);
 }
 
 function ok1() {
+console.log("function ok1() {");
     D("DE").style.display = "none";
     pause = 0;
     if (addresses.length > 1) dispProceed();
@@ -1092,6 +1144,7 @@ function ok1() {
 }
 
 function skip() {
+console.log("function skip() {");
     D("DE").style.display = "none";
     pause = 0;
     if (addresses.length > 1) dispProceed();
@@ -1099,6 +1152,7 @@ function skip() {
 }
 
 function cancelGeocode() {
+console.log("function cancelGeocode() {");
     D("DE").style.display = "none";
     cancel = 1;
     if (p.length > 1) calculate();
@@ -1107,6 +1161,7 @@ function cancelGeocode() {
 }
 
 function contin() {
+console.log("function contin() {");
     D("DE").style.display = "none";
     dispMsg("Please wait...", 2);
     if (f1.radr[1].checked) {
@@ -1117,6 +1172,7 @@ function contin() {
 }
 
 function validateLl(s, j) {
+console.log("function validateLl(s, j) {");
     var d = ["ns", "ew"];
     var pl = ["90(\\.0+)?|[0-8]?\\d", "180(\\.0+)?|(0?\\d?\\d|1[0-7]\\d)"];
     var ps = "^(-|[" + d[j] + "]\\s*)?(" + pl[j] + "([^\\w.-]+[0-5]?\\d){0,2}(\\.\\d+)?)(\\s*[" + d[j] + "])?$";
@@ -1125,6 +1181,7 @@ function validateLl(s, j) {
 }
 
 function latLonToDecimal(s) {
+console.log("function latLonToDecimal(s) {");
     var t = s.replace(/-/, "");
     var pos = t.search(/[\d.]/);
     t = t.substring(pos);
@@ -1138,6 +1195,7 @@ function latLonToDecimal(s) {
 }
 
 function openPlace() {
+console.log("function openPlace() {");
     var i = p.selectedIndex;
     if (i > -1) {
         closeInfo();
@@ -1149,12 +1207,14 @@ function openPlace() {
 }
 
 function triggerMid() {
+console.log("function triggerMid() {");
     if (MM) {
         google.maps.event.trigger(MM, 'click');
     }
 }
 
 function save(meet) {
+console.log("function save(meet) {");
     if (!map || !map.getCenter()) return;
     var u = "",
         i = 0,
@@ -1225,6 +1285,7 @@ function save(meet) {
 }
 
 function getLength(i, yr, mn, da, meet, v) {
+console.log("function getLength(i, yr, mn, da, meet, v) {");
     var a1 = new Object();
     a1.l = v + roundx(p[i].marker.getPosition().lat(), 6);
     a1.n = v + roundx(p[i].marker.getPosition().lng(), 6);
@@ -1240,6 +1301,7 @@ function getLength(i, yr, mn, da, meet, v) {
 }
 
 function popMessage(msg) {
+console.log("function popMessage(msg) {");
     var s = '"resizeable=0,left=' + (screen.width / 2 - 180) + ',top=' + (screen.height / 2 - 120) + ',width=360,height=240"';
     messagewin = window.open("message.php", "messagewin", s);
     D("frm2").target = "messagewin";
@@ -1248,6 +1310,7 @@ function popMessage(msg) {
 }
 
 function revGeoCallback(results, status) {
+console.log("function revGeoCallback(results, status) {");
     if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
             var near = '<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
@@ -1263,6 +1326,7 @@ function revGeoCallback(results, status) {
 }
 
 function formatInfo(s, lat, lng, i) {
+console.log("function formatInfo(s, lat, lng, i) {");
     var h = '<div><p class="pz">' + s + '</p>';
     if (!isNaN(lat)) {
         h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + roundx(lat, 6) + '<br>' + roundx(lng, 6) + '</div><div class="DCL"></div>';
