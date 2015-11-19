@@ -759,40 +759,40 @@ function switchLoc() {
         rI=1;
     }
     if (prev != rI) clearGeocode();
-    // switchWeight();
+    switchWeight();
 }
 
-// function switchWeight() {
-//     var prev=wI;
-//     if (f1.radw[0].checked) {
-//         if (f1.radr[0].checked) {
-//             toggleDivs(["DT","DT2","DW","DW2"], 1);
-//         } else {
-//             toggleDivs(["DT2","DT","DW","DW2"], 1);
-//         }
-//         wI=0;
-//     } else {
-//         if (f1.radr[0].checked) {
-//             toggleDivs(["DW","DW2","DT","DT2"], 1);
-//         } else {
-//             toggleDivs(["DW2","DW","DT","DT2"], 1);
-//         }
-//         wI=1;
-//     }
-//     if (prev != wI) clearWeights();
-// }
+function switchWeight() {
+    var prev=wI;
+    if (f1.radw[0].checked) {
+        if (f1.radr[0].checked) {
+            toggleDivs(["DT","DT2","DW","DW2"], 1);
+        } else {
+            toggleDivs(["DT2","DT","DW","DW2"], 1);
+        }
+        wI=0;
+    } else {
+        if (f1.radr[0].checked) {
+            toggleDivs(["DW","DW2","DT","DT2"], 1);
+        } else {
+            toggleDivs(["DW2","DW","DT","DT2"], 1);
+        }
+        wI=1;
+    }
+    if (prev != wI) clearWeights();
+}
 
-// function changeMethod() {
-//     closeInfo();
-//     if (f1.method[2].checked) {
-//         cI=2;
-//     } else if (f1.method[1].checked) {
-//         cI=1;
-//     } else {
-//         cI=0;
-//     }   
-//     if (p.length>1) calculate()
-// }
+function changeMethod() {
+    closeInfo();
+    if (f1.method[2].checked) {
+        cI=2;
+    } else if (f1.method[1].checked) {
+        cI=1;
+    } else {
+        cI=0;
+    }   
+    if (p.length>1) calculate()
+}
 
 function switchMap() {
     if (f1.large.checked) {
