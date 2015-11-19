@@ -1,4 +1,4 @@
-var calc = '<form id="frm" action="" onsubmit="launch(); return false"></div><div id="upperleft"><div id="radio1"><input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />Address&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Multiple input&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Latitude/longitude</div><br /><div id="DA"><label for="address0">Address or city:</label><br /><input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" /></div><div id="DA2" class="off"><label for="address1">Addresses (Each on a separate line):</label><br /><textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea></div><div id="DL" class="off"><div class="DFI"><label for="latitude" accesskey="L">Latitude(s):</label><br /><textarea id="latitude" cols="16" rows="2" onfocus="this.select()"></textarea>&nbsp;&nbsp;</div><div class="DMA"><label for="longitude">Longitude(s):</label><br /><textarea id="longitude" cols="17" rows="2" onfocus="this.select()"></textarea></div></div><div id="DR" class="off"><label id="resultslabel" for="results">0 search results:</label><br /><div id="DRF"><select id="results"><option></option></select></div><br style="clear: both" /></div><div id="DB" class="fleft"><input id="add" type="submit" class="btn2" value="Add" accesskey="I" /><input type="button" class="btn2" value="Remove" accesskey="X" onclick="removeOptionSelected()" /><input type="button" class="btn2" value="Clear all" accesskey="0" onclick="clearAll()" /></div><div id="DB2" class="fleft"><input id="add2" type="button" class="btn2" value="Continue" onclick="contin()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="DB3" class="fleft"><input id="ok" type="button" class="btn2" value="Ok" onclick="ok1()" /><input type="button" class="btn2" value="Skip" onclick="skip()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="msg"></div></div><div id="upperright"><div id="radio2"><input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />Weight by time&nbsp;&nbsp;<input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />Other weight</div><br /><div id="DIC"><div id="DT"><div class="DFI"><label for="years0" accesskey="Y">Years:</label><br /><input type="text" id="years0" name="years" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DFI"><label for="months0">Months:</label><br /><input type="text" id="months0" name="months" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DMA"><label for="days0">Days:</label><br /><input type="text" id="days0" name="days" size="5" maxlength="5" onfocus="this.select()" /></div></div><div id="DT2" class="off"><div class="DFI"><label for="years1" accesskey="Y">Years:</label><br /><textarea id="years1" name="years" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DFI"><label for="months1">Months:</label><br /><textarea id="months1" name="months" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DMA"><label for="days1">Days:</label><br /><textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div></div><div id="DW" class="off"><label for="weight0" accesskey="W">Weight:</label><br /><input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" /></div><div id="DW2" class="off"><label for="weight1" accesskey="W">Weight:</label><br /><textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea></div><a href="javascript:triggerMid()"><img id="micon" src="files/micon.jpg" alt="Midpoint info"></img></a><span>Leave blank for no weight</span></div></div><div class="DCL"></div><div id="map"></div><div id="DLB"><div id="DE" class="off"></div><div id="DP"><label id="placeslabel" for="places" accesskey="P">Your places:</label><br /><select id="places" size="8" onchange="openPlace()"><option>.</option><option>.</option><option>.</option></select></div><br /><br /><input type="checkbox" id="disp" checked="checked" />Display place markers<br /><br /><label for="method">Calculation method:</label><br /><div id="radio3"><input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />Midpoint (Center of gravity)<br /><input type="radio" name="method" onclick="changeMethod()" />Center of minimum distance<br /><input type="radio" name="method" onclick="changeMethod()" />Average latitude/longitude</div><br /><br /><input type="checkbox" id="large" onclick="switchMap()" />Larger map&nbsp;<input type="button" class="btn" value="Save map" onclick="save(0)" /></div></form>';
+// var calc = '<form id="frm" action="" onsubmit="launch(); return false"></div><div id="upperleft"><div id="radio1"><input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />Address&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Multiple input&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Latitude/longitude</div><br /><div id="DA"><label for="address0">Address or city:</label><br /><input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" /></div><div id="DA2" class="off"><label for="address1">Addresses (Each on a separate line):</label><br /><textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea></div><div id="DL" class="off"><div class="DFI"><label for="latitude" accesskey="L">Latitude(s):</label><br /><textarea id="latitude" cols="16" rows="2" onfocus="this.select()"></textarea>&nbsp;&nbsp;</div><div class="DMA"><label for="longitude">Longitude(s):</label><br /><textarea id="longitude" cols="17" rows="2" onfocus="this.select()"></textarea></div></div><div id="DR" class="off"><label id="resultslabel" for="results">0 search results:</label><br /><div id="DRF"><select id="results"><option></option></select></div><br style="clear: both" /></div><div id="DB" class="fleft"><input id="add" type="submit" class="btn2" value="Add" accesskey="I" /><input type="button" class="btn2" value="Remove" accesskey="X" onclick="removeOptionSelected()" /><input type="button" class="btn2" value="Clear all" accesskey="0" onclick="clearAll()" /></div><div id="DB2" class="fleft"><input id="add2" type="button" class="btn2" value="Continue" onclick="contin()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="DB3" class="fleft"><input id="ok" type="button" class="btn2" value="Ok" onclick="ok1()" /><input type="button" class="btn2" value="Skip" onclick="skip()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="msg"></div></div><div id="upperright"><div id="radio2"><input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />Weight by time&nbsp;&nbsp;<input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />Other weight</div><br /><div id="DIC"><div id="DT"><div class="DFI"><label for="years0" accesskey="Y">Years:</label><br /><input type="text" id="years0" name="years" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DFI"><label for="months0">Months:</label><br /><input type="text" id="months0" name="months" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DMA"><label for="days0">Days:</label><br /><input type="text" id="days0" name="days" size="5" maxlength="5" onfocus="this.select()" /></div></div><div id="DT2" class="off"><div class="DFI"><label for="years1" accesskey="Y">Years:</label><br /><textarea id="years1" name="years" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DFI"><label for="months1">Months:</label><br /><textarea id="months1" name="months" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DMA"><label for="days1">Days:</label><br /><textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div></div><div id="DW" class="off"><label for="weight0" accesskey="W">Weight:</label><br /><input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" /></div><div id="DW2" class="off"><label for="weight1" accesskey="W">Weight:</label><br /><textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea></div><a href="javascript:triggerMid()"><img id="micon" src="files/micon.jpg" alt="Midpoint info"></img></a><span>Leave blank for no weight</span></div></div><div class="DCL"></div><div id="map"></div><div id="DLB"><div id="DE" class="off"></div><div id="DP"><label id="placeslabel" for="places" accesskey="P">Your places:</label><br /><select id="places" size="8" onchange="openPlace()"><option>.</option><option>.</option><option>.</option></select></div><br /><br /><input type="checkbox" id="disp" checked="checked" />Display place markers<br /><br /><label for="method">Calculation method:</label><br /><div id="radio3"><input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />Midpoint (Center of gravity)<br /><input type="radio" name="method" onclick="changeMethod()" />Center of minimum distance<br /><input type="radio" name="method" onclick="changeMethod()" />Average latitude/longitude</div><br /><br /><input type="checkbox" id="large" onclick="switchMap()" />Larger map&nbsp;<input type="button" class="btn" value="Save map" onclick="save(0)" /></div></form>';
 
 var map, geocoder, MM;
 var cAddress = document.getElementsByName("address");
@@ -107,7 +107,7 @@ function initialize() {
                     break;
                 case "w":
                     f1.radw[q].checked = true;
-                    switchWeight();
+                    // switchWeight();
                     break;
                 case "r":
                     f1.radr[q].checked = true;
@@ -121,7 +121,7 @@ function initialize() {
     if (w == "" && ck[2] >= 0 && ck[2] <= 1) {
         wI = ck[2];
         f1.radw[wI].checked = true;
-        switchWeight();
+        // switchWeight();
     }
     if (r == "" && ck[1] >= 0 && ck[1] <= 2) {
         rI = ck[1];
@@ -761,38 +761,41 @@ function D(id) {
 function switchLoc() {
     var prev = rI;
     if (f1.radr[0].checked) {
-        toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
+        //toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
+        toggleDivs(["DA", "DB", "DR", "DB2", "DB3", "DL"], 2);
         rI = 0;
     } else if (f1.radr[1].checked) {
-        toggleDivs(["DA2", "DB", "DA", "DR", "DB2", "DB3", "DL"], 2);
+        //toggleDivs(["DA2", "DB", "DA", "DR", "DB2", "DB3", "DL"], 2);
+        toggleDivs(["DB", "DA", "DR", "DB2", "DB3", "DL"], 1);
         rI = 1;
     } else {
-        toggleDivs(["DL", "DB", "DA", "DA2", "DR", "DB2", "DB3"], 2);
+        // toggleDivs(["DL", "DB", "DA", "DA2", "DR", "DB2", "DB3"], 2);
+        toggleDivs(["DL", "DB", "DA", "DR", "DB2", "DB3"], 2);
         rI = 1;
     }
     if (prev != rI) clearGeocode();
-    switchWeight();
+    // switchWeight();
 }
 
-function switchWeight() {
-    var prev = wI;
-    if (f1.radw[0].checked) {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DT", "DT2", "DW", "DW2"], 1);
-        } else {
-            toggleDivs(["DT2", "DT", "DW", "DW2"], 1);
-        }
-        wI = 0;
-    } else {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DW", "DW2", "DT", "DT2"], 1);
-        } else {
-            toggleDivs(["DW2", "DW", "DT", "DT2"], 1);
-        }
-        wI = 1;
-    }
-    if (prev != wI) clearWeights();
-}
+// function switchWeight() {
+//     var prev = wI;
+//     if (f1.radw[0].checked) {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DT", "DT2", "DW", "DW2"], 1);
+//         } else {
+//             toggleDivs(["DT2", "DT", "DW", "DW2"], 1);
+//         }
+//         wI = 0;
+//     } else {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DW", "DW2", "DT", "DT2"], 1);
+//         } else {
+//             toggleDivs(["DW2", "DW", "DT", "DT2"], 1);
+//         }
+//         wI = 1;
+//     }
+//     if (prev != wI) clearWeights();
+// }
 
 function changeMethod() {
     closeInfo();
@@ -1042,7 +1045,8 @@ function gCallback(res, status) {
         appendToList();
     } else {
         D("ok").value = "Ok";
-        toggleDivs(["DR", "DB3", "DA","DA2","DL", "DB", "DE", "DB2"], 2);
+        // toggleDivs(["DR", "DB3","DA","DA2","DL", "DB", "DE", "DB2"], 2);
+        toggleDivs(["DR", "DB3","DA","DL", "DB", "DE", "DB2"], 2);
         D("resultslabel").innerHTML = "Select from " + r.length + " results:";
         dispMsg("", 2);
         f1.results.focus();

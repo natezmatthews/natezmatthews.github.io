@@ -246,8 +246,8 @@ Although you can use them, for a more unique website, replace these images with 
         <div id="radio1">
             <input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />
             Address&nbsp;
-            <input class="even" type="radio" name="radr" onclick="switchLoc()" />
-            Multiple input&nbsp;
+            <!-- <input class="even" type="radio" name="radr" onclick="switchLoc()" />
+            Multiple input&nbsp; -->
             <input class="even" type="radio" name="radr" onclick="switchLoc()" />
             Latitude/longitude</div>
             <br />
@@ -256,11 +256,11 @@ Although you can use them, for a more unique website, replace these images with 
                 <br />
                 <input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" />
             </div>
-            <div id="DA2" class="off">
+            <!-- <div id="DA2" class="off">
                 <label for="address1">Addresses (Each on a separate line):</label>
                 <br />
                 <textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea>
-            </div>
+            </div> -->
             <div id="DL" class="off">
                 <div class="DFI">
                     <label for="latitude" accesskey="L">Latitude(s):</label>
@@ -301,13 +301,13 @@ Although you can use them, for a more unique website, replace these images with 
             <div id="msg"></div>
         </div>
         <div id="upperright">
-            <div id="radio2">
+            <!-- <div id="radio2">
                 <input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />
                 Weight by time&nbsp;&nbsp;
                 <input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />
                 Other weight
             </div>
-            <br />
+            <br /> -->
             <div id="DIC">
                 <div id="DT">
                     <div class="DFI">
@@ -343,7 +343,7 @@ Although you can use them, for a more unique website, replace these images with 
                         <textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea>
                     </div>
                 </div>
-                <div id="DW" class="off">
+                <!-- <div id="DW" class="off">
                     <label for="weight0" accesskey="W">Weight:</label>
                     <br />
                     <input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" />
@@ -355,11 +355,12 @@ Although you can use them, for a more unique website, replace these images with 
                 </div>
                 <a href="javascript:triggerMid()">
                     <img id="micon" src="files/micon.jpg" alt="Midpoint info"></img>
-                </a>
+                </a> -->
                 <span>Leave blank for no weight</span>
             </div>
         </div>
         <div class="DCL"></div>
+        <!-- <div id="map"></div> -->
         <div id="DLB">
             <div id="DE" class="off"></div>
             <div id="DP">
@@ -377,7 +378,7 @@ Although you can use them, for a more unique website, replace these images with 
             Display place markers
             <br />
             <br />
-            <label for="method">Calculation method:</label>
+            <!-- <label for="method">Calculation method:</label>
             <br />
             <div id="radio3">
                 <input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />
@@ -389,7 +390,7 @@ Although you can use them, for a more unique website, replace these images with 
                 Average latitude/longitude
             </div>
             <br />
-            <br />
+            <br /> -->
             <input type="checkbox" id="large" onclick="switchMap()" />
             Larger map&nbsp;
             <input type="button" class="btn" value="Save map" onclick="save(0)" />
