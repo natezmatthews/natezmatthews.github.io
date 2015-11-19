@@ -24,8 +24,9 @@ var rad180=rad(180);
 var M=Math;
 var p, infoWindow, geoOverLimit;
 // document.write(calc);
+var usedfuncs = new Array();
 
-function initialize() {
+function initialize() { usedfuncs[1] = 1
     f1=D("frm"); // f1 now is the form
     p=f1.places; // Number of documented places
     p.length=0;
@@ -42,11 +43,11 @@ function initialize() {
 
     s=decodeURI(s.replace(/\+/gi, " ")); // Parsing queries on the end of the URL. Unclear to me why.
     var a3=s.split("&");
-    if (a3.length>0) {
-    for (j=0; j<a3.length; j++) {
+    if (a3.length>0) { usedfuncs[2] = 1
+    for (j=0; j<a3.length; j++) { usedfuncs[3] = 1
     var a4=a3[j].split("=");
     var q=a4[1];
-    switch(a4[0]) {
+    switch(a4[0]) { usedfuncs[4] = 1
     case "ml":
     parlat=q;
     break;
@@ -107,32 +108,32 @@ function initialize() {
     }
 
     readCookie('ckData1');
-    if (w=="" && ck[2]>=0 && ck[2]<=1) {
+    if (w=="" && ck[2]>=0 && ck[2]<=1) { usedfuncs[5] = 1
     wI=ck[2];
     f1.radw[wI].checked=true;
     // switchWeight();
     }
-    if (r=="" && ck[1]>=0 && ck[1]<=2) {
+    if (r=="" && ck[1]>=0 && ck[1]<=2) { usedfuncs[6] = 1
     rI=ck[1];
     f1.radr[rI].checked=true;
     }
     switchLoc();
-    if (c=="" && ck[3]>=0 && ck[3]<=2) {
+    if (c=="" && ck[3]>=0 && ck[3]<=2) { usedfuncs[7] = 1
     cI = ck[3];
     f1.method[cI].checked = true;
     }
-    if (p0=="") {
+    if (p0=="") { usedfuncs[8] = 1
     f1.disp.checked=(ck[4]==1 || isNaN(ck[4]));
     	}
-    if (x=="") {
+    if (x=="") { usedfuncs[9] = 1
     f1.large.checked=(ck[0]=="1");
     switchMap()
     }
 
-    if (cl!="" && cn!="" && cl>=-90 && cl<=90 && cn>=-180 && cn<=180) {
+    if (cl!="" && cn!="" && cl>=-90 && cl<=90 && cn>=-180 && cn<=180) { usedfuncs[10] = 1
         if (z=="") z=3;
         latlng=new google.maps.LatLng(cl,cn);
-    } else if (!isNaN(ck[5]) && !isNaN(ck[6])) {
+    } else if (!isNaN(ck[5]) && !isNaN(ck[6])) { usedfuncs[11] = 1
         latlng=new google.maps.LatLng(ck[5], ck[6]);
         z=ck[7]*1;
     } else {
@@ -148,24 +149,24 @@ function initialize() {
     };
     map=new google.maps.Map(D("map"), options);
 
-    if (lats.length) {
+    if (lats.length) { usedfuncs[12] = 1
         par=1;
         years=getInput(y, lats.length);
         months=getInput(m, lats.length);
         days=getInput(d, lats.length);
         launch(1);
-    } else if (parlat && parlng) {
+    } else if (parlat && parlng) { usedfuncs[13] = 1
         par=1;
         calculate();
     }
     if ((MM || p.length) && (cl=="" || cn=="")) setBounds();
 }
 
-function unload() {
+function unload() { usedfuncs[14] = 1
     setCookie('ckData1', f1.large.checked*1, rI+f1.radr[2].checked*1, wI, cI, f1.disp.checked*1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
 }
 
-function readCookie(cookieName) {
+function readCookie(cookieName) { usedfuncs[15] = 1
     var theCookie=""+document.cookie;
     var ind=theCookie.indexOf(cookieName);
     if (ind==-1 || cookieName=="") return "";
@@ -175,7 +176,7 @@ function readCookie(cookieName) {
     ck = s.split("|");
 }
 
-function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
+function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) { usedfuncs[16] = 1
     var nDays = 2500;
     var today = new Date();
     var expire = new Date();
@@ -185,9 +186,9 @@ function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
 }
 
     function selectText(myDiv){
-    if (window.getSelection) {
+    if (window.getSelection) { usedfuncs[17] = 1
         var selection = window.getSelection();
-        if (selection.setBaseAndExtent) {
+        if (selection.setBaseAndExtent) { usedfuncs[18] = 1
             selection.setBaseAndExtent(myDiv, 0, myDiv, 1);
         } else {
             var range = document.createRange();
@@ -202,15 +203,15 @@ function setCookie(cookieName,x,r,w,c,p0,cl,cn,z) {
     }
 }
 
-function setBounds() {
+function setBounds() { usedfuncs[19] = 1
     var bounds = new google.maps.LatLngBounds();
     var point;
-    if (p.length || MM) {
-        if (MM) {
+    if (p.length || MM) { usedfuncs[20] = 1
+        if (MM) { usedfuncs[21] = 1
             point=MM.getPosition();
             bounds.extend(point); 
         }
-        for (i=0; i<p.length; i++) {
+        for (i=0; i<p.length; i++) { usedfuncs[22] = 1
             var point=new google.maps.LatLng(p[i].marker.getPosition().lat(), p[i].marker.getPosition().lng());
             bounds.extend(point); 
         }  
@@ -220,9 +221,9 @@ function setBounds() {
     }
 }
 
-function createMarker(point, html, ico, d) {
+function createMarker(point, html, ico, d) { usedfuncs[23] = 1
     var icon=null, shadow=null, visible=true;
-    if (ico) {
+    if (ico) { usedfuncs[24] = 1
     icon = "images/paleblue_MarkerM.png";
     shadow = {
     url: 'images/shadow50.png',
@@ -241,10 +242,10 @@ function createMarker(point, html, ico, d) {
         visible: visible
     });
     if (d) marker.setDraggable(true);
-    google.maps.event.addListener(marker, "click", function() {
+    google.maps.event.addListener(marker, "click", function() { usedfuncs[25] = 1
     var h="";
-    if (!ico) {
-    if (marker.dragged!=1) {
+    if (!ico) { usedfuncs[26] = 1
+    if (marker.dragged!=1) { usedfuncs[27] = 1
     h=formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
     } else {
     h= formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
@@ -257,11 +258,11 @@ function createMarker(point, html, ico, d) {
     infoWindow.content=h;
     //infoWindow.open(map, marker);
     });
-    google.maps.event.addListener(marker, 'dragstart', function() {
+    google.maps.event.addListener(marker, 'dragstart', function() { usedfuncs[28] = 1
     saveLatLng(marker.i, marker.getPosition());
     closeInfo();
     });
-    google.maps.event.addListener(marker, 'dragend', function() {
+    google.maps.event.addListener(marker, 'dragend', function() { usedfuncs[29] = 1
     sameMap=1;
     calculate();
     marker.dragged=1;
@@ -269,20 +270,20 @@ function createMarker(point, html, ico, d) {
     return marker;
 }
 
-function closeInfo() {
+function closeInfo() { usedfuncs[30] = 1
     D("DE").style.display="none";
 }
 
-function clearAll() {
+function clearAll() { usedfuncs[31] = 1
     par=0;
     closeInfo();
     dispMsg('Clearing...',2);
     clear2();
 }
 
-function clear2() {
+function clear2() { usedfuncs[32] = 1
 D("DE").style.display="none";
-for (i=p.length-1; i>=0; i--) {
+for (i=p.length-1; i>=0; i--) { usedfuncs[33] = 1
 p[i].marker.setMap(null);
 }
 MM=remove(MM);
@@ -300,15 +301,15 @@ days.length=0;
 dispMsg("", 2);
 }
 
-function clearGeocode() {
+function clearGeocode() { usedfuncs[34] = 1
 cAddress[0].value="";
 cAddress[1].value="";
 f1.latitude.value="";
 f1.longitude.value="";
 }
 
-function clearWeights() {
-for(i=0; i<2; i++) {
+function clearWeights() { usedfuncs[35] = 1
+for(i=0; i<2; i++) { usedfuncs[36] = 1
 cYear[i].value="";
 cMonth[i].value="";
 cDay[i].value="";
@@ -319,22 +320,22 @@ months.length=0;
 days.length=0;
 }
 
-function removeOptionSelected() {
+function removeOptionSelected() { usedfuncs[37] = 1
     par=0;
     closeInfo();
     var i=p.selectedIndex;
     dispMsg("", 2);
     D("DE").style.display="none";
-    if (i>=0) {
+    if (i>=0) { usedfuncs[38] = 1
         p[i].marker.setMap(null);
         p.remove(i);
-        if (p.length==0) {
+        if (p.length==0) { usedfuncs[39] = 1
             clearAll();
             return false;
-        } else if (p.length==1) {
+        } else if (p.length==1) { usedfuncs[40] = 1
             if (MM) MM=remove(MM);
         }
-        for (j=i; j<p.length; j++) {
+        for (j=i; j<p.length; j++) { usedfuncs[41] = 1
             p[j].marker.i=j;
         }
         dispCount();
@@ -342,7 +343,7 @@ function removeOptionSelected() {
     }
 }
 
-function appendToList() {
+function appendToList() { usedfuncs[42] = 1
     dispMsg("Adding...", addresses.length);
     var r=f1.results;
     var i=M.max(r.selectedIndex, 0);
@@ -360,8 +361,8 @@ function appendToList() {
     if (!l)lockWeights();
 }
 
-function calculate() {
-    if (p.length>1 || par) {
+function calculate() { usedfuncs[43] = 1
+    if (p.length>1 || par) { usedfuncs[44] = 1
         var midlat=0, midlng=0;
         var x = 0;
         var y = 0;
@@ -376,14 +377,14 @@ function calculate() {
         var days1 = new Array();
         var sinlats = new Array();
         var coslats = new Array();
-        with (Math) {
-        for (i=0; i<p.length; i++) {
+        with (Math) { usedfuncs[45] = 1
+        for (i=0; i<p.length; i++) { usedfuncs[46] = 1
             lats1[i]=rad(p[i].marker.getPosition().lat());
             lons1[i]=rad(p[i].marker.getPosition().lng());
             sinlats[i]=sin(lats1[i]);
             coslats[i]=cos(lats1[i]);
             days1[i]= p[i].y*365.25 + p[i].m*30.4375 + p[i].d*1;
-            if (days1[i] == 0) {
+            if (days1[i] == 0) { usedfuncs[47] = 1
             days1[i] = 1;
             }
             totdays=totdays+days1[i];
@@ -400,21 +401,21 @@ function calculate() {
         midlng=atan2(y, x);
         hyp=sqrt(x*x + y*y);
         midlat=atan2(z, hyp);
-        if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
+        if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) { usedfuncs[48] = 1
             if (MM) MM=remove(MM);
             displayError('The midpoint is the center of the earth.');
         } else {
-            if (cI==2) {
+            if (cI==2) { usedfuncs[49] = 1
                 y=0;
                 x=0;
-                for(i=0; i<lats1.length; i++) {
+                for(i=0; i<lats1.length; i++) { usedfuncs[50] = 1
                     y=y + lats1[i] * days1[i];
                     x=x + normalizeLongitude(lons1[i]-midlng) * days1[i];
                 }
                 midlat= y/totdays;
                 midlng= normalizeLongitude(x/totdays+midlng);
-            } else if (cI==1) {
-                if (lats1.length>2 || lats1.length==2 & days1[0] != days1[1]) {
+            } else if (cI==1) { usedfuncs[51] = 1
+                if (lats1.length>2 || lats1.length==2 & days1[0] != days1[1]) { usedfuncs[52] = 1
                     var tries=0;
                     lats1[lats1.length]=midlat;
                     lons1[lons1.length]=midlng;
@@ -425,15 +426,15 @@ function calculate() {
                     var scale= new Array(0.7071, 0.7071, 1, 0.7071, 0.7071, 1, 1, 1, 1);
                     var testcenter=true;
                     i=lats1.length+8;
-                    while (distrad > 2.0e-08 && tries<5000) {
-                    if (i<0) {
+                    while (distrad > 2.0e-08 && tries<5000) { usedfuncs[53] = 1
+                    if (i<0) { usedfuncs[54] = 1
                         i=8;
                     }
-                    while (i>=0) {
-                    	if(i<9) {
+                    while (i>=0) { usedfuncs[55] = 1
+                    	if(i<9) { usedfuncs[56] = 1
                     y=floor(t[i]/3)-1;
                     x= t[i] % 3;
-                    switch (x) {
+                    switch (x) { usedfuncs[57] = 1
                     case 1:
                     pt.lon=midlng;
                     pt.lat= midlat - y*distrad;
@@ -456,13 +457,13 @@ function calculate() {
                     pt.lat=lats1[i-9];
                     pt.lon=lons1[i-9];
                     }
-                    if(pt.lon != midlng || pt.lat != midlat || testcenter) {
+                    if(pt.lon != midlng || pt.lat != midlat || testcenter) { usedfuncs[58] = 1
                     sum=0;
-                    for(j=0; j<lats1.length-1; j++) {
+                    for(j=0; j<lats1.length-1; j++) { usedfuncs[59] = 1
                     sum += acos(sinlats[j]*sin(pt.lat) + coslats[j]*cos(pt.lat) *cos(pt.lon-lons1[j]))*days1[j];
                     }
-                    if (!testcenter) {
-                    if (sum<mindist) {
+                    if (!testcenter) { usedfuncs[60] = 1
+                    if (sum<mindist) { usedfuncs[61] = 1
                     mindist=sum;
                     minlat=pt.lat;
                     minlon=pt.lon;
@@ -474,7 +475,7 @@ function calculate() {
                     }
                     i--;
                     }
-                    if (mindist-gMindist< -4.0e-14) {
+                    if (mindist-gMindist< -4.0e-14) { usedfuncs[62] = 1
                     midlat=minlat;
                     midlng=minlon;
                     gMindist=mindist;
@@ -485,7 +486,7 @@ function calculate() {
                     }
                 }
             }
-            if (!par) {
+            if (!par) { usedfuncs[63] = 1
                 midlat=deg(midlat);
                 midlng=deg(midlng);
             } else {
@@ -507,36 +508,36 @@ function calculate() {
             MM.h2=h2;
             geocoder.geocode({'latLng': point}, revGeoCallback);
         }
-        if (tries>=5000) {
+        if (tries>=5000) { usedfuncs[64] = 1
             displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
         }
         }
     }
-    if (!par && !sameMap) {
+    if (!par && !sameMap) { usedfuncs[65] = 1
         setBounds();
     }
     sameMap=0;
 }
 
-function geoNames(wlat, wlng, attempt) {
+function geoNames(wlat, wlng, attempt) { usedfuncs[66] = 1
     var request;
     try {
       request = new XMLHttpRequest();
     }
-    catch (ms1) { // yes, exception handling is supported in JavaScript
+    catch (ms1) { usedfuncs[67] = 1 // yes, exception handling is supported in JavaScript
       try {
         request = new ActiveXObject("Msxml2.XMLHTTP");
       }
-      catch (ms2) {
+      catch (ms2) { usedfuncs[68] = 1
         try {
           request = new ActiveXObject("Microsoft.XMLHTTP");
         }
-        catch (ex) {
+        catch (ex) { usedfuncs[69] = 1
           request = null;
         }
       }
     }
-    if (request == null) {
+    if (request == null) { usedfuncs[70] = 1
       alert("Error creating request object");
     }
     north = wlat + (attempt * 4);
@@ -544,11 +545,11 @@ function geoNames(wlat, wlng, attempt) {
     east = wlng + (attempt * 4);
     west = wlng - (attempt * 4);
     url = "http://api.geonames.org/citiesJSON?north=" + north.toString() + "&south=" + south.toString() + "&east=" + east.toString() + "&west=" + west.toString() + "&lang=en&username=natezmatthews";
-    request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
+    request.onreadystatechange = function() { usedfuncs[71] = 1
+        if (request.readyState == 4 && request.status == 200) { usedfuncs[72] = 1
             var resp = JSON.parse(request.responseText);
-            for (i in resp.geonames) {
-                if (resp.geonames[i].wikipedia) {
+            for (i in resp.geonames) { usedfuncs[73] = 1
+                if (resp.geonames[i].wikipedia) { usedfuncs[74] = 1
                     p = resp.geonames[i];
                     getInfoForWindow(p.wikipedia, p.lat, p.lng);
                     return;
@@ -562,13 +563,13 @@ function geoNames(wlat, wlng, attempt) {
     request.send(null);
 }
 
-function getInfoForWindow(wikiurl, lat, lng) {
+function getInfoForWindow(wikiurl, lat, lng) { usedfuncs[75] = 1
     var extract, imgurl, title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
     $.when(
         $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles="+title+"&format=json&callback=?", 
-            function(data) {
-                for (i in data.query.pages) {
-                    if (data.query.pages[i].extract) {
+            function(data) { usedfuncs[76] = 1
+                for (i in data.query.pages) { usedfuncs[77] = 1
+                    if (data.query.pages[i].extract) { usedfuncs[78] = 1
                         extract = data.query.pages[i].extract;
                         break;
                     }
@@ -576,21 +577,21 @@ function getInfoForWindow(wikiurl, lat, lng) {
             }
         ),
         $.getJSON("https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="+title+"&callback=?",
-            function(data2) {
-                for (i in data2.responseData.results) {
-                    if (data2.responseData.results[i].url) {
+            function(data2) { usedfuncs[79] = 1
+                for (i in data2.responseData.results) { usedfuncs[80] = 1
+                    if (data2.responseData.results[i].url) { usedfuncs[81] = 1
                         imgurl = data2.responseData.results[i].url;
                         break;
                     }
                 }
             }
         )
-    ).then(function() {
+    ).then(function() { usedfuncs[82] = 1
         makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title);
     });
 }
 
-function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
+function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) { usedfuncs[83] = 1
     var contentString = "<img src='"+imgurl+"' style='width:370px;'><h1>"+decodeURI(title)+"</h1><div>"+extract+"</div><a href='http://"+wikiurl+"'>"+wikiurl+"</a>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -605,14 +606,14 @@ function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
     infowindow.open(map,marker);
 }
 
-function saveLatLng(i, ll) {
-    if (isNaN(p[i].lat)) {
+function saveLatLng(i, ll) { usedfuncs[84] = 1
+    if (isNaN(p[i].lat)) { usedfuncs[85] = 1
         p[i].lat=ll.lat();
         p[i].lng=ll.lng();
     }
 }
 
-function reset(i) {
+function reset(i) { usedfuncs[86] = 1
     closeInfo();
     p[i].marker.dragged=0;
     var point = new google.maps.LatLng(p[i].lat, p[i].lng);
@@ -620,19 +621,19 @@ function reset(i) {
     calculate();
 }
 
-function r5(i) {
+function r5(i) { usedfuncs[87] = 1
     p.selectedIndex=i;
     removeOptionSelected();
 }
 
-function remove(obj) {
-    if (obj) {
+function remove(obj) { usedfuncs[88] = 1
+    if (obj) { usedfuncs[89] = 1
         obj.setMap(null);
     }
     return null;
 }
 
-function appendOptionLast(combo, item) {
+function appendOptionLast(combo, item) { usedfuncs[90] = 1
     var elOptNew = document.createElement('option');
     elOptNew.text = item;
     elOptNew.value = item;
@@ -640,15 +641,15 @@ function appendOptionLast(combo, item) {
     try {
         elSel.add(elOptNew, null);
     }
-    catch(ex) {
+    catch(ex) { usedfuncs[91] = 1
         elSel.add(elOptNew);
     }
 }
 
-function dispCount() {
+function dispCount() { usedfuncs[92] = 1
     var l=p.length;
     var m="s";
-    switch(l) {
+    switch(l) { usedfuncs[93] = 1
         case 1:
         m="";
         break;
@@ -658,29 +659,29 @@ function dispCount() {
     D("placeslabel").innerHTML="Your " + l + " place" + m + ":";
 }
 
-function dispMsg(s, l) {
+function dispMsg(s, l) { usedfuncs[94] = 1
     if (l>1) D("msg").innerHTML=s;
 }
 
-function displayError(e) {
+function displayError(e) { usedfuncs[95] = 1
     D("DE").innerHTML= e;
     toggleDivs(["DE"], 1);
     //alert(e);
 }
 
-function rad(dg) {
+function rad(dg) { usedfuncs[96] = 1
 	return (dg* Math.PI / 180);
 }
 
-function deg(rd) {
+function deg(rd) { usedfuncs[97] = 1
 	return (rd* 180 / Math.PI);
 }
 
-function splitAddress(s) {
+function splitAddress(s) { usedfuncs[98] = 1
     var t=s.split(/,/);
-    if (t.length>3 || t.length>2 && /\d/g.test(t[0])) {
+    if (t.length>3 || t.length>2 && /\d/g.test(t[0])) { usedfuncs[99] = 1
         s=t[0]+ "<br>";
-        for (j=1; j<t.length; j++) {
+        for (j=1; j<t.length; j++) { usedfuncs[100] = 1
             if (j>1) s += ", ";
             s += trim(t[j]);
         }
@@ -688,25 +689,25 @@ function splitAddress(s) {
     return s;
 }
 
-function normalizeLongitude(lon) {
+function normalizeLongitude(lon) { usedfuncs[101] = 1
     var n=Math.PI;
-    if (lon > n) {
+    if (lon > n) { usedfuncs[102] = 1
         lon = lon - 2*n
-    } else if (lon < -n) {
+    } else if (lon < -n) { usedfuncs[1] = 1
         lon = lon + 2*n
     }
     return lon;
 }
 
-function normalizeLatitude(point) {
-    if (Math.abs(point.lat)>rad90) {
+function normalizeLatitude(point) { usedfuncs[1] = 1
+    if (Math.abs(point.lat)>rad90) { usedfuncs[1] = 1
         point.lat=rad180-point.lat-2*rad180*(point.lat<-rad90);
         point.lon=normalizeLongitude(point.lon-rad180);
     }
     return point;
 }
 
-function trim(s) {
+function trim(s) { usedfuncs[1] = 1
     if (s.charCodeAt(0)>32 && s.charCodeAt(s.length-1)>32)
     return s;
     else {
@@ -714,7 +715,7 @@ function trim(s) {
     }
 }
 
-function rTrim(s) {
+function rTrim(s) { usedfuncs[1] = 1
     if (s.charCodeAt(s.length-1)>32)
     return s;
     else {
@@ -722,19 +723,19 @@ function rTrim(s) {
     }
 }
 
-function roundx(n, exp) {
+function roundx(n, exp) { usedfuncs[1] = 1
     return M.round(n*M.pow(10,exp))/M.pow(10,exp);
 }
 
-function lockWeights() {
+function lockWeights() { usedfuncs[1] = 1
     f1.w0.disabled=(p.length>0);
     f1.w1.disabled=(p.length>0);
 }
 
 // Toggle which divs of the menu are shown
-function toggleDivs(divs, block) {
-    for (i=0; i<divs.length; i++) {
-        if (i<block) {
+function toggleDivs(divs, block) { usedfuncs[1] = 1
+    for (i=0; i<divs.length; i++) { usedfuncs[1] = 1
+        if (i<block) { usedfuncs[1] = 1
             D(divs[i]).style.display="block";
         } else {
             D(divs[i]).style.display="none";
@@ -742,16 +743,16 @@ function toggleDivs(divs, block) {
     }
 }
 
-function D(id) {
+function D(id) { usedfuncs[1] = 1
     return document.getElementById(id);
 }
 
-function switchLoc() {
+function switchLoc() { usedfuncs[1] = 1
     var prev=rI;
-    if (f1.radr[0].checked) {
+    if (f1.radr[0].checked) { usedfuncs[1] = 1
         toggleDivs(["DA","DB","DR","DB2","DB3","DL"], 2);
         rI=0;
-    } else if (f1.radr[1].checked) {
+    } else if (f1.radr[1].checked) { usedfuncs[1] = 1
         toggleDivs(["DB","DA","DR","DB2","DB3","DL"], 1);
         rI=1;
     } else {
@@ -762,17 +763,17 @@ function switchLoc() {
     // switchWeight();
 }
 
-// function switchWeight() {
+// function switchWeight() { usedfuncs[1] = 1
 //     var prev=wI;
-//     if (f1.radw[0].checked) {
-//         if (f1.radr[0].checked) {
+//     if (f1.radw[0].checked) { usedfuncs[1] = 1
+//         if (f1.radr[0].checked) { usedfuncs[1] = 1
 //             toggleDivs(["DT","DT2","DW","DW2"], 1);
 //         } else {
 //             toggleDivs(["DT2","DT","DW","DW2"], 1);
 //         }
 //         wI=0;
 //     } else {
-//         if (f1.radr[0].checked) {
+//         if (f1.radr[0].checked) { usedfuncs[1] = 1
 //             toggleDivs(["DW","DW2","DT","DT2"], 1);
 //         } else {
 //             toggleDivs(["DW2","DW","DT","DT2"], 1);
@@ -782,11 +783,11 @@ function switchLoc() {
 //     if (prev != wI) clearWeights();
 // }
 
-// function changeMethod() {
+// function changeMethod() { usedfuncs[1] = 1
 //     closeInfo();
-//     if (f1.method[2].checked) {
+//     if (f1.method[2].checked) { usedfuncs[1] = 1
 //         cI=2;
-//     } else if (f1.method[1].checked) {
+//     } else if (f1.method[1].checked) { usedfuncs[1] = 1
 //         cI=1;
 //     } else {
 //         cI=0;
@@ -794,38 +795,38 @@ function switchLoc() {
 //     if (p.length>1) calculate()
 // }
 
-function switchMap() {
-    if (f1.large.checked) {
+function switchMap() { usedfuncs[1] = 1
+    if (f1.large.checked) { usedfuncs[1] = 1
         D("map").style.width="48em";
         D("map").style.height="29.4em";
     } else {
         D("map").style.width="30.1em";
         D("map").style.height="24.1em";
     }
-    if (map) {
+    if (map) { usedfuncs[1] = 1
         google.maps.event.trigger(map, 'resize');
     }
-    if (p.length>0) {
+    if (p.length>0) { usedfuncs[1] = 1
         setBounds();
     }
 }
 
-function getTimes(l) {
+function getTimes(l) { usedfuncs[1] = 1
     years=getInput(cYear[rI].value, l);
     months=getInput(cMonth[rI].value, l);
-    if (wI==1) {
+    if (wI==1) { usedfuncs[1] = 1
         days=getInput(cWeight[rI].value, l);
     } else {
         days=getInput(cDay[rI].value, l);
     }
 }
 
-function getInput(s, l) {
+function getInput(s, l) { usedfuncs[1] = 1
     var sText =rTrim(s);
     sText=sText.replace(/\r\n/g, '\n');
     var r=sText.split('\n');
-    if (l) {
-        if (r.length != l) {
+    if (l) { usedfuncs[1] = 1
+        if (r.length != l) { usedfuncs[1] = 1
             r.length=l;
             s=r.join().replace(/undefined/g,"");
             r=s.split(',');
@@ -836,25 +837,25 @@ function getInput(s, l) {
     return r;
 }
 
-function validateTimes(a, l) {
+function validateTimes(a, l) { usedfuncs[1] = 1
     var a1="", m=["time","weight"];
     var n=["day","weight"];
-    if (p.length) {
+    if (p.length) { usedfuncs[1] = 1
         var first=!p[0].y && !p[0].m && !p[0].d;
     } else {
         var first=!parseFloat(years[0]) && !parseFloat(months[0]) && !parseFloat(days[0]);
     }
-    for(i=0; i<l; i++) {
+    for(i=0; i<l; i++) { usedfuncs[1] = 1
         if (a=="address") a1=addresses[i];
-        if (isNaN(years[i])) {
+        if (isNaN(years[i])) { usedfuncs[1] = 1
             displayError("The year \'" + years[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
             return;
         }
-        if (isNaN(months[i])) {
+        if (isNaN(months[i])) { usedfuncs[1] = 1
             displayError("The month \'" + months[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
             return;
         }
-        if (isNaN(days[i])) {
+        if (isNaN(days[i])) { usedfuncs[1] = 1
             displayError("The " + n[wI] + " \'" + days[i] + "\' for " + a + " #" + parseInt(i+1) + " " + a1 + " is invalid.");
             return;
         }
@@ -862,11 +863,11 @@ function validateTimes(a, l) {
         months[i]= +months[i];
         days[i]= +days[i];
         cur= !years[i] && !months[i] && !days[i];
-        if (!first && cur) {
+        if (!first && cur) { usedfuncs[1] = 1
             displayError("A " + m[wI] + " must be specified for " + a + " #" + parseInt(i+1) + " " + addresses[i] + ".");
             return false;
         }
-        if (first && !cur) {
+        if (first && !cur) { usedfuncs[1] = 1
             displayError('You must either enter a time for all locations in Your Places, or leave the time blank or zero for all locations.');
             return false;
         }
@@ -874,7 +875,7 @@ function validateTimes(a, l) {
     return true;
 }
 
-function launch(p1) {
+function launch(p1) { usedfuncs[1] = 1
     if (!p1) par=0; 
     var l;
     if (!map) return;
@@ -882,33 +883,33 @@ function launch(p1) {
     request=-2;
     pause=0;
     cancel=0;
-    if (f1.radr[2].checked || par) {
-        if (!par) {
+    if (f1.radr[2].checked || par) { usedfuncs[1] = 1
+        if (!par) { usedfuncs[1] = 1
             lats=getInput(f1.latitude.value, 0);
             lons=getInput(f1.longitude.value, 0);
             getTimes(lats.length);
         }
-        if (lats.length != lons.length) {
+        if (lats.length != lons.length) { usedfuncs[1] = 1
             displayError('The number of latitudes is not the same as the number of longitudes. Please check your data.');
             return false;
         }
-        if (lats.length==0 || lons.length==0) {
+        if (lats.length==0 || lons.length==0) { usedfuncs[1] = 1
             displayError('You must specify a latitude and longitude before continuing.');
             return false;
         }
-        for (j=0; j<lats.length; j++) {
-            if (!validateLl(lats[j], 0)) {
+        for (j=0; j<lats.length; j++) { usedfuncs[1] = 1
+            if (!validateLl(lats[j], 0)) { usedfuncs[1] = 1
                 displayError("The entry \'" + lats[j] + "\' for latitude #" + parseInt(j+1) + " is invalid.");
                 return false;
             }
-            if (!validateLl(lons[j], 1)) {
+            if (!validateLl(lons[j], 1)) { usedfuncs[1] = 1
                 displayError("The entry \'" + lons[j] + "\' for longitude #" + parseInt(j+1) + " is invalid.");
                 return false;
             }
         }
         if (!validateTimes("location", lats.length)) return false;
         addressIndex=-1
-        if (lats.length>1) {
+        if (lats.length>1) { usedfuncs[1] = 1
             dispProceed();
             dispMsg("Adding...", 2);
         }
@@ -918,22 +919,22 @@ function launch(p1) {
     } else {
         addresses=getInput(cAddress[rI].value, 0);
         getTimes(addresses.length);
-        if (addresses.length ==0) {
+        if (addresses.length ==0) { usedfuncs[1] = 1
             displayError('You must specify an address before continuing.');
             return false;
         }
         if (!validateTimes("address", addresses.length)) return false;
     }	
     addressIndex=0;
-    if (addresses.length>1) {
+    if (addresses.length>1) { usedfuncs[1] = 1
         dispProceed();
         dispMsg("Searching...", 2);
     }
     launchG()
 }
 
-function launchL() {
-    if (addressIndex>=lats.length-1 || cancel) {
+function launchL() { usedfuncs[1] = 1
+    if (addressIndex>=lats.length-1 || cancel) { usedfuncs[1] = 1
         clearWeights();
         clearGeocode();
         if (!par || parlat && parlng) calculate();
@@ -946,7 +947,7 @@ function launchL() {
     if (request>=addressIndex) return false;
     request=addressIndex;
     D("DE").style.display="none";
-    if (par) {
+    if (par) { usedfuncs[1] = 1
         appendOptionLast("places", addresses[addressIndex]);
     } else {
     	appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
@@ -963,22 +964,22 @@ function launchL() {
     if (!l) lockWeights();
 }
 
-function launchG() {
+function launchG() { usedfuncs[1] = 1
     D("DE").style.display="none";
     geocoder.geocode({'address': addresses[addressIndex]}, gCallback);
 }
     
-function gCallback(res, status) {
+function gCallback(res, status) { usedfuncs[1] = 1
     if (cancel || request>=addressIndex) return false;
     var r=f1.results;
-    if (status != "OK") {
+    if (status != "OK") { usedfuncs[1] = 1
         D("ok").value="Retry";
-        switch(status) {
+        switch(status) { usedfuncs[1] = 1
             case "ZERO_RESULTS":
             displayError('Address #' + parseInt(addressIndex+1) + ' \'' + addresses[addressIndex] + '\' was not found.');
             break;
             case "OVER_QUERY_LIMIT":
-            if (!geoOverLimit) {
+            if (!geoOverLimit) { usedfuncs[1] = 1
             displayError('Google geocoder speed limit. Click \'Resume\' each time calculator stops.');
             geoOverLimit=1;
             }
@@ -1002,20 +1003,20 @@ function gCallback(res, status) {
     var addr, loc, ind=0;
     r.length=0;
 
-    for (i=0; i<res.length; i++) {
+    for (i=0; i<res.length; i++) { usedfuncs[1] = 1
         addr=res[i].formatted_address;
-        if (!addr) {
+        if (!addr) { usedfuncs[1] = 1
             addr=addresses[addressIndex];
         }
         try {
-            if(res[i].types[0]=="street_address") {
+            if(res[i].types[0]=="street_address") { usedfuncs[1] = 1
                 ind=addr.indexOf(",");
-                if (ind>-1) {
+                if (ind>-1) { usedfuncs[1] = 1
                     ind += 2;
                 }
             }
         }
-        catch(err0) {
+        catch(err0) { usedfuncs[1] = 1
             ind=-1;
         }
         appendOptionLast("results", addr);
@@ -1024,7 +1025,7 @@ function gCallback(res, status) {
         r[r.length-1].i=ind;
     }
 
-    if (r.length>0) {
+    if (r.length>0) { usedfuncs[1] = 1
         appendToList();
     } else {
         D("ok").value="Ok";
@@ -1038,9 +1039,9 @@ function gCallback(res, status) {
     loopG();
 }
 
-function loopG() {
-    if (!pause) {
-        if (addressIndex<addresses.length-1 && !cancel) {
+function loopG() { usedfuncs[1] = 1
+    if (!pause) { usedfuncs[1] = 1
+        if (addressIndex<addresses.length-1 && !cancel) { usedfuncs[1] = 1
             addressIndex++;
             window.setTimeout(launchG, 60);
         } else {
@@ -1053,22 +1054,22 @@ function loopG() {
     }
 }
 
-function dispStart() {
+function dispStart() { usedfuncs[1] = 1
     switchLoc();
     toggleDivs(["DB","DB2","DB3"],1);
     f1.add.focus();
 }
 
-function dispProceed() {
+function dispProceed() { usedfuncs[1] = 1
     switchLoc();
     toggleDivs(["DB2","DB","DB3"],1);
 }
 
-function ok1() {
+function ok1() { usedfuncs[1] = 1
     D("DE").style.display="none";
     pause=0;
     if (addresses.length>1) dispProceed();
-    if (D("ok").value=="Retry" || D("ok").value=="Resume") {
+    if (D("ok").value=="Retry" || D("ok").value=="Resume") { usedfuncs[1] = 1
         request=-1;
         launchG();
         return false;
@@ -1077,14 +1078,14 @@ function ok1() {
     loopG();
 }
 
-function skip() {
+function skip() { usedfuncs[1] = 1
 D("DE").style.display="none";
 pause=0;
 if (addresses.length>1) dispProceed();
 loopG();
 }
 
-function cancelGeocode() {
+function cancelGeocode() { usedfuncs[1] = 1
 D("DE").style.display="none";
 cancel=1;
 if (p.length>1) calculate();
@@ -1092,17 +1093,17 @@ dispStart();
 dispMsg("", 2);
 }
 
-function contin() {
+function contin() { usedfuncs[1] = 1
 D("DE").style.display="none";
 dispMsg("Please wait...", 2);
-if (f1.radr[1].checked) {
+if (f1.radr[1].checked) { usedfuncs[1] = 1
 launchG();
 } else {
 launchL();
 }
 }
 
-function validateLl(s, j) {
+function validateLl(s, j) { usedfuncs[1] = 1
 var d=["ns","ew"];
 var pl=["90(\\.0+)?|[0-8]?\\d", "180(\\.0+)?|(0?\\d?\\d|1[0-7]\\d)"];
 var ps= "^(-|[" + d[j] + "]\\s*)?(" + pl[j] + "([^\\w.-]+[0-5]?\\d){0,2}(\\.\\d+)?)(\\s*[" + d[j] + "])?$";
@@ -1110,48 +1111,48 @@ var p= new RegExp(ps, "i");
 return (p.test(s) && (/^[nsew-]/i.test(s) + /[nsew-]$/i.test(s) < 2));
 }
 
-function latLonToDecimal(s) {
+function latLonToDecimal(s) { usedfuncs[1] = 1
     var t=s.replace(/-/, "");
     var r=t.split(/[^\d.]/);
     var sum=0;
-    for (i=0;i<r.length; i++) {
+    for (i=0;i<r.length; i++) { usedfuncs[1] = 1
         sum += r[i]/M.pow(60,i);
     }
     s=-2*sum*(/[sw-]/i.test(s) - 0.5);
     return s;
 }
 
-function openPlace() {
+function openPlace() { usedfuncs[1] = 1
 var i=p.selectedIndex;
-if (i>-1) {
+if (i>-1) { usedfuncs[1] = 1
 closeInfo();
-if (p[i].marker.getVisible() == false) {
+if (p[i].marker.getVisible() == false) { usedfuncs[1] = 1
 p[i].marker.setVisible(true);
 }
 google.maps.event.trigger(p[i].marker, 'click');
 }
 }
 
-function triggerMid() {
-    if (MM) {
+function triggerMid() { usedfuncs[1] = 1
+    if (MM) { usedfuncs[1] = 1
         google.maps.event.trigger(MM, 'click');
     }
 }
 
-function save(meet) {
+function save(meet) { usedfuncs[1] = 1
 if (!map || !map.getCenter()) return;
 var u="", i=0,u2="",l="",n="",a="",y="",m="",d="", m1="", m2="", pl=p.length;
-if (!meet) {
+if (!meet) { usedfuncs[1] = 1
 u2="cl=" + roundx(map.getCenter().lat(),5) + "&cn=" + roundx(map.getCenter().lng(),5) + "&z=" + map.getZoom() + "&x=" + f1.large.checked*1 + "&c=" + cI + "&p=" + f1.disp.checked*1 + "&r=" + rI + "&w=" + wI 
 }
-if (pl>0) {
+if (pl>0) { usedfuncs[1] = 1
 var yr=false, mn=false, da=false;
-for(j=0;j<p.length;j++) {
+for(j=0;j<p.length;j++) { usedfuncs[1] = 1
 if (p[j].y!=0) yr=true;
 if (p[j].m!=0) mn=true;
 if (p[j].d!=0) da=true;
 }
-if (MM) {
+if (MM) { usedfuncs[1] = 1
 u+="ml=" + roundx(MM.getPosition().lat(),5) + "&mn=" + roundx(MM.getPosition().lng(),5) + "&";
 }
 var e="Microsoft Internet Explorer";
@@ -1159,11 +1160,11 @@ var h=location.href+"?";
 h=h.substring(0, h.indexOf("?"));
 var limit=2083 + 1927*(navigator.appName != e) - h.length - u.length - u2.length - 3*(yr+mn+da)*(meet==0) - 10; //extra 10 is for &l=, &n=, &a=, extra ampersand
 var a1=getLength(i,yr,mn,da,meet,"");
-while(i<pl && l.length+n.length+a.length+y.length+m.length+d.length+a1.tot.length<limit) {
+while(i<pl && l.length+n.length+a.length+y.length+m.length+d.length+a1.tot.length<limit) { usedfuncs[1] = 1
 l += a1.l;
 n += a1.n;
 a += a1.a;
-if (!meet) {
+if (!meet) { usedfuncs[1] = 1
 if (yr) y += a1.y;
 if (mn) m += a1.m;
 if (da) d += a1.d;
@@ -1174,13 +1175,13 @@ if (i<pl) a1=getLength(i,yr,mn,da,meet,"|");
 u += "l=" + l + "&n=" + n + "&a=" + a;
 }
 
-if (i<pl) {
+if (i<pl) { usedfuncs[1] = 1
 var m3="save";
 if (meet) m3="transfer";
 m2 += " Your browser can " + m3 + " the midpoint for all places along with the first " + i + " place markers."; 
 }
 
-if (!meet) {
+if (!meet) { usedfuncs[1] = 1
 if (yr) u += "&y=" + y;
 if (mn) u += "&m=" + m;
 if (da) u += "&d=" + d; 
@@ -1195,7 +1196,7 @@ if (a) window.location="meet/index.html?" + u;
 }
 }
 
-function getLength(i,yr,mn,da,meet, v) {
+function getLength(i,yr,mn,da,meet, v) { usedfuncs[1] = 1
 var a1= new Object();
 a1.l=v+roundx(p[i].marker.getPosition().lat(), 6);
 a1.n=v+roundx(p[i].marker.getPosition().lng(), 6);
@@ -1207,7 +1208,7 @@ a1.tot=a1.l+a1.n+a1.a+a1.y+a1.m+a1.d;
 return a1;
 }
 
-function popMessage(msg) {
+function popMessage(msg) { usedfuncs[1] = 1
 var s='"resizeable=0,left=' + (screen.width/2-180) + ',top=' + (screen.height/2-120) + ',width=360,height=240"';
 messagewin=window.open("message.php","messagewin",s);
 D("frm2").target = "messagewin";
@@ -1215,9 +1216,9 @@ D("frm2").data2.value = msg;
 D("frm2").submit();
 }
 
-function revGeoCallback(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
+function revGeoCallback(results, status) { usedfuncs[1] = 1
+    if (status == google.maps.GeocoderStatus.OK) { usedfuncs[1] = 1
+        if (results[0]) { usedfuncs[1] = 1
         	var near='<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
             var h1=MM.h1;
             var h2=MM.h2;
@@ -1230,19 +1231,19 @@ function revGeoCallback(results, status) {
     }
 }
 
-function formatInfo(s, lat, lng, i) {
+function formatInfo(s, lat, lng, i) { usedfuncs[1] = 1
 var h='<div><p class="pz">' + s + '</p>';
-if (!isNaN(lat)) {
+if (!isNaN(lat)) { usedfuncs[1] = 1
 h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + roundx(lat,6) + '<br>' + roundx(lng,6) + '</div><div class="DCL"></div>';
 }
-if (i>-1) {
-if (f1.radw[0].checked && (p[i].y || p[i].m || p[i].d)) {
+if (i>-1) { usedfuncs[1] = 1
+if (f1.radw[0].checked && (p[i].y || p[i].m || p[i].d)) { usedfuncs[1] = 1
 h += '<p class="pz">Weight:<br>Years: ' + p[i].y + ' Months: ' + p[i].m + ' Days: ' + p[i].d + '</p>';
-} else if (f1.radw[1].checked && p[i].d) {
+} else if (f1.radw[1].checked && p[i].d) { usedfuncs[1] = 1
 h += '<p class="pz">Weight: ' + p[i].d + '</p>';
 }
 var a2='<b>Drag me</b> to pinpoint a location<br><a class="bluelink" href="javascript:r5(' + i + ')">Remove me</a>';
-if (p[i].marker.dragged == 1) {
+if (p[i].marker.dragged == 1) { usedfuncs[1] = 1
 a2 += '&nbsp;&nbsp;&nbsp;&nbsp;<a class="bluelink" href="javascript:reset(' + i + ')">Reset location</a>';
 }
 h += '<p class="pz">' + a2 + '</p></div>';
