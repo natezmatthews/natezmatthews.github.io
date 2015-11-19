@@ -236,7 +236,7 @@ Although you can use them, for a more unique website, replace these images with 
             </div>
         </div>
     </section>
-da2, dw, dw2
+
 	<!-- Content 1 -->
     <section class="content">
         <div class="container">
@@ -247,19 +247,12 @@ da2, dw, dw2
             <input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />
             Address&nbsp;
             <input class="even" type="radio" name="radr" onclick="switchLoc()" />
-            Multiple input&nbsp;
-            <input class="even" type="radio" name="radr" onclick="switchLoc()" />
             Latitude/longitude</div>
             <br />
             <div id="DA">
                 <label for="address0">Address or city:</label>
                 <br />
                 <input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" />
-            </div>
-            <div id="DA2" class="off">
-                <label for="address1">Addresses (Each on a separate line):</label>
-                <br />
-                <textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea>
             </div>
             <div id="DL" class="off">
                 <div class="DFI">
@@ -301,13 +294,6 @@ da2, dw, dw2
             <div id="msg"></div>
         </div>
         <div id="upperright">
-            <div id="radio2">
-                <input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />
-                Weight by time&nbsp;&nbsp;
-                <input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />
-                Other weight
-            </div>
-            <br />
             <div id="DIC">
                 <div id="DT">
                     <div class="DFI">
@@ -343,19 +329,6 @@ da2, dw, dw2
                         <textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea>
                     </div>
                 </div>
-                <div id="DW" class="off">
-                    <label for="weight0" accesskey="W">Weight:</label>
-                    <br />
-                    <input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" />
-                </div>
-                <div id="DW2" class="off">
-                    <label for="weight1" accesskey="W">Weight:</label>
-                    <br />
-                    <textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea>
-                </div>
-                <a href="javascript:triggerMid()">
-                    <img id="micon" src="files/micon.jpg" alt="Midpoint info"></img>
-                </a>
                 <span>Leave blank for no weight</span>
             </div>
         </div>
@@ -375,19 +348,6 @@ da2, dw, dw2
             <br />
             <input type="checkbox" id="disp" checked="checked" />
             Display place markers
-            <br />
-            <br />
-            <label for="method">Calculation method:</label>
-            <br />
-            <div id="radio3">
-                <input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />
-                Midpoint (Center of gravity)
-                <br />
-                <input type="radio" name="method" onclick="changeMethod()" />
-                Center of minimum distance<br />
-                <input type="radio" name="method" onclick="changeMethod()" />
-                Average latitude/longitude
-            </div>
             <br />
             <br />
             <input type="checkbox" id="large" onclick="switchMap()" />
