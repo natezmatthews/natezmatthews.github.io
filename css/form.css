@@ -1,0 +1,193 @@
+body {
+padding: 0;
+min-width: 48.2em;
+}
+
+#all {
+height: 100%;
+width: 100%;
+position: fixed;
+background-color: gray;
+opacity: 0.6;
+z-index: 2;
+display: none;
+}
+
+#main2 {
+width: 48.4em;
+padding-left: 0.2em;
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#upperleft {
+float: left;
+margin-right: 2.5em;
+}
+    
+#resultslabel {
+font-weight: bold;
+color: #0066FF;
+}
+
+#DRF {
+float: left;
+border: 2px #0066FF solid;
+width: auto;
+}
+
+#results {
+width: 25em;
+}
+
+input.btn2 {
+background-color: #ADD8E6;
+font-weight: bold;
+border: 2px outset #d7b9c9;
+margin: 4px 8px 0 auto;
+}
+
+#upperright {
+float: left;
+display: inline;
+}
+
+#DM {
+width: 275px;
+border: 1px solid black;
+left: -280px;
+display: none;
+}
+
+
+.slider {
+z-index: 2;
+background-color: white;
+position: fixed;
+text-align: left;
+padding: 5px;
+}
+
+#map {
+float: right;
+width: 30.1em;
+height: 24.1em;
+margin-top: 0.25em;
+border: black solid 1px;
+}
+
+#DLB {
+float: left;
+display: inline;
+width: 17em;
+height: 24.5em;
+margin: 0.25em 0.8em 0.4em 0;
+}
+
+#DP {
+margin: 0.2em 0 0 0;
+    }
+
+#places {
+width: 18.75em;
+}
+    
+#DE {
+margin-bottom: 4px;
+border: red solid 2px;
+}
+
+.off {
+display: none;
+}
+
+#msg {
+margin-left: 2em;
+font-weight: bold;
+}
+
+.fleft {
+clear: left;
+float: left;
+display: none;
+}
+
+.DWH {
+width: 5em;
+float: left;
+border: white solid 2px;
+}
+
+.DBL {
+width: 9em;
+float: left;
+display: inline;
+border: black solid 2px;
+}
+
+.DCL {
+width: 0;
+clear: both;
+}
+
+#quiz {
+width: 15.8em;
+margin: 2px 0 8px 12px;
+border: 1px black solid;
+background-color: #ADD8E6;
+float: right;
+}
+
+#radio1 {
+background-color: #ADD8E6;
+width: 24em;
+}
+
+#radio2 {
+background-color: #ADD8E6;
+width: 18em;
+}
+
+#radio3 {
+width: 17em;
+background-color: #ADD8E6;
+}
+
+img#micon {
+float: right;
+display: inline;
+height: 2em;
+width: 1.7em;
+border: 1px #000 solid;
+margin: 0;
+}
+
+h4 {
+margin: 0 20em auto 0;
+text-align: right;
+}
+
+.DFI {
+float: left;
+display: inline;
+margin: 0 4px;
+}
+
+.DMA {
+margin: 0 4px;
+}
+
+#DIC {
+width: 18em;
+}
+
+.even {
+margin-left: 0.2em;
+margin-right: 0.2em;
+}
+
+.pz {
+margin: 0;
+}
