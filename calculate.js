@@ -418,7 +418,7 @@ function calculate() {
             // if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
             if (abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
                 if (MM) MM = remove(MM);
-                displayError('The midpoint is the center of the earth.');
+                displayError('Congratulations, your travels are perfectly evenly distributed across the globe!');
             }
             else {
                 // if (cI == 2) {
@@ -514,7 +514,7 @@ function calculate() {
                 if (MM) MM = remove(MM);
                 //My flipping code:
                 var oplat = midlat * -1;
-                var oplng = (((midlng + 180) + 180) % 360) - 180;
+                var oplng = (midlng % 360) - 180;
                 geoNames(oplat, oplng, 1);
                 var point = new google.maps.LatLng(oplat, oplng);
                 // var h1 = formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
