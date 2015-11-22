@@ -528,9 +528,9 @@ function calculate() {
                     'latLng': point
                 }, revGeoCallback);
             }
-            if (tries >= 5000) {
-                displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
-            }
+            // if (tries >= 5000) {
+            //     displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
+            // }
         }
     }
     if (!par && !sameMap) {
