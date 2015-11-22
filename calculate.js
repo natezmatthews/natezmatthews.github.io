@@ -18,8 +18,8 @@ var ck = new Array();
 var f1, request, addressIndex, pause, cancel, parlat, parlng, sameMap = 0;
 
 var par = 0;
-var rI, wI;
-// var cI;
+var rI;
+// var wI, cI;
 var rad90 = rad(90);
 var rad180 = rad(180);
 var M = Math;
@@ -34,7 +34,7 @@ function initialize() {
         content: ""
     });
     rI = 0;
-    wI = 0;
+    // wI = 0;
     // cI = 0;
 
     var y = "",
@@ -107,8 +107,8 @@ function initialize() {
                     f1.disp.checked = (q == "1");
                     break;
                 case "w":
-                    f1.radw[q].checked = true;
-                    switchWeight();
+                    // f1.radw[q].checked = true;
+                    // switchWeight();
                     break;
                 case "r":
                     f1.radr[q].checked = true;
@@ -304,7 +304,7 @@ function clear2() {
     dispCount();
     clearGeocode();
     clearWeights();
-    lockWeights();
+    // lockWeights();
     addresses.length = 0;
     lats.length = 0;
     lons.length = 0;
@@ -371,7 +371,7 @@ function appendToList() {
     p[l].marker = createMarker(point, "", null, 1);
     p[l].marker.i = l;
     dispCount();
-    if (!l) lockWeights();
+    // if (!l) lockWeights();
 }
 
 function calculate() {
@@ -743,10 +743,10 @@ function roundx(n, exp) {
     return M.round(n * M.pow(10, exp)) / M.pow(10, exp);
 }
 
-function lockWeights() {
-    f1.w0.disabled = (p.length > 0);
-    f1.w1.disabled = (p.length > 0);
-}
+// function lockWeights() {
+//     f1.w0.disabled = (p.length > 0);
+//     f1.w1.disabled = (p.length > 0);
+// }
 
 // Toggle which divs of the menu are shown
 function toggleDivs(divs, block) {
@@ -776,28 +776,28 @@ function switchLoc() {
         rI = 1;
     }
     if (prev != rI) clearGeocode();
-    switchWeight();
+    // switchWeight();
 }
 
-function switchWeight() {
-    var prev = wI;
-    if (f1.radw[0].checked) {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DT", "DT2", "DW", "DW2"], 1);
-        } else {
-            toggleDivs(["DT2", "DT", "DW", "DW2"], 1);
-        }
-        wI = 0;
-    } else {
-        if (f1.radr[0].checked) {
-            toggleDivs(["DW", "DW2", "DT", "DT2"], 1);
-        } else {
-            toggleDivs(["DW2", "DW", "DT", "DT2"], 1);
-        }
-        wI = 1;
-    }
-    if (prev != wI) clearWeights();
-}
+// function switchWeight() {
+//     var prev = wI;
+//     if (f1.radw[0].checked) {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DT", "DT2", "DW", "DW2"], 1);
+//         } else {
+//             toggleDivs(["DT2", "DT", "DW", "DW2"], 1);
+//         }
+//         wI = 0;
+//     } else {
+//         if (f1.radr[0].checked) {
+//             toggleDivs(["DW", "DW2", "DT", "DT2"], 1);
+//         } else {
+//             toggleDivs(["DW2", "DW", "DT", "DT2"], 1);
+//         }
+//         wI = 1;
+//     }
+//     if (prev != wI) clearWeights();
+// }
 
 // function changeMethod() {
 //     closeInfo();
@@ -830,11 +830,12 @@ function switchMap() {
 function getTimes(l) {
     years = getInput(cYear[rI].value, l);
     months = getInput(cMonth[rI].value, l);
-    if (wI == 1) {
-        days = getInput(cWeight[rI].value, l);
-    } else {
-        days = getInput(cDay[rI].value, l);
-    }
+    days = getInput(cDay[rI].value, l);
+    // if (wI == 1) {
+    //     days = getInput(cWeight[rI].value, l);
+    // } else {
+    //     days = getInput(cDay[rI].value, l);
+    // }
 }
 
 function getInput(s, l) {
@@ -855,8 +856,8 @@ function getInput(s, l) {
 
 function validateTimes(a, l) {
     var a1 = "",
-        m = ["time", "weight"];
-    var n = ["day", "weight"];
+    //     m = ["time", "weight"];
+    // var n = ["day", "weight"];
     if (p.length) {
         var first = !p[0].y && !p[0].m && !p[0].d;
     } else {
@@ -873,7 +874,7 @@ function validateTimes(a, l) {
             return;
         }
         if (isNaN(days[i])) {
-            displayError("The " + n[wI] + " \'" + days[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+            displayError("The day \'" + days[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
             return;
         }
         years[i] = +years[i];
@@ -881,7 +882,7 @@ function validateTimes(a, l) {
         days[i] = +days[i];
         cur = !years[i] && !months[i] && !days[i];
         if (!first && cur) {
-            displayError("A " + m[wI] + " must be specified for " + a + " #" + parseInt(i + 1) + " " + addresses[i] + ".");
+            displayError("A time must be specified for " + a + " #" + parseInt(i + 1) + " " + addresses[i] + ".");
             return false;
         }
         if (first && !cur) {
@@ -978,7 +979,7 @@ function launchL() {
     p[l].marker.i = l;
     dispCount();
     window.setTimeout(launchL, 15);
-    if (!l) lockWeights();
+    // if (!l) lockWeights();
 }
 
 function launchG() {
@@ -1273,9 +1274,11 @@ function formatInfo(s, lat, lng, i) {
         h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + roundx(lat, 6) + '<br>' + roundx(lng, 6) + '</div><div class="DCL"></div>';
     }
     if (i > -1) {
-        if (f1.radw[0].checked && (p[i].y || p[i].m || p[i].d)) {
+        // if (f1.radw[0].checked && (p[i].y || p[i].m || p[i].d)) {
+        if (p[i].y || p[i].m || p[i].d) {
             h += '<p class="pz">Weight:<br>Years: ' + p[i].y + ' Months: ' + p[i].m + ' Days: ' + p[i].d + '</p>';
-        } else if (f1.radw[1].checked && p[i].d) {
+        // } else if (f1.radw[1].checked && p[i].d) {
+        } else if (p[i].d) {
             h += '<p class="pz">Weight: ' + p[i].d + '</p>';
         }
         var a2 = '<b>Drag me</b> to pinpoint a location<br><a class="bluelink" href="javascript:r5(' + i + ')">Remove me</a>';
