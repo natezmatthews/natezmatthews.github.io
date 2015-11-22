@@ -5,7 +5,7 @@ var cAddress = document.getElementsByName("address");
 var cYear = document.getElementsByName("years");
 var cMonth = document.getElementsByName("months");
 var cDay = document.getElementsByName("days");
-var cWeight = document.getElementsByName("weight");
+// var cWeight = document.getElementsByName("weight");
 var addresses = new Array();
 var years = new Array();
 var months = new Array();
@@ -326,7 +326,7 @@ function clearWeights() {
         cYear[i].value = "";
         cMonth[i].value = "";
         cDay[i].value = "";
-        cWeight[i].value = "";
+        // cWeight[i].value = "";
     }
     years.length = 0;
     months.length = 0;
