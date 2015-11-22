@@ -855,7 +855,7 @@ function getInput(s, l) {
 }
 
 function validateTimes(a, l) {
-    var a1 = "",
+    var a1 = ""
     //     m = ["time", "weight"];
     // var n = ["day", "weight"];
     if (p.length) {
