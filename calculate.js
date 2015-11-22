@@ -13,12 +13,13 @@ var days = new Array();
 var lats = new Array();
 var lons = new Array();
 var ck = new Array();
-var mTxt = ["Geographic midpoint", "Center of minimum distance", "Average latitude/longitude"];
+// var mTxt = ["Geographic midpoint", "Center of minimum distance", "Average latitude/longitude"];
 
 var f1, request, addressIndex, pause, cancel, parlat, parlng, sameMap = 0;
 
 var par = 0;
-var rI, wI, cI;
+var rI, wI;
+// var cI;
 var rad90 = rad(90);
 var rad180 = rad(180);
 var M = Math;
@@ -26,7 +27,6 @@ var p, infoWindow, geoOverLimit;
 // document.write(calc);
 
 function initialize() {
-console.log("function initialize() {");
     f1 = D("frm"); // f1 now is the form
     p = f1.places; // Number of documented places
     p.length = 0;
@@ -35,7 +35,7 @@ console.log("function initialize() {");
     });
     rI = 0;
     wI = 0;
-    cI = 0;
+    // cI = 0;
 
     var y = "",
         m = "",
@@ -99,8 +99,8 @@ console.log("function initialize() {");
                     break;
                 case "c":
                     c = 1;
-                    f1.method[q].checked = true;
-                    cI = q;
+                    // f1.method[q].checked = true;
+                    // cI = q;
                     break;
                 case "p":
                     p0 = 1;
@@ -129,10 +129,10 @@ console.log("function initialize() {");
         f1.radr[rI].checked = true;
     }
     switchLoc();
-    if (c == "" && ck[3] >= 0 && ck[3] <= 2) {
-        cI = ck[3];
-        f1.method[cI].checked = true;
-    }
+    // if (c == "" && ck[3] >= 0 && ck[3] <= 2) {
+    //     cI = ck[3];
+    //     f1.method[cI].checked = true;
+    // }
     if (p0 == "") {
         f1.disp.checked = (ck[4] == 1 || isNaN(ck[4]));
     }
@@ -173,34 +173,30 @@ console.log("function initialize() {");
     if ((MM || p.length) && (cl == "" || cn == "")) setBounds();
 }
 
-function unload() {
-console.log("function unload() {");
-    setCookie('ckData1', f1.large.checked * 1, rI + f1.radr[2].checked * 1, wI, cI, f1.disp.checked * 1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
-}
+// function unload() {
+//     setCookie('ckData1', f1.large.checked * 1, rI + f1.radr[2].checked * 1, wI, cI, f1.disp.checked * 1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
+// }
 
-function readCookie(cookieName) {
-console.log("function readCookie(cookieName) {");
-    var theCookie = "" + document.cookie;
-    var ind = theCookie.indexOf(cookieName);
-    if (ind == -1 || cookieName == "") return "";
-    var ind1 = theCookie.indexOf(';', ind);
-    if (ind1 == -1) ind1 = theCookie.length;
-    var s = unescape(theCookie.substring(ind + cookieName.length + 1, ind1));
-    ck = s.split("|");
-}
+// function readCookie(cookieName) {
+//     var theCookie = "" + document.cookie;
+//     var ind = theCookie.indexOf(cookieName);
+//     if (ind == -1 || cookieName == "") return "";
+//     var ind1 = theCookie.indexOf(';', ind);
+//     if (ind1 == -1) ind1 = theCookie.length;
+//     var s = unescape(theCookie.substring(ind + cookieName.length + 1, ind1));
+//     ck = s.split("|");
+// }
 
-function setCookie(cookieName, x, r, w, c, p0, cl, cn, z) {
-console.log("function setCookie(cookieName, x, r, w, c, p0, cl, cn, z) {");
-    var nDays = 2500;
-    var today = new Date();
-    var expire = new Date();
-    expire.setTime(today.getTime() + 3600000 * 24 * nDays);
-    var cookieValue = x + "|" + r + "|" + w + "|" + c + "|" + p0 + "|" + cl + "|" + cn + "|" + z;
-    document.cookie = cookieName + "=" + escape(cookieValue) + ";expires=" + expire.toGMTString();
-}
+// function setCookie(cookieName, x, r, w, c, p0, cl, cn, z) {
+//     var nDays = 2500;
+//     var today = new Date();
+//     var expire = new Date();
+//     expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+//     var cookieValue = x + "|" + r + "|" + w + "|" + c + "|" + p0 + "|" + cl + "|" + cn + "|" + z;
+//     document.cookie = cookieName + "=" + escape(cookieValue) + ";expires=" + expire.toGMTString();
+// }
 
 function selectText(myDiv) {
-console.log("function selectText(myDiv) {");
     if (window.getSelection) {
         var selection = window.getSelection();
         if (selection.setBaseAndExtent) {
@@ -219,7 +215,6 @@ console.log("function selectText(myDiv) {");
 }
 
 function setBounds() {
-console.log("function setBounds() {");
     var bounds = new google.maps.LatLngBounds();
     var point;
     if (p.length || MM) {
@@ -238,7 +233,6 @@ console.log("function setBounds() {");
 }
 
 function createMarker(point, html, ico, d) {
-console.log("function createMarker(point, html, ico, d) {");
     var icon = null,
         shadow = null,
         visible = true;
@@ -290,12 +284,10 @@ console.log("function createMarker(point, html, ico, d) {");
 }
 
 function closeInfo() {
-console.log("function closeInfo() {");
     D("DE").style.display = "none";
 }
 
 function clearAll() {
-console.log("function clearAll() {");
     par = 0;
     closeInfo();
     dispMsg('Clearing...', 2);
@@ -303,7 +295,6 @@ console.log("function clearAll() {");
 }
 
 function clear2() {
-console.log("function clear2() {");
     D("DE").style.display = "none";
     for (i = p.length - 1; i >= 0; i--) {
         p[i].marker.setMap(null);
@@ -324,7 +315,6 @@ console.log("function clear2() {");
 }
 
 function clearGeocode() {
-console.log("function clearGeocode() {");
     cAddress[0].value = "";
     cAddress[1].value = "";
     f1.latitude.value = "";
@@ -332,7 +322,6 @@ console.log("function clearGeocode() {");
 }
 
 function clearWeights() {
-console.log("function clearWeights() {");
     for (i = 0; i < 2; i++) {
         cYear[i].value = "";
         cMonth[i].value = "";
@@ -345,7 +334,6 @@ console.log("function clearWeights() {");
 }
 
 function removeOptionSelected() {
-console.log("function removeOptionSelected() {");
     par = 0;
     closeInfo();
     var i = p.selectedIndex;
@@ -369,7 +357,6 @@ console.log("function removeOptionSelected() {");
 }
 
 function appendToList() {
-console.log("function appendToList() {");
     dispMsg("Adding...", addresses.length);
     var r = f1.results;
     var i = M.max(r.selectedIndex, 0);
@@ -388,7 +375,6 @@ console.log("function appendToList() {");
 }
 
 function calculate() {
-console.log("function calculate() {");
     if (p.length > 1 || par) {
         var midlat = 0,
             midlng = 0;
@@ -429,91 +415,94 @@ console.log("function calculate() {");
             midlng = atan2(y, x);
             hyp = sqrt(x * x + y * y);
             midlat = atan2(z, hyp);
-            if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
+            // if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
+            if (abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
                 if (MM) MM = remove(MM);
                 displayError('The midpoint is the center of the earth.');
-            } else {
-                if (cI == 2) {
-                    y = 0;
-                    x = 0;
-                    for (i = 0; i < lats1.length; i++) {
-                        y = y + lats1[i] * days1[i];
-                        x = x + normalizeLongitude(lons1[i] - midlng) * days1[i];
-                    }
-                    midlat = y / totdays;
-                    midlng = normalizeLongitude(x / totdays + midlng);
-                } else if (cI == 1) {
-                    if (lats1.length > 2 || lats1.length == 2 & days1[0] != days1[1]) {
-                        var tries = 0;
-                        lats1[lats1.length] = midlat;
-                        lons1[lons1.length] = midlng;
-                        var distrad = rad90;
-                        var mindist = 1.0e07;
-                        var sum, gMindist, lat2, slat, cdist, minlat, minlon;
-                        var t = new Array(8, 6, 7, 2, 0, 1, 5, 3, 4);
-                        var scale = new Array(0.7071, 0.7071, 1, 0.7071, 0.7071, 1, 1, 1, 1);
-                        var testcenter = true;
-                        i = lats1.length + 8;
-                        while (distrad > 2.0e-08 && tries < 5000) {
-                            if (i < 0) {
-                                i = 8;
-                            }
-                            while (i >= 0) {
-                                if (i < 9) {
-                                    y = floor(t[i] / 3) - 1;
-                                    x = t[i] % 3;
-                                    switch (x) {
-                                        case 1:
-                                            pt.lon = midlng;
-                                            pt.lat = midlat - y * distrad;
-                                            pt = normalizeLatitude(pt);
-                                            break
-                                        case 0:
-                                            pt.lon = midlng;
-                                            pt.lat = midlat - y * distrad * scale[i];
-                                            pt = normalizeLatitude(pt);
-                                            lat2 = pt.lat;
-                                            slat = sin(lat2);
-                                            cdist = cos(distrad * scale[i]);
-                                            pt.lat = asin(slat * cdist);
-                                            pt.lon = normalizeLongitude(pt.lon + atan2(-sin(distrad * scale[i]) * cos(lat2), cdist - slat * sin(pt.lat)));
-                                            break
-                                        case 2:
-                                            pt.lon = normalizeLongitude(midlng + normalizeLongitude(midlng - pt.lon));
-                                    }
-                                } else {
-                                    pt.lat = lats1[i - 9];
-                                    pt.lon = lons1[i - 9];
-                                }
-                                if (pt.lon != midlng || pt.lat != midlat || testcenter) {
-                                    sum = 0;
-                                    for (j = 0; j < lats1.length - 1; j++) {
-                                        sum += acos(sinlats[j] * sin(pt.lat) + coslats[j] * cos(pt.lat) * cos(pt.lon - lons1[j])) * days1[j];
-                                    }
-                                    if (!testcenter) {
-                                        if (sum < mindist) {
-                                            mindist = sum;
-                                            minlat = pt.lat;
-                                            minlon = pt.lon;
-                                        }
-                                    } else {
-                                        gMindist = sum;
-                                        testcenter = false;
-                                    }
-                                }
-                                i--;
-                            }
-                            if (mindist - gMindist < -4.0e-14) {
-                                midlat = minlat;
-                                midlng = minlon;
-                                gMindist = mindist;
-                            } else {
-                                distrad = distrad * 0.5;
-                            }
-                            tries++
-                        }
-                    }
-                }
+            }
+            else {
+                // if (cI == 2) {
+                //     y = 0;
+                //     x = 0;
+                //     for (i = 0; i < lats1.length; i++) {
+                //         y = y + lats1[i] * days1[i];
+                //         x = x + normalizeLongitude(lons1[i] - midlng) * days1[i];
+                //     }
+                //     midlat = y / totdays;
+                //     midlng = normalizeLongitude(x / totdays + midlng);
+                // }
+                // else if (cI == 1) {
+                //     if (lats1.length > 2 || lats1.length == 2 & days1[0] != days1[1]) {
+                //         var tries = 0;
+                //         lats1[lats1.length] = midlat;
+                //         lons1[lons1.length] = midlng;
+                //         var distrad = rad90;
+                //         var mindist = 1.0e07;
+                //         var sum, gMindist, lat2, slat, cdist, minlat, minlon;
+                //         var t = new Array(8, 6, 7, 2, 0, 1, 5, 3, 4);
+                //         var scale = new Array(0.7071, 0.7071, 1, 0.7071, 0.7071, 1, 1, 1, 1);
+                //         var testcenter = true;
+                //         i = lats1.length + 8;
+                //         while (distrad > 2.0e-08 && tries < 5000) {
+                //             if (i < 0) {
+                //                 i = 8;
+                //             }
+                //             while (i >= 0) {
+                //                 if (i < 9) {
+                //                     y = floor(t[i] / 3) - 1;
+                //                     x = t[i] % 3;
+                //                     switch (x) {
+                //                         case 1:
+                //                             pt.lon = midlng;
+                //                             pt.lat = midlat - y * distrad;
+                //                             pt = normalizeLatitude(pt);
+                //                             break
+                //                         case 0:
+                //                             pt.lon = midlng;
+                //                             pt.lat = midlat - y * distrad * scale[i];
+                //                             pt = normalizeLatitude(pt);
+                //                             lat2 = pt.lat;
+                //                             slat = sin(lat2);
+                //                             cdist = cos(distrad * scale[i]);
+                //                             pt.lat = asin(slat * cdist);
+                //                             pt.lon = normalizeLongitude(pt.lon + atan2(-sin(distrad * scale[i]) * cos(lat2), cdist - slat * sin(pt.lat)));
+                //                             break
+                //                         case 2:
+                //                             pt.lon = normalizeLongitude(midlng + normalizeLongitude(midlng - pt.lon));
+                //                     }
+                //                 } else {
+                //                     pt.lat = lats1[i - 9];
+                //                     pt.lon = lons1[i - 9];
+                //                 }
+                //                 if (pt.lon != midlng || pt.lat != midlat || testcenter) {
+                //                     sum = 0;
+                //                     for (j = 0; j < lats1.length - 1; j++) {
+                //                         sum += acos(sinlats[j] * sin(pt.lat) + coslats[j] * cos(pt.lat) * cos(pt.lon - lons1[j])) * days1[j];
+                //                     }
+                //                     if (!testcenter) {
+                //                         if (sum < mindist) {
+                //                             mindist = sum;
+                //                             minlat = pt.lat;
+                //                             minlon = pt.lon;
+                //                         }
+                //                     } else {
+                //                         gMindist = sum;
+                //                         testcenter = false;
+                //                     }
+                //                 }
+                //                 i--;
+                //             }
+                //             if (mindist - gMindist < -4.0e-14) {
+                //                 midlat = minlat;
+                //                 midlng = minlon;
+                //                 gMindist = mindist;
+                //             } else {
+                //                 distrad = distrad * 0.5;
+                //             }
+                //             tries++
+                //         }
+                //     }
+                // }
                 if (!par) {
                     midlat = deg(midlat);
                     midlng = deg(midlng);
@@ -528,7 +517,8 @@ console.log("function calculate() {");
                 var oplng = (((midlng + 180) + 180) % 360) - 180;
                 geoNames(oplat, oplng, 1);
                 var point = new google.maps.LatLng(oplat, oplng);
-                var h1 = formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
+                // var h1 = formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
+                var h1 = formatInfo('<b>Filler</b>', oplat, oplng, -1);
                 var h2 = '<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
                 MM = createMarker(point, h1 + h2, 1, 0);
                 MM.setMap(map);
@@ -550,7 +540,6 @@ console.log("function calculate() {");
 }
 
 function geoNames(wlat, wlng, attempt) {
-console.log("function geoNames(wlat, wlng, attempt) {");
     var request;
     try {
         request = new XMLHttpRequest();
@@ -578,8 +567,8 @@ console.log("function geoNames(wlat, wlng, attempt) {");
             var resp = JSON.parse(request.responseText);
             for (i in resp.geonames) {
                 if (resp.geonames[i].wikipedia) {
-                    p = resp.geonames[i];
-                    getInfoForWindow(p.wikipedia, p.lat, p.lng);
+                    p1 = resp.geonames[i];
+                    getInfoForWindow(p1.wikipedia, p1.lat, p1.lng);
                     return;
                 }
             }
@@ -592,7 +581,6 @@ console.log("function geoNames(wlat, wlng, attempt) {");
 }
 
 function getInfoForWindow(wikiurl, lat, lng) {
-console.log("function getInfoForWindow(wikiurl, lat, lng) {");
     var extract, imgurl, title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
     $.when(
         $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles=" + title + "&format=json&callback=?",
@@ -621,7 +609,6 @@ console.log("function getInfoForWindow(wikiurl, lat, lng) {");
 }
 
 function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
-console.log("function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {");
     var contentString = "<img src='" + imgurl + "' style='width:370px;'><h1>" + decodeURI(title) + "</h1><div>" + extract + "</div><a href='http://" + wikiurl + "'>" + wikiurl + "</a>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -637,7 +624,6 @@ console.log("function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) 
 }
 
 function saveLatLng(i, ll) {
-console.log("function saveLatLng(i, ll) {");
     if (isNaN(p[i].lat)) {
         p[i].lat = ll.lat();
         p[i].lng = ll.lng();
@@ -645,7 +631,6 @@ console.log("function saveLatLng(i, ll) {");
 }
 
 function reset(i) {
-console.log("function reset(i) {");
     closeInfo();
     p[i].marker.dragged = 0;
     var point = new google.maps.LatLng(p[i].lat, p[i].lng);
@@ -654,13 +639,11 @@ console.log("function reset(i) {");
 }
 
 function r5(i) {
-console.log("function r5(i) {");
     p.selectedIndex = i;
     removeOptionSelected();
 }
 
 function remove(obj) {
-console.log("function remove(obj) {");
     if (obj) {
         obj.setMap(null);
     }
@@ -668,7 +651,6 @@ console.log("function remove(obj) {");
 }
 
 function appendOptionLast(combo, item) {
-console.log("function appendOptionLast(combo, item) {");
     var elOptNew = document.createElement('option');
     elOptNew.text = item;
     elOptNew.value = item;
@@ -681,7 +663,6 @@ console.log("function appendOptionLast(combo, item) {");
 }
 
 function dispCount() {
-console.log("function dispCount() {");
     var l = p.length;
     var m = "s";
     switch (l) {
@@ -695,29 +676,24 @@ console.log("function dispCount() {");
 }
 
 function dispMsg(s, l) {
-console.log("function dispMsg(s, l) {");
     if (l > 1) D("msg").innerHTML = s;
 }
 
 function displayError(e) {
-console.log("function displayError(e) {");
     D("DE").innerHTML = e;
     toggleDivs(["DE"], 1);
     //alert(e);
 }
 
 function rad(dg) {
-console.log("function rad(dg) {");
     return (dg * Math.PI / 180);
 }
 
 function deg(rd) {
-console.log("function deg(rd) {");
     return (rd * 180 / Math.PI);
 }
 
 function splitAddress(s) {
-console.log("function splitAddress(s) {");
     var t = s.split(/,/);
     if (t.length > 3 || t.length > 2 && /\d/g.test(t[0])) {
         s = t[0] + "<br>";
@@ -730,7 +706,6 @@ console.log("function splitAddress(s) {");
 }
 
 function normalizeLongitude(lon) {
-console.log("function normalizeLongitude(lon) {");
     var n = Math.PI;
     if (lon > n) {
         lon = lon - 2 * n
@@ -741,7 +716,6 @@ console.log("function normalizeLongitude(lon) {");
 }
 
 function normalizeLatitude(point) {
-console.log("function normalizeLatitude(point) {");
     if (Math.abs(point.lat) > rad90) {
         point.lat = rad180 - point.lat - 2 * rad180 * (point.lat < -rad90);
         point.lon = normalizeLongitude(point.lon - rad180);
@@ -750,7 +724,6 @@ console.log("function normalizeLatitude(point) {");
 }
 
 function trim(s) {
-console.log("function trim(s) {");
     if (s.charCodeAt(0) > 32 && s.charCodeAt(s.length - 1) > 32)
         return s;
     else {
@@ -759,7 +732,6 @@ console.log("function trim(s) {");
 }
 
 function rTrim(s) {
-console.log("function rTrim(s) {");
     if (s.charCodeAt(s.length - 1) > 32)
         return s;
     else {
@@ -768,19 +740,16 @@ console.log("function rTrim(s) {");
 }
 
 function roundx(n, exp) {
-console.log("function roundx(n, exp) {");
     return M.round(n * M.pow(10, exp)) / M.pow(10, exp);
 }
 
 function lockWeights() {
-console.log("function lockWeights() {");
     f1.w0.disabled = (p.length > 0);
     f1.w1.disabled = (p.length > 0);
 }
 
 // Toggle which divs of the menu are shown
 function toggleDivs(divs, block) {
-console.log("function toggleDivs(divs, block) {");
     for (i = 0; i < divs.length; i++) {
         if (i < block) {
             D(divs[i]).style.display = "block";
@@ -791,12 +760,10 @@ console.log("function toggleDivs(divs, block) {");
 }
 
 function D(id) {
-console.log("function D(id) {");
     return document.getElementById(id);
 }
 
 function switchLoc() {
-console.log("function switchLoc() {");
     var prev = rI;
     if (f1.radr[0].checked) {
         toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
@@ -813,7 +780,6 @@ console.log("function switchLoc() {");
 }
 
 function switchWeight() {
-console.log("function switchWeight() {");
     var prev = wI;
     if (f1.radw[0].checked) {
         if (f1.radr[0].checked) {
@@ -833,21 +799,19 @@ console.log("function switchWeight() {");
     if (prev != wI) clearWeights();
 }
 
-function changeMethod() {
-console.log("function changeMethod() {");
-    closeInfo();
-    if (f1.method[2].checked) {
-        cI = 2;
-    } else if (f1.method[1].checked) {
-        cI = 1;
-    } else {
-        cI = 0;
-    }
-    if (p.length > 1) calculate()
-}
+// function changeMethod() {
+//     closeInfo();
+//     if (f1.method[2].checked) {
+//         cI = 2;
+//     } else if (f1.method[1].checked) {
+//         cI = 1;
+//     } else {
+//         cI = 0;
+//     }
+//     if (p.length > 1) calculate()
+// }
 
 function switchMap() {
-console.log("function switchMap() {");
     if (f1.large.checked) {
         D("map").style.width = "48em";
         D("map").style.height = "29.4em";
@@ -864,7 +828,6 @@ console.log("function switchMap() {");
 }
 
 function getTimes(l) {
-console.log("function getTimes(l) {");
     years = getInput(cYear[rI].value, l);
     months = getInput(cMonth[rI].value, l);
     if (wI == 1) {
@@ -875,7 +838,6 @@ console.log("function getTimes(l) {");
 }
 
 function getInput(s, l) {
-console.log("function getInput(s, l) {");
     var sText = rTrim(s);
     sText = sText.replace(/\r\n/g, '\n');
     var r = sText.split('\n');
@@ -892,7 +854,6 @@ console.log("function getInput(s, l) {");
 }
 
 function validateTimes(a, l) {
-console.log("function validateTimes(a, l) {");
     var a1 = "",
         m = ["time", "weight"];
     var n = ["day", "weight"];
@@ -932,7 +893,6 @@ console.log("function validateTimes(a, l) {");
 }
 
 function launch(p1) {
-console.log("function launch(p1) {");
     if (!p1) par = 0;
     var l;
     if (!map) return;
@@ -991,7 +951,6 @@ console.log("function launch(p1) {");
 }
 
 function launchL() {
-console.log("function launchL() {");
     if (addressIndex >= lats.length - 1 || cancel) {
         clearWeights();
         clearGeocode();
@@ -1023,7 +982,6 @@ console.log("function launchL() {");
 }
 
 function launchG() {
-console.log("function launchG() {");
     D("DE").style.display = "none";
     geocoder.geocode({
         'address': addresses[addressIndex]
@@ -1031,7 +989,6 @@ console.log("function launchG() {");
 }
 
 function gCallback(res, status) {
-console.log("function gCallback(res, status) {");
     if (cancel || request >= addressIndex) return false;
     var r = f1.results;
     if (status != "OK") {
@@ -1101,7 +1058,6 @@ console.log("function gCallback(res, status) {");
 }
 
 function loopG() {
-console.log("function loopG() {");
     if (!pause) {
         if (addressIndex < addresses.length - 1 && !cancel) {
             addressIndex++;
@@ -1117,20 +1073,17 @@ console.log("function loopG() {");
 }
 
 function dispStart() {
-console.log("function dispStart() {");
     switchLoc();
     toggleDivs(["DB", "DB2", "DB3"], 1);
     f1.add.focus();
 }
 
 function dispProceed() {
-console.log("function dispProceed() {");
     switchLoc();
     toggleDivs(["DB2", "DB", "DB3"], 1);
 }
 
 function ok1() {
-console.log("function ok1() {");
     D("DE").style.display = "none";
     pause = 0;
     if (addresses.length > 1) dispProceed();
@@ -1144,7 +1097,6 @@ console.log("function ok1() {");
 }
 
 function skip() {
-console.log("function skip() {");
     D("DE").style.display = "none";
     pause = 0;
     if (addresses.length > 1) dispProceed();
@@ -1152,7 +1104,6 @@ console.log("function skip() {");
 }
 
 function cancelGeocode() {
-console.log("function cancelGeocode() {");
     D("DE").style.display = "none";
     cancel = 1;
     if (p.length > 1) calculate();
@@ -1161,7 +1112,6 @@ console.log("function cancelGeocode() {");
 }
 
 function contin() {
-console.log("function contin() {");
     D("DE").style.display = "none";
     dispMsg("Please wait...", 2);
     if (f1.radr[1].checked) {
@@ -1172,16 +1122,14 @@ console.log("function contin() {");
 }
 
 function validateLl(s, j) {
-console.log("function validateLl(s, j) {");
     var d = ["ns", "ew"];
     var pl = ["90(\\.0+)?|[0-8]?\\d", "180(\\.0+)?|(0?\\d?\\d|1[0-7]\\d)"];
     var ps = "^(-|[" + d[j] + "]\\s*)?(" + pl[j] + "([^\\w.-]+[0-5]?\\d){0,2}(\\.\\d+)?)(\\s*[" + d[j] + "])?$";
-    var p = new RegExp(ps, "i");
-    return (p.test(s) && (/^[nsew-]/i.test(s) + /[nsew-]$/i.test(s) < 2));
+    var reg = new RegExp(ps, "i");
+    return (reg.test(s) && (/^[nsew-]/i.test(s) + /[nsew-]$/i.test(s) < 2));
 }
 
 function latLonToDecimal(s) {
-console.log("function latLonToDecimal(s) {");
     var t = s.replace(/-/, "");
     var pos = t.search(/[\d.]/);
     t = t.substring(pos);
@@ -1195,7 +1143,6 @@ console.log("function latLonToDecimal(s) {");
 }
 
 function openPlace() {
-console.log("function openPlace() {");
     var i = p.selectedIndex;
     if (i > -1) {
         closeInfo();
@@ -1207,14 +1154,12 @@ console.log("function openPlace() {");
 }
 
 function triggerMid() {
-console.log("function triggerMid() {");
     if (MM) {
         google.maps.event.trigger(MM, 'click');
     }
 }
 
 function save(meet) {
-console.log("function save(meet) {");
     if (!map || !map.getCenter()) return;
     var u = "",
         i = 0,
@@ -1285,7 +1230,6 @@ console.log("function save(meet) {");
 }
 
 function getLength(i, yr, mn, da, meet, v) {
-console.log("function getLength(i, yr, mn, da, meet, v) {");
     var a1 = new Object();
     a1.l = v + roundx(p[i].marker.getPosition().lat(), 6);
     a1.n = v + roundx(p[i].marker.getPosition().lng(), 6);
@@ -1301,7 +1245,6 @@ console.log("function getLength(i, yr, mn, da, meet, v) {");
 }
 
 function popMessage(msg) {
-console.log("function popMessage(msg) {");
     var s = '"resizeable=0,left=' + (screen.width / 2 - 180) + ',top=' + (screen.height / 2 - 120) + ',width=360,height=240"';
     messagewin = window.open("message.php", "messagewin", s);
     D("frm2").target = "messagewin";
@@ -1310,7 +1253,6 @@ console.log("function popMessage(msg) {");
 }
 
 function revGeoCallback(results, status) {
-console.log("function revGeoCallback(results, status) {");
     if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
             var near = '<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
@@ -1326,7 +1268,6 @@ console.log("function revGeoCallback(results, status) {");
 }
 
 function formatInfo(s, lat, lng, i) {
-console.log("function formatInfo(s, lat, lng, i) {");
     var h = '<div><p class="pz">' + s + '</p>';
     if (!isNaN(lat)) {
         h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + roundx(lat, 6) + '<br>' + roundx(lng, 6) + '</div><div class="DCL"></div>';

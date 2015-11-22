@@ -137,7 +137,7 @@ Although you can use them, for a more unique website, replace these images with 
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
-                'Thanks for letting us import your places from facebook ' + response.first_name + '.';
+                'Thanks for letting us import your places from Facebook, ' + response.first_name + '.';
         });
 
         FB.api('/me/tagged_places', function(response) {
@@ -378,7 +378,7 @@ Although you can use them, for a more unique website, replace these images with 
             Display place markers
             <br />
             <br />
-            <label for="method">Calculation method:</label>
+            <!-- <label for="method">Calculation method:</label>
             <br />
             <div id="radio3">
                 <input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />
@@ -390,7 +390,7 @@ Although you can use them, for a more unique website, replace these images with 
                 Average latitude/longitude
             </div>
             <br />
-            <br />
+            <br /> -->
             <input type="checkbox" id="large" onclick="switchMap()" />
             Larger map&nbsp;
             <input type="button" class="btn" value="Save map" onclick="save(0)" />
