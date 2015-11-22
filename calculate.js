@@ -965,11 +965,12 @@ function launchL() {
     if (request >= addressIndex) return false;
     request = addressIndex;
     D("DE").style.display = "none";
-    if (par) {
-        appendOptionLast("places", addresses[addressIndex]);
-    } else {
-        appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
-    }
+    appendOptionLast("places", addresses[addressIndex]);
+    // if (par) {
+    //     appendOptionLast("places", addresses[addressIndex]);
+    // } else {
+    //     appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
+    // }
     var l = p.length - 1;
     p[l].y = parseFloat(years[addressIndex]);
     p[l].m = parseFloat(months[addressIndex]);

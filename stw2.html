@@ -143,9 +143,10 @@ Although you can use them, for a more unique website, replace these images with 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
             for (element in response.data) {
-                loc = response.data[element].place.location;
-                lats[element] = loc.latitude.toString();
-                lons[element] = loc.longitude.toString();
+                place = response.data[element].place;
+                addresses[element] = place.name;
+                lats[element] = place.location.latitude.toString();
+                lons[element] = place.location.longitude.toString();
             }
 
             par=1;
