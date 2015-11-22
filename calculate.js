@@ -118,35 +118,35 @@ function initialize() {
         }
     }
 
-    readCookie('ckData1');
-    if (w == "" && ck[2] >= 0 && ck[2] <= 1) {
-        wI = ck[2];
-        f1.radw[wI].checked = true;
-        switchWeight();
-    }
-    if (r == "" && ck[1] >= 0 && ck[1] <= 2) {
-        rI = ck[1];
-        f1.radr[rI].checked = true;
-    }
+    // readCookie('ckData1');
+    // if (w == "" && ck[2] >= 0 && ck[2] <= 1) {
+    //     wI = ck[2];
+    //     f1.radw[wI].checked = true;
+    //     switchWeight();
+    // }
+    // if (r == "" && ck[1] >= 0 && ck[1] <= 2) {
+    //     rI = ck[1];
+    //     f1.radr[rI].checked = true;
+    // }
     switchLoc();
     // if (c == "" && ck[3] >= 0 && ck[3] <= 2) {
     //     cI = ck[3];
     //     f1.method[cI].checked = true;
     // }
-    if (p0 == "") {
-        f1.disp.checked = (ck[4] == 1 || isNaN(ck[4]));
-    }
-    if (x == "") {
-        f1.large.checked = (ck[0] == "1");
-        switchMap()
-    }
+    // if (p0 == "") {
+    //     f1.disp.checked = (ck[4] == 1 || isNaN(ck[4]));
+    // }
+    // if (x == "") {
+    //     f1.large.checked = (ck[0] == "1");
+    //     switchMap()
+    // }
 
     if (cl != "" && cn != "" && cl >= -90 && cl <= 90 && cn >= -180 && cn <= 180) {
         if (z == "") z = 3;
         latlng = new google.maps.LatLng(cl, cn);
-    } else if (!isNaN(ck[5]) && !isNaN(ck[6])) {
-        latlng = new google.maps.LatLng(ck[5], ck[6]);
-        z = ck[7] * 1;
+    // } else if (!isNaN(ck[5]) && !isNaN(ck[6])) {
+    //     latlng = new google.maps.LatLng(ck[5], ck[6]);
+    //     z = ck[7] * 1;
     } else {
         latlng = new google.maps.LatLng(39.17, -98.297);
         z = 3;
