@@ -33,7 +33,7 @@
         dis = $(document.activeElement);
         dis.removeAttr("id");
         dis.attr("onfocus","this.select()");
-        if (dis.val() == "Name of event" 
+        if (dis.val() == '\"My ________\"' 
                     || dis.val() == "MM/DD/YYYY"
                     || dis.val() == "Invalid Date") {
             dis.val("");
@@ -124,7 +124,7 @@
 
 <div id="finaldiv">
 <input type="button" value="X" onclick="kill(this)" />
-<textarea class="name" id="fresh" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">Name of event</textarea>
+<textarea class="name" id="fresh" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">"My ________"</textarea>
 <textarea class="date" id="fresh" rows="1" style="width: 10em" onchange="newline(value)" onfocus="clr()">MM/DD/YYYY</textarea>
 </div>
 
@@ -133,6 +133,16 @@
 <input type="button" id="done" value="Done" onclick="calc()" />
 &nbsp;
 <input type="button" id="download" style="display:none;" value="Download as ics file" onclick="download()" />
+
+<br><br>
+
+</div>
+
+<div id="credits">
+
+<span>Design by Nate Matthews</span><br>
+<span>Background logo "Calendar" by <a href="https://thenounproject.com/edward/">Edward Boatman</a> from the Noun Project</span><br>
+<span>ICS file creation by <a href="https://github.com/nwcell">Travis Krause</a></span><br>
 
 </div>
 
