@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>Future Perfect</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="../ics.js/ics.js"></script>
+<script src="../ics.js/ics.deps.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
+</head>
+
+<script type="text/javascript">
+    var line = '<div id="finaldiv">\n<input type="button" value="X" onclick="kill(this)" />\n<textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="this.select()"></textarea>\n<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea></div>'
+    var cal = ics();
+
+    function kill(btn) {
+        victim = $(btn).parent();
+        if (victim.attr("id") == "finaldiv") {
+            victim.after(line);
+        }
+        victim.remove();
+    }
+
+    function newline(val) {
+        if (val == "") return;
+        dis = $("#finaldiv");
+        dis.removeAttr("id");
+        fields = $('[onchange="newline(value)"]');
+        fields.removeAttr("onchange");
+        dis.after(line);
+    }
+
+    function clr() {
+        dis = $(document.activeElement);
+        dis.removeAttr("id");
+        dis.attr("onfocus","this.select()");
+        if (dis.val() == "Name of event" 
+                    || dis.val() == "MM/DD/YYYY"
+                    || dis.val() == "Invalid Date") {
+            dis.val("");
+        }
+    }
+
+    function calc() {
+        var invalid = false;
+        var arr = [];
+        var res = [];
+
+        $(".name").each(function(i) {
+            val = $(this).val();
+            if (val != "") {
+                var item = {daname:"",dadate:0};
+                item.daname = val;
+                arr[i] = item;
+            }
+        });
+
+        $(".date").each(function(i) {
+            val = $(this).val();
+            if (val != "") {
+                newdate = new Date(val);
+                if (newdate == "Invalid Date") {
+                    $(this).val("Invalid Date").attr("id","invalid").attr("onfocus","clr()");
+                    invalid = true;
+                }
+                arr[i].dadate = newdate;
+            }
+        });
+
+        if (invalid) {
+            return;
+        }
+
+        var btn = $("#done");
+        btn.attr("value","Reset");
+        btn.attr("onclick","reset()");
+        
+        arr.sort(function(obj1,obj2) {
+            return obj1.dadate - obj2.dadate;
+        });
+        
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (i >= j) {continue;}
+                var name = arr[j].daname + " bisects " + arr[i].daname + " and now";
+                var desc = "been twice as long since your " + arr[i].daname + " as since your " + arr[j].daname + ".";
+                var odate = new Date((arr[j].dadate - arr[i].dadate) * 2 + arr[i].dadate.getTime());
+                var date = (odate.getMonth() + 1).toString() + "/" + odate.getDate().toString() + "/" + odate.getFullYear().toString();
+                var item = {datext:"<br><span>On " + date + " it will have " + desc + "</span><br>\n", dadate:odate};
+                res.push(item);
+                cal.addEvent(name,"It has been now " + desc,"",date,date);
+            }
+        };
+        
+        res.sort(function(obj1,obj2) {
+            return obj2.dadate - obj1.dadate;
+        });
+
+        $.each(res, function(i,item) {
+            $("#finaldiv").after(item.datext);
+        });
+        $("#download").show();
+    }
+
+    function download() {
+        cal.download();
+    }
+
+    function reset() {
+        location.reload();
+    }
+</script>
+
+<body>
+
+<h1>Future Perfect</h1>
+
+<div id="block">
+
+<br>
+
+<span>Please enter the names and dates of significant events in your life.</span>
+
+<br><br>
+
+<div id="finaldiv">
+<input type="button" value="X" onclick="kill(this)" />
+<textarea class="name" id="fresh" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">Name of event</textarea>
+<textarea class="date" id="fresh" rows="1" style="width: 10em" onchange="newline(value)" onfocus="clr()">MM/DD/YYYY</textarea>
+</div>
+
+<br>
+
+<input type="button" id="done" value="Done" onclick="calc()" />
+&nbsp;
+<input type="button" id="download" style="display:none;" value="Download as ics file" onclick="download()" />
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
