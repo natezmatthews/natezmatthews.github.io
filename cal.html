@@ -11,6 +11,7 @@
 <script type="text/javascript">
     var line = '<div id="finaldiv">\n<input type="button" value="X" onclick="kill(this)" />\n<textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="this.select()"></textarea>\n<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea></div>'
     var cal = ics();
+    var res = [];
 
     function kill(btn) {
         victim = $(btn).parent();
@@ -33,7 +34,7 @@
         dis = $(document.activeElement);
         dis.removeAttr("id");
         dis.attr("onfocus","this.select()");
-        if (dis.val() == '\"My ________\"' 
+        if (dis.val() == "Name of Event"
                     || dis.val() == "MM/DD/YYYY"
                     || dis.val() == "Invalid Date") {
             dis.val("");
@@ -43,7 +44,6 @@
     function calc() {
         var invalid = false;
         var arr = [];
-        var res = [];
 
         $(".name").each(function(i) {
             val = $(this).val();
@@ -58,7 +58,7 @@
             val = $(this).val();
             if (val != "") {
                 newdate = new Date(val);
-                if (newdate == "Invalid Date") {
+                if (newdate == "Invalid Date" && val != "MM/DD/YYYY") {
                     $(this).val("Invalid Date").attr("id","invalid").attr("onfocus","clr()");
                     invalid = true;
                 }
@@ -70,6 +70,8 @@
             return;
         }
 
+        $("#finaldiv").after("<br><span>To add these to your calendar, select the events you want, \nclick 'Export' below, and then upload that file to your calendar.</span><br>");
+        $("#finaldiv").hide();
         var btn = $("#done");
         btn.attr("value","Reset");
         btn.attr("onclick","reset()");
@@ -81,27 +83,37 @@
         for (var i = 0; i < arr.length; i++) {
             for (var j = 0; j < arr.length; j++) {
                 if (i >= j) {continue;}
-                var name = arr[j].daname + " bisects " + arr[i].daname + " and now";
-                var desc = "been twice as long since your " + arr[i].daname + " as since your " + arr[j].daname + ".";
                 var odate = new Date((arr[j].dadate - arr[i].dadate) * 2 + arr[i].dadate.getTime());
-                var date = (odate.getMonth() + 1).toString() + "/" + odate.getDate().toString() + "/" + odate.getFullYear().toString();
-                var item = {datext:"<br><span>On " + date + " it will have " + desc + "</span><br>\n", dadate:odate};
+                var date = (odate.getMonth() + 1).toString() + '/' + odate.getDate().toString() + '/' + odate.getFullYear().toString();
+                var item = {namea:arr[i].daname, nameb:arr[j].daname, datestr:date, odate:odate}
                 res.push(item);
-                cal.addEvent(name,"It has been now " + desc,"",date,date);
+                // var name = arr[j].daname + ' bisects ' + arr[i].daname + ' and now';
+                // var desc = 'been twice as long since \"' + arr[i].daname + '\" as since \"' + arr[j].daname + '\".';
+                
+                // var item = {datext:'<br><input type="checkbox" checked>&nbsp&nbsp<span>On ' + date + ' it will have ' + desc + '</span><br>\n', dadate:odate};
+                
+                // cal.addEvent(name,'It has been now ' + desc,'',date,date);
             }
         };
         
         res.sort(function(obj1,obj2) {
-            return obj2.dadate - obj1.dadate;
+            return obj2.odate - obj1.odate;
         });
 
         $.each(res, function(i,item) {
-            $("#finaldiv").after(item.datext);
+            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' it will have been twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".</span><br>\n');
         });
         $("#download").show();
     }
 
     function download() {
+         $.each(res, function(i,item) {
+            if ($("#c" + i).is(":checked")) {
+                var name = item.nameb + ' bisects ' + item.namea + ' and now';
+                var desc = 'It has been now twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".';
+                cal.addEvent(name,desc,'',item.datestr,item.datestr);
+            }
+        });
         cal.download();
     }
 
@@ -124,7 +136,7 @@
 
 <div id="finaldiv">
 <input type="button" value="X" onclick="kill(this)" />
-<textarea class="name" id="fresh" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">"My ________"</textarea>
+<textarea class="name" id="fresh" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">Name of Event</textarea>
 <textarea class="date" id="fresh" rows="1" style="width: 10em" onchange="newline(value)" onfocus="clr()">MM/DD/YYYY</textarea>
 </div>
 
@@ -132,7 +144,7 @@
 
 <input type="button" id="done" value="Done" onclick="calc()" />
 &nbsp;
-<input type="button" id="download" style="display:none;" value="Download as ics file" onclick="download()" />
+<input type="button" id="download" style="display:none;" value="Export" onclick="download()" />
 
 <br><br>
 
@@ -140,7 +152,7 @@
 
 <div id="credits">
 
-<span>Design by Nate Matthews</span><br>
+<span>Applet by Nate Matthews</span><br>
 <span>Background logo "Calendar" by <a href="https://thenounproject.com/edward/">Edward Boatman</a> from the Noun Project</span><br>
 <span>ICS file creation by <a href="https://github.com/nwcell">Travis Krause</a></span><br>
 
