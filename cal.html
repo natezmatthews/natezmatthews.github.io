@@ -4,7 +4,7 @@
 <title>Future Perfect</title>
 <meta charset="utf-8"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../ics.js/ics.js"></script>
+<script src="../ics.js/ics.min.js"></script>
 <script src="../ics.js/ics.deps.min.js"></script>
 <link rel="stylesheet" type="text/css" href="calstyle.css">
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
@@ -73,7 +73,7 @@
             return;
         }
 
-        $("#finaldiv").after("<br><span>To add these to your calendar, select the events you want, click 'Export' below, and then upload that file to your calendar.</span><br>");
+        $("#finaldiv").after("<br><span>To add these to your calendar, select the events you want,</span><br><span> click 'Export' below, and then upload that file to your calendar.</span><br>");
         $("#finaldiv").hide();
         var btn = $("#done");
         btn.attr("value","Reset");
