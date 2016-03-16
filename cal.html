@@ -1,10 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Future Perfect</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="../ics.js/ics.js"></script>
-<script src="../ics.js/ics.deps.min.js"></script>
-<link rel="stylesheet" type="text/css" href="calstyle.css" />
+<meta charset="utf-8"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script src="../ics.js/ics.js" type="text/javascript"></script>
+<script src="../ics.js/ics.deps.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="calstyle.css">
 <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
 </head>
 
@@ -23,6 +25,7 @@
 
     function newline(val) {
         if (val == "") return;
+        $("#done").removeAttr("disabled");
         dis = $("#finaldiv");
         dis.removeAttr("id");
         fields = $('[onchange="newline(value)"]');
@@ -70,7 +73,7 @@
             return;
         }
 
-        $("#finaldiv").after("<br><span>To add these to your calendar, select the events you want, \nclick 'Export' below, and then upload that file to your calendar.</span><br>");
+        $("#finaldiv").after("<br><span>To add these to your calendar, select the events you want, click 'Export' below, and then upload that file to your calendar.</span><br>");
         $("#finaldiv").hide();
         var btn = $("#done");
         btn.attr("value","Reset");
@@ -87,12 +90,6 @@
                 var date = (odate.getMonth() + 1).toString() + '/' + odate.getDate().toString() + '/' + odate.getFullYear().toString();
                 var item = {namea:arr[i].daname, nameb:arr[j].daname, datestr:date, odate:odate}
                 res.push(item);
-                // var name = arr[j].daname + ' bisects ' + arr[i].daname + ' and now';
-                // var desc = 'been twice as long since \"' + arr[i].daname + '\" as since \"' + arr[j].daname + '\".';
-                
-                // var item = {datext:'<br><input type="checkbox" checked>&nbsp&nbsp<span>On ' + date + ' it will have ' + desc + '</span><br>\n', dadate:odate};
-                
-                // cal.addEvent(name,'It has been now ' + desc,'',date,date);
             }
         };
         
@@ -101,7 +98,7 @@
         });
 
         $.each(res, function(i,item) {
-            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' it will have been twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".</span><br>\n');
+            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' it will have been twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".</span><br>');
         });
         $("#download").show();
     }
@@ -142,7 +139,7 @@
 
 <br>
 
-<input type="button" id="done" value="Done" onclick="calc()" />
+<input type="button" id="done" value="Done" onclick="calc()" disabled/>
 &nbsp;
 <input type="button" id="download" style="display:none;" value="Export" onclick="download()" />
 
@@ -152,7 +149,7 @@
 
 <div id="credits">
 
-<span>Applet by Nate Matthews</span><br>
+<span>Website by Nate Matthews</span><br>
 <span>Background logo "Calendar" by <a href="https://thenounproject.com/edward/">Edward Boatman</a> from the Noun Project</span><br>
 <span>ICS file creation by <a href="https://github.com/nwcell">Travis Krause</a></span><br>
 
