@@ -35,6 +35,7 @@
         dis = $(document.activeElement);
         dis.removeAttr("id");
         dis.attr("onfocus","this.select()");
+        dis.css("color","black");
         if (dis.val() == "Name of Event"
                     || dis.val() == "MM/DD/YYYY"
                     || dis.val() == "Invalid Date") {
@@ -42,7 +43,18 @@
         }
     }
 
+    function today() {
+        $("#finaldiv > textarea").css("color","#b2b2b2");
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+        var yyyy = today.getFullYear();
+        todaystr = mm+'/'+dd+'/'+yyyy;
+        $("#today > .date").val(todaystr);
+    }
+
     function calc() {
+        var today = new Date();
         var invalid = false;
         var arr = [];
 
@@ -96,13 +108,15 @@
         });
 
         $.each(res, function(i,item) {
-            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' it will have been twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".</span><br>');
+            var tense = (item.odate < today) ? 'it had been':'it will have been';
+            var uncheck = (item.namea == 'Today' || item.nameb == 'Today') ? '':' checked'
+            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '"' + uncheck + '>&nbsp&nbsp<span>On ' + item.datestr + ' ' + tense + ' twice as long since ' + item.namea + ' as since ' + item.nameb + '.</span><br>');
         });
         $("#download").show();
     }
 
     function download() {
-         $.each(res, function(i,item) {
+        $.each(res, function(i,item) {
             if ($("#c" + i).is(":checked")) {
                 var name = item.nameb + ' bisects ' + item.namea + ' and now';
                 var desc = 'It has been now twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".';
@@ -119,7 +133,7 @@
 
 </head>
 
-<body>
+<body onload="today()">
 
 <h1>Future Perfect</h1>
 
@@ -130,6 +144,12 @@
 <span>Please enter the names and dates of significant events in your life.</span>
 
 <br><br>
+
+<div id="today">
+<input type="button" value="X" onclick="kill(this)" />
+<textarea class="name" rows="1" style="width: 26.5em" onfocus="this.select()">Today</textarea>
+<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea>
+</div>
 
 <div id="finaldiv">
 <input type="button" value="X" onclick="kill(this)" />
