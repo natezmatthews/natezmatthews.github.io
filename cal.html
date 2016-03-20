@@ -35,7 +35,7 @@
         dis = $(document.activeElement);
         dis.removeAttr("id");
         dis.attr("onfocus","this.select()");
-        dis.css("color","black");
+        dis.removeClass("fresh")
         if (dis.val() == "Name of Event"
                     || dis.val() == "MM/DD/YYYY"
                     || dis.val() == "Invalid Date") {
@@ -44,7 +44,7 @@
     }
 
     function today() {
-        $("#finaldiv > textarea").css("color","#b2b2b2");
+        $("#finaldiv > textarea").addClass("fresh");
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1;
@@ -72,7 +72,7 @@
             if (val != "") {
                 newdate = new Date(val);
                 if (newdate == "Invalid Date" && val != "MM/DD/YYYY") {
-                    $(this).val("Invalid Date").attr("id","invalid").attr("onfocus","clr()");
+                    $(this).val("Invalid Date").addClass("invalid").attr("onfocus","clr()");
                     invalid = true;
                 }
                 arr[i].dadate = newdate;

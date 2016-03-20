@@ -7,7 +7,7 @@ body{
   background-image: url("calendar.png");
   background-repeat: repeat;
   font-weight:300;
-  color:#FFFFFF;
+  color:#ffffff;
   }
 
 #block{
@@ -29,13 +29,17 @@ h1{
     border-radius: 15px;
 }
 
-#invalid{
-    color:#ff0606;
-}
-
 textarea {
     height: auto;
     padding: 5px;
+}
+
+.invalid{
+    color:#ff0606;
+}
+
+.fresh{
+    color:#b2b2b2;
 }
 
 #credits{
