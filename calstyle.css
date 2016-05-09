@@ -20,6 +20,16 @@ body{
     border-radius: 15px;
 }
 
+#example{
+  background-color:rgba(0, 0, 0, 0.7);
+  max-width:400px;
+  margin: auto;
+  padding: 10px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+}
+
 h1{
     background-color:rgba(0, 0, 0, 0.7);
     max-width:600px;
