@@ -43,14 +43,8 @@
         }
     }
 
-    function today() {
+    function start() {
         $("#finaldiv > textarea").addClass("fresh");
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1;
-        var yyyy = today.getFullYear();
-        todaystr = mm+'/'+dd+'/'+yyyy;
-        $("#today > .date").val(todaystr);
     }
 
     function calc() {
@@ -133,7 +127,7 @@
 
 </head>
 
-<body onload="today()">
+<body onload="start()">
 
 <h1>Future Perfect</h1>
 
@@ -144,12 +138,6 @@
 <span>Please enter the names and dates of significant events in your life.</span>
 
 <br><br>
-
-<div id="today">
-<input type="button" value="X" onclick="kill(this)" />
-<textarea class="name" rows="1" style="width: 26.5em" onfocus="this.select()">Today</textarea>
-<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea>
-</div>
 
 <div id="finaldiv">
 <input type="button" value="X" onclick="kill(this)" />
