@@ -43,6 +43,34 @@
         return true;
     };
 
+    LifeEvents.prototype.fill = function(){
+        array = this.arr;
+        $(".name").each(function(i) {
+            val = $(this).val();
+            if (val != "") {
+                var item = {daname:"",dadate:0};
+                item.daname = val;
+                array[i] = item;
+            }
+        });
+
+        $(".date").each(function(i) {
+            val = $(this).val();
+            if (val != "") {
+                newdate = new Date(val);
+                if (newdate == "Invalid Date" && val != "MM/DD/YYYY") {
+                    $(this).val("Invalid Date").addClass("invalid").attr("onfocus","clr()");
+                    return false;
+                }
+                array[i].dadate = newdate;
+            }
+        });
+        this.arr = array.sort(function(obj1,obj2) {
+            return obj1.dadate - obj2.dadate;
+        });;
+        return true;
+    };
+
     LifeEvents.prototype.printarr = function(){
         console.log(this.arr);
     };
@@ -90,7 +118,7 @@
         events_obj = new LifeEvents();
         console.log(events_obj);
         fillsuc = events_obj.fill();
-        console.log(fullsuc);
+        console.log(fillsuc);
         events_obj.printarr();
 
         // var today = new Date();
