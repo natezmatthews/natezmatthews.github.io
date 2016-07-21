@@ -69,7 +69,7 @@
     };
 
     LifeEvents.prototype.updatepage = function(){
-        $("#finaldiv").after("<br><span id='icshelpmessage'>To add these to your calendar, select the events you want,</span><br><span> click 'Export' below, and then import that file to your calendar program.</span><br>");
+        $("#finaldiv").after("<div id='icshelpmessage'><br><span>To add these to your calendar, select the events you want,</span><br><span> click 'Export' below, and then import that file to your calendar program.</span><br>");
         $("#finaldiv").hide();
         var btn = $("#done");
         btn.attr("value","Reset");
