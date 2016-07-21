@@ -69,14 +69,14 @@
     };
 
     LifeEvents.prototype.updatepage = function(){
-        $("#finaldiv").after("<div class ='icshelpmessage'><br><span>To add these to your calendar, select the events you want,</span><br><span> click 'Export' below, and then import that file to your calendar program.</span><br>");
+        $("#finaldiv").after("<div class ='resultsmsgs'><br><span>To add these to your calendar, select the events you want,</span><br><span> click 'Export' below, and then import that file to your calendar program.</span><br>");
         $("#finaldiv").hide();
         var btn = $("#done");
         btn.attr("value","Reset");
         btn.attr("onclick","reset()");
         $.each(this.res, function(i,item) {
             var tense = (item.odate < (new Date())) ? 'it had been':'it will have been';
-            $("#finaldiv").after('<div class ="icshelpmessage"><br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' ' + tense + ' twice as long since ' + item.namea + ' as since ' + item.nameb + '.</span><br></div>');
+            $("#finaldiv").after('<div class ="resultsmsgs"><br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' ' + tense + ' twice as long since ' + item.namea + ' as since ' + item.nameb + '.</span><br></div>');
         });
         $("#download").show();
     };
@@ -146,8 +146,8 @@
     }
 
     function reset() {
-        $(".icshelpmessage").remove();
-        // location.reload();
+        $(".resultsmsgs").remove();
+        $("#finaldiv").show();
     }
 </script>
 
