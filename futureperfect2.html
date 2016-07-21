@@ -76,13 +76,7 @@
         btn.attr("onclick","reset()");
         $.each(this.res, function(i,item) {
             var tense = (item.odate < (new Date())) ? 'it had been':'it will have been';
-            // var uncheck = ((item.namea).toLowerCase() == 'today' 
-            //                 || (item.nameb).toLowerCase() == 'today'
-            //                 || (item.namea).toLowerCase() == 'now' 
-            //                 || (item.nameb).toLowerCase() == 'now'
-            //               ) ? '':' checked';
-            var uncheck = ' checked'
-            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '"' + uncheck + '>&nbsp&nbsp<span>On ' + item.datestr + ' ' + tense + ' twice as long since ' + item.namea + ' as since ' + item.nameb + '.</span><br>');
+            $("#finaldiv").after('<br><input type="checkbox" id="c' + i + '" checked>&nbsp&nbsp<span>On ' + item.datestr + ' ' + tense + ' twice as long since ' + item.namea + ' as since ' + item.nameb + '.</span><br>');
         });
         $("#download").show();
     };
