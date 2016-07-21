@@ -75,7 +75,7 @@
         btn.attr("value","Reset");
         btn.attr("onclick","reset()");
         $.each(this.res, function(i,item) {
-            var tense = (item.odate < today) ? 'it had been':'it will have been';
+            var tense = (item.odate < (new Date())) ? 'it had been':'it will have been';
             // var uncheck = ((item.namea).toLowerCase() == 'today' 
             //                 || (item.nameb).toLowerCase() == 'today'
             //                 || (item.namea).toLowerCase() == 'now' 
