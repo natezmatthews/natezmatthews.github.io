@@ -16,7 +16,11 @@
     var LifeEvents = function() {
         this.arr = []
         this.res = []
-        this.fillsuccess = false
+    };
+
+    LifeEvents.prototype.resetevents = function(){
+        this.arr = []
+        this.res = []
     };
 
     LifeEvents.prototype.getinput = function(){
@@ -158,6 +162,7 @@
     }
 
     function reset() {
+        events_obj.resetevents();
         $(".resultsmsgs").remove();
         $("#finaldiv").show();
         var btn = $("#done");
