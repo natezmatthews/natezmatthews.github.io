@@ -123,11 +123,13 @@
         dis = $(document.activeElement);
         dis.removeAttr("id");
         dis.attr("onfocus","this.select()");
-        dis.removeClass("fresh")
-        if (dis.val() == "Name of Event"
-                    || dis.val() == "MM/DD/YYYY"
-                    || dis.val() == "Invalid Date") {
+        dis.removeClass("fresh");
+        if (dis.val() == "Name of Event" || dis.val() == "MM/DD/YYYY") {
             dis.val("");
+        }
+        if (dis.val() == "Invalid Date") {
+            dis.val("");
+            dis.removeClass("invalid");
         }
     }
 
