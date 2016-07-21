@@ -81,14 +81,20 @@
         $("#download").show();
     };
 
+    LifeEvents.prototype.downloadics = function(){
+        $.each(this.res, function(i,item) {
+            if ($("#c" + i).is(":checked")) {
+                var name = item.nameb + ' bisects ' + item.namea + ' and now';
+                var desc = 'It has been now twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".';
+                cal.addEvent(name,desc,'',item.datestr,item.datestr);
+            }
+        });
+        cal.download();
+    };
+
     LifeEvents.prototype.printarr = function(){
         console.log(this.arr);
     };
-
-    // LifeEvents.prototype.fill = function(){
-    //     console.log("Hello, I'm " + this.firstName);
-    // };
-
 
     function kill(btn) {
         victim = $(btn).parent();
@@ -135,14 +141,15 @@
     }
 
     function download() {
-        $.each(res, function(i,item) {
-            if ($("#c" + i).is(":checked")) {
-                var name = item.nameb + ' bisects ' + item.namea + ' and now';
-                var desc = 'It has been now twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".';
-                cal.addEvent(name,desc,'',item.datestr,item.datestr);
-            }
-        });
-        cal.download();
+        events_obj.downloadics();
+        // $.each(res, function(i,item) {
+        //     if ($("#c" + i).is(":checked")) {
+        //         var name = item.nameb + ' bisects ' + item.namea + ' and now';
+        //         var desc = 'It has been now twice as long since \"' + item.namea + '\" as since \"' + item.nameb + '\".';
+        //         cal.addEvent(name,desc,'',item.datestr,item.datestr);
+        //     }
+        // });
+        // cal.download();
     }
 
     function reset() {
