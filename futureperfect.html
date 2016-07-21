@@ -12,6 +12,19 @@
     var line = '<div id="finaldiv">\n<input type="button" value="X" onclick="kill(this)" />\n<textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="this.select()"></textarea>\n<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea></div>'
     var cal = ics();
     var res = [];
+    // var lifeevents = function(firstName) {
+    //     this.firstName = firstName;
+    // };
+
+    // // Add a couple of methods to Person.prototype
+    // Person.prototype.walk = function(){
+    //     console.log("I am walking!");
+    // };
+
+    // Person.prototype.sayHello = function(){
+    //     console.log("Hello, I'm " + this.firstName);
+    // };
+
 
     function kill(btn) {
         victim = $(btn).parent();
