@@ -11,15 +11,16 @@
 <script type="text/javascript">
     var line = '<div id="finaldiv">\n<input type="button" value="X" onclick="kill(this)" />\n<textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="this.select()"></textarea>\n<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea></div>'
     var cal = ics();
-    var res = [];
+    // var res = [];
 
     var LifeEvents = function() {
         this.arr = []
+        this.res = []
         this.fillsuccess = false
     };
 
     LifeEvents.prototype.getinput = function(){
-        array = this.arr;
+        var array = this.arr;
         $(".name").each(function(i) {
             val = $(this).val();
             if (val != "") {
@@ -44,6 +45,27 @@
             return obj1.dadate - obj2.dadate;
         });;
         return true;
+    };
+
+    LifeEvents.prototype.makeoutput = function(){
+        var array = this.arr;
+        var results = this.res;
+        for (var i = 0; i < array.length; i++) {
+            for (var j = 0; j < array.length; j++) {
+                if (i >= j) {continue;}
+                var odate = new Date((array[j].dadate - array[i].dadate) * 2 + array[i].dadate.getTime());
+                var date = (odate.getMonth() + 1).toString() + '/' + odate.getDate().toString() + '/' + odate.getFullYear().toString();
+                var item = {namea:array[i].daname, nameb:array[j].daname, datestr:date, odate:odate}
+                results.push(item);
+            }
+        };
+        
+        results.sort(function(obj1,obj2) {
+            return obj2.odate - obj1.odate;
+        });
+
+        this.res = results;
+        console.log(this.res());
     };
 
     LifeEvents.prototype.printarr = function(){
@@ -95,6 +117,7 @@
         fillsuc = events_obj.getinput();
         console.log(fillsuc);
         events_obj.printarr();
+        events_obj.makeoutput();
 
         // var today = new Date();
         // var invalid = false;
