@@ -148,6 +148,10 @@
     function reset() {
         $(".resultsmsgs").remove();
         $("#finaldiv").show();
+        var btn = $("#done");
+        btn.attr("value","Done");
+        btn.attr("onclick","calc()");
+        $("#download").hide();
     }
 </script>
 
