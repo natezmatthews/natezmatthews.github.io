@@ -21,6 +21,7 @@
 
     LifeEvents.prototype.getinput = function(){
         var array = this.arr;
+        var allvalid = true;
         $(".name").each(function(i) {
             val = $(this).val();
             if (val != "") {
@@ -36,7 +37,7 @@
                 newdate = new Date(val);
                 if (newdate == "Invalid Date" && val != "MM/DD/YYYY") {
                     $(this).val("Invalid Date").addClass("invalid").attr("onfocus","clr()");
-                    return false;
+                    allvalid = false;
                 }
                 array[i].dadate = newdate;
             }
@@ -44,7 +45,7 @@
         this.arr = array.sort(function(obj1,obj2) {
             return obj1.dadate - obj2.dadate;
         });;
-        return true;
+        return allvalid;
     };
 
     LifeEvents.prototype.makeoutput = function(){
