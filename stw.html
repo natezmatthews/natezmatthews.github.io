@@ -1,7 +1,39 @@
 <!DOCTYPE html>
-<html>
+<!-- Template by Quackit.com -->
+<!-- Images by various sources under the Creative Commons CC0 license and/or the Creative Commons Zero license. 
+Although you can use them, for a more unique website, replace these images with your own. -->
+<html lang="en">
+
 <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Small The World</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/form.css" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom Fonts from Google -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
 </head>
+
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -34,17 +66,26 @@
         }
     }
 
-    function button() {
-        FB.login(function(response) {
-            if (response.authResponse) {
-                M.FB.setIsAuthorised(true);
-                //  On success.
-            } else {
-                //  On failure.
-            }         
-        }, {scope: 'public_profile,email,tagged_places'}
-        );
-    }
+    // function logout() {
+    //     FB.logout(function(response){
+    //         console.log('About to show fb logout response:');
+    //         console.log(response);
+    //         document.getElementById('status').innerHTML =
+    //             response.name + 'is now logged out of facebook.';
+    //     });
+    // }
+
+    // function button() {
+    //     FB.login(function(response) {
+    //         if (response.authResponse) {
+    //             M.FB.setIsAuthorised(true);
+    //             //  On success.
+    //         } else {
+    //             //  On failure.
+    //         }         
+    //     }, {scope: 'public_profile,email,tagged_places'}
+    //     );
+    // }
 
     // This function is called when someone finishes with the Login
     // Button.  See the onlogin handler attached to it in the sample
@@ -96,15 +137,16 @@
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+                'Thanks for letting us import your places from Facebook, ' + response.first_name + '.';
         });
 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
             for (element in response.data) {
-                loc = response.data[element].place.location;
-                lats[element] = loc.latitude.toString();
-                lons[element] = loc.longitude.toString();
+                place = response.data[element].place;
+                addresses[element] = place.name;
+                lats[element] = place.location.latitude.toString();
+                lons[element] = place.location.longitude.toString();
             }
 
             par=1;
@@ -118,14 +160,88 @@
     }
 </script>
 
+    <!-- Navigation -->
+    <nav id="siteNav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <span class="glyphicon glyphicon-fire"></span> 
+                    SMALL THE WORLD
+                </a>
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Products</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="about-us">
+                            <li><a href="#">Engage</a></li>
+                            <li><a href="#">Pontificate</a></li>
+                            <li><a href="#">Synergize</a></li>
+                        </ul>
+                    </li> -->
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+                
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1>Small The World</h1>
+                <p>Where should you go if you want to farthest away from anywhere you've ever been?</p>
+                <p>Scroll down to find out.</p>
+                <!-- <a href="#" class="btn btn-primary btn-lg">Engage Now</a> -->
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- <span class="glyphicon glyphicon-apple" style="font-size: 60px"></span>
+                    <h2 class="section-heading">Completely synergize resource taxing relationships</h2>
+                    <p class="text-light">Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p> -->
+<p id="status" class="lead text-muted">Click here to import your tagged places from facebook. Otherwise, enter where you have been below.</p>
 <div id="fb-root"></div>
 
-<fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
-</fb:login-button>
+<!-- <fb:login-button scope="public_profile,email,user_tagged_places" onlogin="checkLoginState();">
+</fb:login-button> -->
 
-<div id="status">
-</div>
+<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
 
+<!-- <div id="status">
+</div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content 1 -->
+    <section class="content">
+        <div class="container">
+            <div class="row">
 <form id="frm" action="" onsubmit="launch(); return false">
     <div id="upperleft">
         <div id="radio1">
@@ -186,13 +302,13 @@
             <div id="msg"></div>
         </div>
         <div id="upperright">
-            <div id="radio2">
+            <!-- <div id="radio2">
                 <input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />
                 Weight by time&nbsp;&nbsp;
                 <input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />
                 Other weight
             </div>
-            <br />
+            <br /> -->
             <div id="DIC">
                 <div id="DT">
                     <div class="DFI">
@@ -228,7 +344,7 @@
                         <textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea>
                     </div>
                 </div>
-                <div id="DW" class="off">
+                <!-- <div id="DW" class="off">
                     <label for="weight0" accesskey="W">Weight:</label>
                     <br />
                     <input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" />
@@ -237,7 +353,7 @@
                     <label for="weight1" accesskey="W">Weight:</label>
                     <br />
                     <textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea>
-                </div>
+                </div> -->
                 <a href="javascript:triggerMid()">
                     <img id="micon" src="files/micon.jpg" alt="Midpoint info"></img>
                 </a>
@@ -245,7 +361,7 @@
             </div>
         </div>
         <div class="DCL"></div>
-        <div id="map"></div>
+        <!-- <div id="map"></div> -->
         <div id="DLB">
             <div id="DE" class="off"></div>
             <div id="DP">
@@ -263,7 +379,7 @@
             Display place markers
             <br />
             <br />
-            <label for="method">Calculation method:</label>
+            <!-- <label for="method">Calculation method:</label>
             <br />
             <div id="radio3">
                 <input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />
@@ -275,12 +391,101 @@
                 Average latitude/longitude
             </div>
             <br />
-            <br />
+            <br /> -->
             <input type="checkbox" id="large" onclick="switchMap()" />
             Larger map&nbsp;
             <input type="button" class="btn" value="Save map" onclick="save(0)" />
         </div>
     </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content 2 -->
+     <!-- <section class="content content-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2 class="section-header">Superior Quality</h2>
+                    <p class="lead text-light">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+                    <a href="#" class="btn btn-default btn-lg">Test It</a>
+                </div>    
+                <div class="col-sm-6">
+                    <img class="img-responsive img-circle center-block" src="images/iphone.jpg" alt="">
+                </div>            
+                
+            </div>
+        </div>
+    </section>    --> 
+
+    <!-- Promos -->
+    <!-- <div class="container-fluid">
+        <div class="row promo">
+            <a href="#">
+                <div class="col-md-4 promo-item item-1">
+                    <h3>
+                        Unleash
+                    </h3>
+                </div>
+            </a>
+            <a href="#">
+                <div class="col-md-4 promo-item item-2">
+                    <h3>
+                        Synergize
+                    </h3>
+                </div>
+            </a>
+            
+            <a href="#">
+                <div class="col-md-4 promo-item item-3">
+                    <h3>
+                        Procrastinate
+                    </h3>
+                </div>
+            </a>
+        </div>
+    </div> --><!-- /.container-fluid -->
+
+    <!-- Content 3 -->
+     <section class="content content-2">
+        <div class="container">
+            <div id="map"></div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="page-footer">
+    
+        <!-- Contact Us -->
+        <!-- <div class="contact">
+            <a name="contact"></a>
+            <div class="container">
+                <h2 class="section-heading">Contact Us</h2>
+                <p><span class="glyphicon glyphicon-envelope"></span><br> contact@smalltheworld.com</p>
+            </div>
+        </div> -->
+            
+        <!-- Copyright etc -->
+        <div class="small-print">
+            <div class="container">
+                <p>contact@smalltheworld.com</p>
+            </div>
+        </div>
+        
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    
+    <!-- Custom Javascript -->
+    <script src="js/custom.js"></script>
 
 </body>
+
 </html>
