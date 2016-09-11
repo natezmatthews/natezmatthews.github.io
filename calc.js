@@ -154,7 +154,7 @@ function initialize() {
 
     geocoder = new google.maps.Geocoder();
     var options = {
-        zoom: z,
+        zoom: 3,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
