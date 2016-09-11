@@ -327,9 +327,9 @@ function clearGeocode() {
 
 function clearWeights() {
     for (i = 0; i < 2; i++) {
-        nate[i].Year = "";
-        nate[i].Month = "";
-        nate[i].Day = "";
+        nate[i].year = "";
+        nate[i].month = "";
+        nate[i].day = "";
         // cWeight[i].value = "";
     }
     years.length = 0;
@@ -368,9 +368,9 @@ function appendToList() {
     if (MM) MM = remove(MM);
     appendOptionLast("places", sText);
     var l = nate.length - 1;
-    nate[l].y = years[addressIndex];
-    nate[l].m = months[addressIndex];
-    nate[l].d = days[addressIndex];
+    nate[l].y = nate[addressIndex].year;
+    nate[l].m = nate[addressIndex].month;
+    nate[l].d = nate[addressIndex].day;
     var point = new google.maps.LatLng(roundx(r[i].lat, 6), roundx(r[i].lng, 6));
     nate[l].marker = createMarker(point, "", null, 1);
     nate[l].marker.i = l;
@@ -834,13 +834,13 @@ function switchMap() {
 }
 
 function getTimes(l) {
-    years = getInput(cYear[rI].value, l);
-    months = getInput(cMonth[rI].value, l);
-    days = getInput(cDay[rI].value, l);
+    years = getInput(cnate[rI].Year.value, l);
+    months = getInput(cnate[rI].Month.value, l);
+    days = getInput(cnate[rI].Day.value, l);
     // if (wI == 1) {
     //     days = getInput(cWeight[rI].value, l);
     // } else {
-    //     days = getInput(cDay[rI].value, l);
+    //     days = getInput(cnate[rI].Day.value, l);
     // }
 }
 
@@ -868,26 +868,26 @@ function validateTimes(a, l) {
     // if (nate.length) {
     //     var first = !nate[0].y && !nate[0].m && !nate[0].d;
     // } else {
-    //     var first = !parseFloat(years[0]) && !parseFloat(months[0]) && !parseFloat(days[0]);
+    //     var first = !parseFloat(nate[0]) && !parseFloat(months[0]) && !parseFloat(days[0].year);
     // }
     // for (i = 0; i < l; i++) {
     //     if (a == "address") a1 = addresses[i];
-    //     if (isNaN(years[i])) {
-    //         displayError("The year \'" + years[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+    //     if (isNaN(nate[i].year)) {
+    //         displayError("The year \'" + nate[i].year + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
     //         return;
     //     }
-    //     if (isNaN(months[i])) {
-    //         displayError("The month \'" + months[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+    //     if (isNaN(nate[i].month)) {
+    //         displayError("The month \'" + nate[i].month + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
     //         return;
     //     }
-    //     if (isNaN(days[i])) {
-    //         displayError("The day \'" + days[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+    //     if (isNaN(nate[i].day)) {
+    //         displayError("The day \'" + nate[i].day + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
     //         return;
     //     }
-    //     years[i] = +years[i];
-    //     months[i] = +months[i];
-    //     days[i] = +days[i];
-    //     cur = !years[i] && !months[i] && !days[i];
+    //     nate[i] = +years[i].year;
+    //     nate[i] = +months[i].month;
+    //     nate[i] = +days[i].day;
+    //     cur = !nate[i] && !months[i] && !days[i].year;
     //     if (!first && cur) {
     //         displayError("A time must be specified for " + a + " #" + parseInt(i + 1) + " " + addresses[i] + ".");
     //         return false;
@@ -979,9 +979,9 @@ function launchL() {
     //     appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
     // }
     var l = nate.length - 1;
-    nate[l].y = parseFloat(years[addressIndex]);
-    nate[l].m = parseFloat(months[addressIndex]);
-    nate[l].d = parseFloat(days[addressIndex]);
+    nate[l].y = parseFloat(nate[addressIndex].year);
+    nate[l].m = parseFloat(nate[addressIndex].month);
+    nate[l].d = parseFloat(nate[addressIndex].day);
     var point = new google.maps.LatLng(latLonToDecimal(lats[addressIndex]), latLonToDecimal(lons[addressIndex]));
     nate[l].marker = createMarker(point, "", null, 1);
     nate[l].marker.i = l;
