@@ -37,7 +37,7 @@ Although you can use them, for a more unique website, replace these images with 
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0VVor9Y2LbZmTjh6rVWen1a2vh-vc1N0">
 </script>
 <script type="text/javascript" src="calc.js">
 </script>
@@ -145,10 +145,14 @@ Although you can use them, for a more unique website, replace these images with 
 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
-            for (element in response.data) {
-                place = response.data[element].place;
-                toadd = {Address:place.name, lat:place.location.latitude.toString(), lng:place.location.longitude.toString(), year:0, month:0, day:7}
-                nate.push(toadd);
+            for (i in response.data) {
+                place = response.data[i].place;
+                nate.push({Address:place.name,
+                            lat:place.location.latitude.toString(),
+                            lng:place.location.longitude.toString(),
+                            year:0,
+                            month:0,
+                            day:7});
                 // nate[element].Address = place.name;
                 // nate[element].lat = place.location.latitude.toString();
                 // nate[element].lng = place.location.longitude.toString();

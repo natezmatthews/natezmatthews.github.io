@@ -166,11 +166,11 @@ function initialize() {
     };
     map = new google.maps.Map(D("map"), options);
 
-    // if (lats.length) {
+    // if (nate.length) {
     //     par = 1;
-    //     years = getInput(y, lats.length);
-    //     months = getInput(m, lats.length);
-    //     days = getInput(d, lats.length);
+    //     years = getInput(y, nate.length);
+    //     months = getInput(m, nate.length);
+    //     days = getInput(d, nate.length);
     //     launch(1);
     // } else if (parlat && parlng) {
     //     par = 1;
@@ -312,7 +312,7 @@ function clear2() {
     clearWeights();
     // lockWeights();
     nate.length = 0;
-    // lats.length = 0;
+    // nate.length = 0;
     // lons.length = 0;
     // years.length = 0;
     // months.length = 0;
@@ -914,17 +914,17 @@ function launch(p1) {
     //     if (!par) {
     //         lats = getInput(f1.latitude.value, 0);
     //         lons = getInput(f1.longitude.value, 0);
-    //         getTimes(lats.length);
+    //         getTimes(nate.length);
     //     }
-    //     if (lats.length != lons.length) {
+    //     if (nate.length != lons.length) {
     //         displayError('The number of latitudes is not the same as the number of longitudes. Please check your data.');
     //         return false;
     //     }
-    //     if (lats.length == 0 || lons.length == 0) {
+    //     if (nate.length == 0 || lons.length == 0) {
     //         displayError('You must specify a latitude and longitude before continuing.');
     //         return false;
     //     }
-    //     for (j = 0; j < lats.length; j++) {
+    //     for (j = 0; j < nate.length; j++) {
     //         if (!validateLl(lats[j], 0)) {
     //             displayError("The entry \'" + lats[j] + "\' for latitude #" + parseInt(j + 1) + " is invalid.");
     //             return false;
@@ -934,9 +934,9 @@ function launch(p1) {
     //             return false;
     //         }
     //     }
-    //     if (!validateTimes("location", lats.length)) return false;
+    //     if (!validateTimes("location", nate.length)) return false;
     //     addressIndex = -1
-    //     if (lats.length > 1) {
+    //     if (nate.length > 1) {
     //         dispProceed();
     //         dispMsg("Adding...", 2);
     //     }
@@ -961,7 +961,7 @@ function launch(p1) {
 }
 
 function launchL() {
-    if (addressIndex >= lats.length - 1 || cancel) {
+    if (addressIndex >= nate.length - 1 || cancel) {
         clearWeights();
         clearGeocode();
         if (!par || parlat && parlng) calculate();
@@ -993,7 +993,7 @@ function launchL() {
 }
 
 function launchG() {
-    D("DE").style.display = "none";
+    // D("DE").style.display = "none";
     geocoder.geocode({
         'address': nate[addressIndex].Address
     }, gCallback);
