@@ -43,6 +43,9 @@ Although you can use them, for a more unique website, replace these images with 
 </script>
 
 <script>
+
+    var line = '<div id="finaldiv">\n<input type="button" value="X" onclick="kill(this)" />\n<textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="this.select()"></textarea>\n<textarea class="date" rows="1" style="width: 10em" onfocus="this.select()"></textarea></div>'
+
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -174,9 +177,9 @@ Although you can use them, for a more unique website, replace these images with 
         dis.removeAttr("id");
         dis.attr("onfocus","this.select()");
         dis.removeClass("fresh");
-        if (dis.val() == "Name of Event" || dis.val() == "MM/DD/YYYY") {
-            dis.val("");
-        }
+        // if (dis.val() == "Name of Event" || dis.val() == "MM/DD/YYYY") {
+        //     dis.val("");
+        // }
         if (dis.val() == "Invalid Date") {
             dis.val("");
             dis.removeClass("invalid");
@@ -268,8 +271,8 @@ Although you can use them, for a more unique website, replace these images with 
             <div class="row">
                 <div id="finaldiv">
                     <input type="button" value="X" onclick="kill(this)" />
-                    <textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">Name of Event</textarea>
-                    <textarea class="date" rows="1" style="width: 10em" onchange="newline(value)" onfocus="clr()">MM/DD/YYYY</textarea>
+                    <textarea class="name" rows="1" style="width: 26.5em" onchange="newline(value)" onfocus="clr()">Place you've been</textarea>
+                    <textarea class="date" rows="1" style="width: 10em" onchange="newline(value)" onfocus="clr()">Weight</textarea>
                 </div>
             </div>
             <input type="button" id="done" value="Done" onclick="launch()" disabled/>
