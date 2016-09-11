@@ -156,6 +156,8 @@ function initialize() {
     //     z = 3;
     // }
 
+    console.log("Initialize");
+
     geocoder = new google.maps.Geocoder();
     var options = {
         zoom: 3,
