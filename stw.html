@@ -145,6 +145,7 @@ Although you can use them, for a more unique website, replace these images with 
 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
+            if (!nate) return;
             for (element in response.data) {
                 place = response.data[element].place;
                 nate[element].Address = place.name;
