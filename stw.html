@@ -162,6 +162,14 @@ Although you can use them, for a more unique website, replace these images with 
         });
     }
 
+    function kill(btn) {
+        victim = $(btn).parent();
+        if (victim.attr("id") == "finaldiv") {
+            victim.after(line);
+        }
+        victim.remove();
+    }
+
     function newline(val) {
         if (val == "") return;
         $("#done").removeAttr("disabled");
