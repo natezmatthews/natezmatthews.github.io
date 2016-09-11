@@ -147,23 +147,28 @@ Although you can use them, for a more unique website, replace these images with 
             console.log(response);
             for (element in response.data) {
                 place = response.data[element].place;
-                nate[element].Address = place.name;
-                nate[element].lat = place.location.latitude.toString();
-                nate[element].lng = place.location.longitude.toString();
+                toadd = {Address:place.name, lat:place.location.latitude.toString(), lng:place.location.longitude.toString(), year:0, month:0, day:7}
+                nate.push(toadd);
+                // nate[element].Address = place.name;
+                // nate[element].lat = place.location.latitude.toString();
+                // nate[element].lng = place.location.longitude.toString();
             }
 
+            console.log("Nate array now is:");
+            console.log(nate);
+
             // par=1;
-            for (var i = 0; i < nate.length; i++) {
-                nate[i].year = 0
-                nate[i].month = 0
-                nate[i].day = 7
-            }
+            // for (var i = 0; i < nate.length; i++) {
+            //     nate[i].year = 0
+            //     nate[i].month = 0
+            //     nate[i].day = 7
+            // }
             // years=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
             // months=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,0);
             // days=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,7);
-            launch();
+            // launch();
             // par=0;
-            calculate();
+            // calculate();
         });
     }
 
