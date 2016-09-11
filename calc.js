@@ -1,21 +1,24 @@
-var calc = '<form id="frm" action="" onsubmit="launch(); return false"></div><div id="upperleft"><div id="radio1"><input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />Address&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Multiple input&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Latitude/longitude</div><br /><div id="DA"><label for="address0">Address or city:</label><br /><input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" /></div><div id="DA2" class="off"><label for="address1">Addresses (Each on a separate line):</label><br /><textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea></div><div id="DL" class="off"><div class="DFI"><label for="latitude" accesskey="L">Latitude(s):</label><br /><textarea id="latitude" cols="16" rows="2" onfocus="this.select()"></textarea>&nbsp;&nbsp;</div><div class="DMA"><label for="longitude">Longitude(s):</label><br /><textarea id="longitude" cols="17" rows="2" onfocus="this.select()"></textarea></div></div><div id="DR" class="off"><label id="resultslabel" for="results">0 search results:</label><br /><div id="DRF"><select id="results"><option></option></select></div><br style="clear: both" /></div><div id="DB" class="fleft"><input id="add" type="submit" class="btn2" value="Add" accesskey="I" /><input type="button" class="btn2" value="Remove" accesskey="X" onclick="removeOptionSelected()" /><input type="button" class="btn2" value="Clear all" accesskey="0" onclick="clearAll()" /></div><div id="DB2" class="fleft"><input id="add2" type="button" class="btn2" value="Continue" onclick="contin()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="DB3" class="fleft"><input id="ok" type="button" class="btn2" value="Ok" onclick="ok1()" /><input type="button" class="btn2" value="Skip" onclick="skip()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="msg"></div></div><div id="upperright"><div id="radio2"><input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />Weight by time&nbsp;&nbsp;<input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />Other weight</div><br /><div id="DIC"><div id="DT"><div class="DFI"><label for="years0" accesskey="Y">Years:</label><br /><input type="text" id="years0" name="years" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DFI"><label for="months0">Months:</label><br /><input type="text" id="months0" name="months" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DMA"><label for="days0">Days:</label><br /><input type="text" id="days0" name="days" size="5" maxlength="5" onfocus="this.select()" /></div></div><div id="DT2" class="off"><div class="DFI"><label for="years1" accesskey="Y">Years:</label><br /><textarea id="years1" name="years" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DFI"><label for="months1">Months:</label><br /><textarea id="months1" name="months" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DMA"><label for="days1">Days:</label><br /><textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div></div><div id="DW" class="off"><label for="weight0" accesskey="W">Weight:</label><br /><input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" /></div><div id="DW2" class="off"><label for="weight1" accesskey="W">Weight:</label><br /><textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea></div><a href="javascript:triggerMid()"><img id="micon" src="files/micon.jpg" alt="Midpoint info"></img></a><span>Leave blank for no weight</span></div></div><div class="DCL"></div><div id="map"></div><div id="DLB"><div id="DE" class="off"></div><div id="DP"><label id="placeslabel" for="places" accesskey="P">Your places:</label><br /><select id="places" size="8" onchange="openPlace()"><option>.</option><option>.</option><option>.</option></select></div><br /><br /><input type="checkbox" id="disp" checked="checked" />Display place markers<br /><br /><label for="method">Calculation method:</label><br /><div id="radio3"><input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />Midpoint (Center of gravity)<br /><input type="radio" name="method" onclick="changeMethod()" />Center of minimum distance<br /><input type="radio" name="method" onclick="changeMethod()" />Average latitude/longitude</div><br /><br /><input type="checkbox" id="large" onclick="switchMap()" />Larger map&nbsp;<input type="button" class="btn" value="Save map" onclick="save(0)" /></div></form>';
+// var calc = '<form id="frm" action="" onsubmit="launch(); return false"></div><div id="upperleft"><div id="radio1"><input class="even" type="radio" name="radr" checked="checked" onclick="switchLoc()" />Address&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Multiple input&nbsp;<input class="even" type="radio" name="radr" onclick="switchLoc()" />Latitude/longitude</div><br /><div id="DA"><label for="address0">Address or city:</label><br /><input type="text" id="address0" name="address" size="55" maxlength="60" onfocus="this.select()" /></div><div id="DA2" class="off"><label for="address1">Addresses (Each on a separate line):</label><br /><textarea id="address1" name="address" rows="2" cols="0" style="width: 26.5em" onfocus="this.select()"></textarea></div><div id="DL" class="off"><div class="DFI"><label for="latitude" accesskey="L">Latitude(s):</label><br /><textarea id="latitude" cols="16" rows="2" onfocus="this.select()"></textarea>&nbsp;&nbsp;</div><div class="DMA"><label for="longitude">Longitude(s):</label><br /><textarea id="longitude" cols="17" rows="2" onfocus="this.select()"></textarea></div></div><div id="DR" class="off"><label id="resultslabel" for="results">0 search results:</label><br /><div id="DRF"><select id="results"><option></option></select></div><br style="clear: both" /></div><div id="DB" class="fleft"><input id="add" type="submit" class="btn2" value="Add" accesskey="I" /><input type="button" class="btn2" value="Remove" accesskey="X" onclick="removeOptionSelected()" /><input type="button" class="btn2" value="Clear all" accesskey="0" onclick="clearAll()" /></div><div id="DB2" class="fleft"><input id="add2" type="button" class="btn2" value="Continue" onclick="contin()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="DB3" class="fleft"><input id="ok" type="button" class="btn2" value="Ok" onclick="ok1()" /><input type="button" class="btn2" value="Skip" onclick="skip()" /><input type="button" class="btn2" value="Cancel" onclick="cancelGeocode()" /></div><div id="msg"></div></div><div id="upperright"><div id="radio2"><input class="even" type="radio" id="w0" name="radw" checked="checked" onclick="switchWeight()" />Weight by time&nbsp;&nbsp;<input class="even" type="radio" id="w1" name="radw" onclick="switchWeight()" />Other weight</div><br /><div id="DIC"><div id="DT"><div class="DFI"><label for="years0" accesskey="Y">Years:</label><br /><input type="text" id="years0" name="years" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DFI"><label for="months0">Months:</label><br /><input type="text" id="months0" name="months" size="5" maxlength="5" onfocus="this.select()" /></div><div class="DMA"><label for="days0">Days:</label><br /><input type="text" id="days0" name="days" size="5" maxlength="5" onfocus="this.select()" /></div></div><div id="DT2" class="off"><div class="DFI"><label for="years1" accesskey="Y">Years:</label><br /><textarea id="years1" name="years" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DFI"><label for="months1">Months:</label><br /><textarea id="months1" name="months" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div><div class="DMA"><label for="days1">Days:</label><br /><textarea id="days1" name="days" rows="2" cols="0" style="width: 4em" onfocus="this.select()"></textarea></div></div><div id="DW" class="off"><label for="weight0" accesskey="W">Weight:</label><br /><input type="text" id="weight0" name="weight" size="15" maxlength="15" onfocus="this.select()" /></div><div id="DW2" class="off"><label for="weight1" accesskey="W">Weight:</label><br /><textarea id="weight1" name="weight" rows="2" cols="15" onfocus="this.select()"></textarea></div><a href="javascript:triggerMid()"><img id="micon" src="files/micon.jpg" alt="Midpoint info"></img></a><span>Leave blank for no weight</span></div></div><div class="DCL"></div><div id="map"></div><div id="DLB"><div id="DE" class="off"></div><div id="DP"><label id="placeslabel" for="places" accesskey="P">Your places:</label><br /><select id="places" size="8" onchange="openPlace()"><option>.</option><option>.</option><option>.</option></select></div><br /><br /><input type="checkbox" id="disp" checked="checked" />Display place markers<br /><br /><label for="method">Calculation method:</label><br /><div id="radio3"><input id="method" type="radio" name="method" checked="checked" onclick="changeMethod()" />Midpoint (Center of gravity)<br /><input type="radio" name="method" onclick="changeMethod()" />Center of minimum distance<br /><input type="radio" name="method" onclick="changeMethod()" />Average latitude/longitude</div><br /><br /><input type="checkbox" id="large" onclick="switchMap()" />Larger map&nbsp;<input type="button" class="btn" value="Save map" onclick="save(0)" /></div></form>';
 
 var map, geocoder, MM;
-var cAddress = document.getElementsByName("address");
-var cYear = document.getElementsByName("years");
-var cMonth = document.getElementsByName("months");
-var cDay = document.getElementsByName("days");
+
+var nate = new Array();
+// var cAddress = document.getElementsByName("address");
+// var cYear = document.getElementsByName("years");
+// var cMonth = document.getElementsByName("months");
+// var cDay = document.getElementsByName("days");
 // var cWeight = document.getElementsByName("weight");
-var addresses = new Array();
-var years = new Array();
-var months = new Array();
-var days = new Array();
-var lats = new Array();
-var lons = new Array();
-var ck = new Array();
+// var addresses = new Array();
+// var years = new Array();
+// var months = new Array();
+// var days = new Array();
+// var lats = new Array();
+// var lons = new Array();
+// var ck = new Array();
 // var mTxt = ["Geographic midpoint", "Center of minimum distance", "Average latitude/longitude"];
 
-var f1, request, addressIndex, pause, cancel, parlat, parlng, sameMap = 0;
+// var f1, 
+var request, addressIndex, pause, cancel, parlat, parlng, sameMap = 0;
 
 var par = 0;
 var rI;
@@ -23,13 +26,14 @@ var rI;
 var rad90 = rad(90);
 var rad180 = rad(180);
 var M = Math;
-var p, infoWindow, geoOverLimit;
+// var p, 
+var infoWindow, geoOverLimit;
 // document.write(calc);
 
 function initialize() {
     // f1 = D("frm"); // f1 now is the form
     // p = f1.places; // Number of documented places
-    // p.length = 0;
+    // nate.length = 0;
     // infoWindow = new google.maps.InfoWindow({
     //     content: ""
     // });
@@ -159,7 +163,6 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(D("map"), options);
-    calculate();
 
     // if (lats.length) {
     //     par = 1;
@@ -171,7 +174,7 @@ function initialize() {
     //     par = 1;
     //     calculate();
     // }
-    // if ((MM || p.length) && (cl == "" || cn == "")) setBounds();
+    // if ((MM || nate.length) && (cl == "" || cn == "")) setBounds();
 }
 
 // function unload() {
@@ -218,13 +221,13 @@ function selectText(myDiv) {
 function setBounds() {
     var bounds = new google.maps.LatLngBounds();
     var point;
-    if (p.length || MM) {
+    if (nate.length || MM) {
         if (MM) {
             point = MM.getPosition();
             bounds.extend(point);
         }
-        for (i = 0; i < p.length; i++) {
-            var point = new google.maps.LatLng(p[i].marker.getPosition().lat(), p[i].marker.getPosition().lng());
+        for (i = 0; i < nate.length; i++) {
+            var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
             bounds.extend(point);
         }
         mapLoaded = false;
@@ -297,36 +300,36 @@ function clearAll() {
 
 function clear2() {
     D("DE").style.display = "none";
-    for (i = p.length - 1; i >= 0; i--) {
-        p[i].marker.setMap(null);
+    for (i = nate.length - 1; i >= 0; i--) {
+        nate[i].marker.setMap(null);
     }
     MM = remove(MM);
-    p.length = 0;
+    nate.length = 0;
     dispCount();
     clearGeocode();
     clearWeights();
     // lockWeights();
-    addresses.length = 0;
-    lats.length = 0;
-    lons.length = 0;
-    years.length = 0;
-    months.length = 0;
-    days.length = 0;
+    nate.length = 0;
+    // lats.length = 0;
+    // lons.length = 0;
+    // years.length = 0;
+    // months.length = 0;
+    // days.length = 0;
     dispMsg("", 2);
 }
 
 function clearGeocode() {
-    cAddress[0].value = "";
-    cAddress[1].value = "";
+    nate[0].Address = "";
+    nate[1].Address = "";
     f1.latitude.value = "";
     f1.longitude.value = "";
 }
 
 function clearWeights() {
     for (i = 0; i < 2; i++) {
-        cYear[i].value = "";
-        cMonth[i].value = "";
-        cDay[i].value = "";
+        nate[i].Year = "";
+        nate[i].Month = "";
+        nate[i].Day = "";
         // cWeight[i].value = "";
     }
     years.length = 0;
@@ -341,16 +344,16 @@ function removeOptionSelected() {
     dispMsg("", 2);
     D("DE").style.display = "none";
     if (i >= 0) {
-        p[i].marker.setMap(null);
+        nate[i].marker.setMap(null);
         p.remove(i);
-        if (p.length == 0) {
+        if (nate.length == 0) {
             clearAll();
             return false;
-        } else if (p.length == 1) {
+        } else if (nate.length == 1) {
             if (MM) MM = remove(MM);
         }
-        for (j = i; j < p.length; j++) {
-            p[j].marker.i = j;
+        for (j = i; j < nate.length; j++) {
+            nate[j].marker.i = j;
         }
         dispCount();
         calculate();
@@ -364,19 +367,19 @@ function appendToList() {
     var sText = r[i].text;
     if (MM) MM = remove(MM);
     appendOptionLast("places", sText);
-    var l = p.length - 1;
-    p[l].y = years[addressIndex];
-    p[l].m = months[addressIndex];
-    p[l].d = days[addressIndex];
+    var l = nate.length - 1;
+    nate[l].y = years[addressIndex];
+    nate[l].m = months[addressIndex];
+    nate[l].d = days[addressIndex];
     var point = new google.maps.LatLng(roundx(r[i].lat, 6), roundx(r[i].lng, 6));
-    p[l].marker = createMarker(point, "", null, 1);
-    p[l].marker.i = l;
+    nate[l].marker = createMarker(point, "", null, 1);
+    nate[l].marker.i = l;
     dispCount();
     // if (!l) lockWeights();
 }
 
 function calculate() {
-    if (p.length > 1 || par) {
+    if (nate.length > 1 || par) {
         var midlat = 0,
             midlng = 0;
         var x = 0;
@@ -393,12 +396,12 @@ function calculate() {
         var sinlats = new Array();
         var coslats = new Array();
         with(Math) {
-            for (i = 0; i < p.length; i++) {
-                lats1[i] = rad(p[i].marker.getPosition().lat());
-                lons1[i] = rad(p[i].marker.getPosition().lng());
+            for (i = 0; i < nate.length; i++) {
+                lats1[i] = rad(nate[i].marker.getPosition().lat());
+                lons1[i] = rad(nate[i].marker.getPosition().lng());
                 sinlats[i] = sin(lats1[i]);
                 coslats[i] = cos(lats1[i]);
-                days1[i] = p[i].y * 365.25 + p[i].m * 30.4375 + p[i].d * 1;
+                days1[i] = nate[i].y * 365.25 + nate[i].m * 30.4375 + nate[i].d * 1;
                 if (days1[i] == 0) {
                     days1[i] = 1;
                 }
@@ -530,7 +533,7 @@ function calculate() {
                 }, revGeoCallback);
             }
             // if (tries >= 5000) {
-            //     displayError('The center of distance for these ' + p.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
+            //     displayError('The center of distance for these ' + nate.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
             // }
         }
     }
@@ -625,17 +628,17 @@ function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
 }
 
 function saveLatLng(i, ll) {
-    if (isNaN(p[i].lat)) {
-        p[i].lat = ll.lat();
-        p[i].lng = ll.lng();
+    if (isNaN(nate[i].lat)) {
+        nate[i].lat = ll.lat();
+        nate[i].lng = ll.lng();
     }
 }
 
 function reset(i) {
     closeInfo();
-    p[i].marker.dragged = 0;
-    var point = new google.maps.LatLng(p[i].lat, p[i].lng);
-    p[i].marker.setPosition(point);
+    nate[i].marker.dragged = 0;
+    var point = new google.maps.LatLng(nate[i].lat, nate[i].lng);
+    nate[i].marker.setPosition(point);
     calculate();
 }
 
@@ -664,7 +667,7 @@ function appendOptionLast(combo, item) {
 }
 
 function dispCount() {
-    var l = p.length;
+    var l = nate.length;
     var m = "s";
     switch (l) {
         case 1:
@@ -677,12 +680,14 @@ function dispCount() {
 }
 
 function dispMsg(s, l) {
-    if (l > 1) D("msg").innerHTML = s;
+    // if (l > 1) D("msg").innerHTML = s;
+    console.log("Display Msg: " + s);
 }
 
 function displayError(e) {
-    D("DE").innerHTML = e;
-    toggleDivs(["DE"], 1);
+    console.log("Display Error: " + e);
+    // D("DE").innerHTML = e;
+    // toggleDivs(["DE"], 1);
     //alert(e);
 }
 
@@ -745,8 +750,8 @@ function roundx(n, exp) {
 }
 
 // function lockWeights() {
-//     f1.w0.disabled = (p.length > 0);
-//     f1.w1.disabled = (p.length > 0);
+//     f1.w0.disabled = (nate.length > 0);
+//     f1.w1.disabled = (nate.length > 0);
 // }
 
 // Toggle which divs of the menu are shown
@@ -809,7 +814,7 @@ function switchLoc() {
 //     } else {
 //         cI = 0;
 //     }
-//     if (p.length > 1) calculate()
+//     if (nate.length > 1) calculate()
 // }
 
 function switchMap() {
@@ -823,7 +828,7 @@ function switchMap() {
     if (map) {
         google.maps.event.trigger(map, 'resize');
     }
-    if (p.length > 0) {
+    if (nate.length > 0) {
         setBounds();
     }
 }
@@ -856,96 +861,97 @@ function getInput(s, l) {
 }
 
 function validateTimes(a, l) {
-    var a1 = ""
-    //     m = ["time", "weight"];
-    // var n = ["day", "weight"];
-    if (p.length) {
-        var first = !p[0].y && !p[0].m && !p[0].d;
-    } else {
-        var first = !parseFloat(years[0]) && !parseFloat(months[0]) && !parseFloat(days[0]);
-    }
-    for (i = 0; i < l; i++) {
-        if (a == "address") a1 = addresses[i];
-        if (isNaN(years[i])) {
-            displayError("The year \'" + years[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
-            return;
-        }
-        if (isNaN(months[i])) {
-            displayError("The month \'" + months[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
-            return;
-        }
-        if (isNaN(days[i])) {
-            displayError("The day \'" + days[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
-            return;
-        }
-        years[i] = +years[i];
-        months[i] = +months[i];
-        days[i] = +days[i];
-        cur = !years[i] && !months[i] && !days[i];
-        if (!first && cur) {
-            displayError("A time must be specified for " + a + " #" + parseInt(i + 1) + " " + addresses[i] + ".");
-            return false;
-        }
-        if (first && !cur) {
-            displayError('You must either enter a time for all locations in Your Places, or leave the time blank or zero for all locations.');
-            return false;
-        }
-    }
+    console.log("Fix Validate Times Later");
+    // var a1 = ""
+    // //     m = ["time", "weight"];
+    // // var n = ["day", "weight"];
+    // if (nate.length) {
+    //     var first = !nate[0].y && !nate[0].m && !nate[0].d;
+    // } else {
+    //     var first = !parseFloat(years[0]) && !parseFloat(months[0]) && !parseFloat(days[0]);
+    // }
+    // for (i = 0; i < l; i++) {
+    //     if (a == "address") a1 = addresses[i];
+    //     if (isNaN(years[i])) {
+    //         displayError("The year \'" + years[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+    //         return;
+    //     }
+    //     if (isNaN(months[i])) {
+    //         displayError("The month \'" + months[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+    //         return;
+    //     }
+    //     if (isNaN(days[i])) {
+    //         displayError("The day \'" + days[i] + "\' for " + a + " #" + parseInt(i + 1) + " " + a1 + " is invalid.");
+    //         return;
+    //     }
+    //     years[i] = +years[i];
+    //     months[i] = +months[i];
+    //     days[i] = +days[i];
+    //     cur = !years[i] && !months[i] && !days[i];
+    //     if (!first && cur) {
+    //         displayError("A time must be specified for " + a + " #" + parseInt(i + 1) + " " + addresses[i] + ".");
+    //         return false;
+    //     }
+    //     if (first && !cur) {
+    //         displayError('You must either enter a time for all locations in Your Places, or leave the time blank or zero for all locations.');
+    //         return false;
+    //     }
+    // }
     return true;
 }
 
 function launch(p1) {
-    if (!p1) par = 0;
+    // if (!p1) par = 0;
     var l;
     if (!map) return;
     closeInfo();
     request = -2;
     pause = 0;
     cancel = 0;
-    if (f1.radr[2].checked || par) {
-        if (!par) {
-            lats = getInput(f1.latitude.value, 0);
-            lons = getInput(f1.longitude.value, 0);
-            getTimes(lats.length);
-        }
-        if (lats.length != lons.length) {
-            displayError('The number of latitudes is not the same as the number of longitudes. Please check your data.');
-            return false;
-        }
-        if (lats.length == 0 || lons.length == 0) {
-            displayError('You must specify a latitude and longitude before continuing.');
-            return false;
-        }
-        for (j = 0; j < lats.length; j++) {
-            if (!validateLl(lats[j], 0)) {
-                displayError("The entry \'" + lats[j] + "\' for latitude #" + parseInt(j + 1) + " is invalid.");
-                return false;
-            }
-            if (!validateLl(lons[j], 1)) {
-                displayError("The entry \'" + lons[j] + "\' for longitude #" + parseInt(j + 1) + " is invalid.");
-                return false;
-            }
-        }
-        if (!validateTimes("location", lats.length)) return false;
-        addressIndex = -1
-        if (lats.length > 1) {
-            dispProceed();
-            dispMsg("Adding...", 2);
-        }
-        if (MM) MM = remove(MM);
-        launchL();
+    // if (f1.radr[2].checked || par) {
+    //     if (!par) {
+    //         lats = getInput(f1.latitude.value, 0);
+    //         lons = getInput(f1.longitude.value, 0);
+    //         getTimes(lats.length);
+    //     }
+    //     if (lats.length != lons.length) {
+    //         displayError('The number of latitudes is not the same as the number of longitudes. Please check your data.');
+    //         return false;
+    //     }
+    //     if (lats.length == 0 || lons.length == 0) {
+    //         displayError('You must specify a latitude and longitude before continuing.');
+    //         return false;
+    //     }
+    //     for (j = 0; j < lats.length; j++) {
+    //         if (!validateLl(lats[j], 0)) {
+    //             displayError("The entry \'" + lats[j] + "\' for latitude #" + parseInt(j + 1) + " is invalid.");
+    //             return false;
+    //         }
+    //         if (!validateLl(lons[j], 1)) {
+    //             displayError("The entry \'" + lons[j] + "\' for longitude #" + parseInt(j + 1) + " is invalid.");
+    //             return false;
+    //         }
+    //     }
+    //     if (!validateTimes("location", lats.length)) return false;
+    //     addressIndex = -1
+    //     if (lats.length > 1) {
+    //         dispProceed();
+    //         dispMsg("Adding...", 2);
+    //     }
+    //     if (MM) MM = remove(MM);
+    //     launchL();
+    //     return false;
+    // } else {
+    // addresses = getInput(cAddress[rI].value, 0);
+    // getTimes(addresses.length);
+    if (nate.length == 0) {
+        displayError('You must specify an address before continuing.');
         return false;
-    } else {
-        addresses = getInput(cAddress[rI].value, 0);
-        getTimes(addresses.length);
-        if (addresses.length == 0) {
-            displayError('You must specify an address before continuing.');
-            return false;
-        }
-        if (!validateTimes("address", addresses.length)) return false;
     }
+    if (!validateTimes("address", addresses.length)) return false;
+    // }
     addressIndex = 0;
-    if (addresses.length > 1) {
+    if (nate.length > 1) {
         dispProceed();
         dispMsg("Searching...", 2);
     }
@@ -966,19 +972,19 @@ function launchL() {
     if (request >= addressIndex) return false;
     request = addressIndex;
     D("DE").style.display = "none";
-    appendOptionLast("places", addresses[addressIndex]);
+    appendOptionLast("places", nate[addressIndex].Address);
     // if (par) {
-    //     appendOptionLast("places", addresses[addressIndex]);
+    //     appendOptionLast("places", nate[addressIndex].Address);
     // } else {
     //     appendOptionLast("places", "Lat: " + lats[addressIndex] + "  Long: " + lons[addressIndex]);
     // }
-    var l = p.length - 1;
-    p[l].y = parseFloat(years[addressIndex]);
-    p[l].m = parseFloat(months[addressIndex]);
-    p[l].d = parseFloat(days[addressIndex]);
+    var l = nate.length - 1;
+    nate[l].y = parseFloat(years[addressIndex]);
+    nate[l].m = parseFloat(months[addressIndex]);
+    nate[l].d = parseFloat(days[addressIndex]);
     var point = new google.maps.LatLng(latLonToDecimal(lats[addressIndex]), latLonToDecimal(lons[addressIndex]));
-    p[l].marker = createMarker(point, "", null, 1);
-    p[l].marker.i = l;
+    nate[l].marker = createMarker(point, "", null, 1);
+    nate[l].marker.i = l;
     dispCount();
     window.setTimeout(launchL, 15);
     // if (!l) lockWeights();
@@ -987,25 +993,25 @@ function launchL() {
 function launchG() {
     D("DE").style.display = "none";
     geocoder.geocode({
-        'address': addresses[addressIndex]
+        'address': nate[addressIndex].Address
     }, gCallback);
 }
 
 function gCallback(res, status) {
     if (cancel || request >= addressIndex) return false;
-    var r = f1.results;
+    // var r = f1.results;
     if (status != "OK") {
-        D("ok").value = "Retry";
+        // D("ok").value = "Retry";
         switch (status) {
             case "ZERO_RESULTS":
-                displayError('Address #' + parseInt(addressIndex + 1) + ' \'' + addresses[addressIndex] + '\' was not found.');
+                displayError('Address #' + parseInt(addressIndex + 1) + ' \'' + nate[addressIndex].Address + '\' was not found.');
                 break;
             case "OVER_QUERY_LIMIT":
                 if (!geoOverLimit) {
                     displayError('Google geocoder speed limit. Click \'Resume\' each time calculator stops.');
                     geoOverLimit = 1;
                 }
-                D("ok").value = "Resume";
+                // D("ok").value = "Resume";
                 break;
             case "REQUEST_DENIED":
                 displayError('Request denied');
@@ -1014,10 +1020,10 @@ function gCallback(res, status) {
                 displayError('Invalid request');
                 break;
         }
-        dispMsg("", 2);
+        // dispMsg("", 2);
         r.length = 0;
         pause = 1;
-        toggleDivs(["DB3", "DB", "DB2"], 1);
+        // toggleDivs(["DB3", "DB", "DB2"], 1);
         return;
     }
 
@@ -1028,7 +1034,7 @@ function gCallback(res, status) {
     for (i = 0; i < res.length; i++) {
         addr = res[i].formatted_address;
         if (!addr) {
-            addr = addresses[addressIndex];
+            addr = nate[addressIndex].Address;
         }
         try {
             if (res[i].types[0] == "street_address") {
@@ -1046,16 +1052,16 @@ function gCallback(res, status) {
         r[r.length - 1].i = ind;
     }
 
-    if (r.length > 0) {
-        appendToList();
-    } else {
-        D("ok").value = "Ok";
-        toggleDivs(["DR", "DB3", "DA","DA2","DL", "DB", "DE", "DB2"], 2);
-        D("resultslabel").innerHTML = "Select from " + r.length + " results:";
-        dispMsg("", 2);
-        f1.results.focus();
-        pause = 1;
-    }
+    // if (r.length > 0) {
+    appendToList();
+    // } else {
+    //     D("ok").value = "Ok";
+    //     toggleDivs(["DR", "DB3", "DA","DA2","DL", "DB", "DE", "DB2"], 2);
+    //     D("resultslabel").innerHTML = "Select from " + r.length + " results:";
+    //     dispMsg("", 2);
+    //     f1.results.focus();
+    //     pause = 1;
+    // }
 
     loopG();
 }
@@ -1109,7 +1115,7 @@ function skip() {
 function cancelGeocode() {
     D("DE").style.display = "none";
     cancel = 1;
-    if (p.length > 1) calculate();
+    if (nate.length > 1) calculate();
     dispStart();
     dispMsg("", 2);
 }
@@ -1149,10 +1155,10 @@ function openPlace() {
     var i = p.selectedIndex;
     if (i > -1) {
         closeInfo();
-        if (p[i].marker.getVisible() == false) {
-            p[i].marker.setVisible(true);
+        if (nate[i].marker.getVisible() == false) {
+            nate[i].marker.setVisible(true);
         }
-        google.maps.event.trigger(p[i].marker, 'click');
+        google.maps.event.trigger(nate[i].marker, 'click');
     }
 }
 
@@ -1175,7 +1181,7 @@ function save(meet) {
         d = "",
         m1 = "",
         m2 = "",
-        pl = p.length;
+        pl = nate.length;
     if (!meet) {
         u2 = "cl=" + roundx(map.getCenter().lat(), 5) + "&cn=" + roundx(map.getCenter().lng(), 5) + "&z=" + map.getZoom() + "&x=" + f1.large.checked * 1 + "&c=" + cI + "&p=" + f1.disp.checked * 1 + "&r=" + rI + "&w=" + wI
     }
@@ -1183,10 +1189,10 @@ function save(meet) {
         var yr = false,
             mn = false,
             da = false;
-        for (j = 0; j < p.length; j++) {
-            if (p[j].y != 0) yr = true;
-            if (p[j].m != 0) mn = true;
-            if (p[j].d != 0) da = true;
+        for (j = 0; j < nate.length; j++) {
+            if (nate[j].y != 0) yr = true;
+            if (nate[j].m != 0) mn = true;
+            if (nate[j].d != 0) da = true;
         }
         if (MM) {
             u += "ml=" + roundx(MM.getPosition().lat(), 5) + "&mn=" + roundx(MM.getPosition().lng(), 5) + "&";
@@ -1234,14 +1240,14 @@ function save(meet) {
 
 function getLength(i, yr, mn, da, meet, v) {
     var a1 = new Object();
-    a1.l = v + roundx(p[i].marker.getPosition().lat(), 6);
-    a1.n = v + roundx(p[i].marker.getPosition().lng(), 6);
-    a1.a = v + encodeURI(p[i].text.replace(/ /gi, "+"));
-    if (!meet && yr) a1.y = v + p[i].y;
+    a1.l = v + roundx(nate[i].marker.getPosition().lat(), 6);
+    a1.n = v + roundx(nate[i].marker.getPosition().lng(), 6);
+    a1.a = v + encodeURI(nate[i].text.replace(/ /gi, "+"));
+    if (!meet && yr) a1.y = v + nate[i].y;
     else a1.y = "";
-    if (!meet && mn) a1.m = v + p[i].m;
+    if (!meet && mn) a1.m = v + nate[i].m;
     else a1.m = "";
-    if (!meet && da) a1.d = v + p[i].d;
+    if (!meet && da) a1.d = v + nate[i].d;
     else a1.d = "";
     a1.tot = a1.l + a1.n + a1.a + a1.y + a1.m + a1.d;
     return a1;
@@ -1276,15 +1282,15 @@ function formatInfo(s, lat, lng, i) {
         h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + roundx(lat, 6) + '<br>' + roundx(lng, 6) + '</div><div class="DCL"></div>';
     }
     if (i > -1) {
-        // if (f1.radw[0].checked && (p[i].y || p[i].m || p[i].d)) {
-        if (p[i].y || p[i].m || p[i].d) {
-            h += '<p class="pz">Weight:<br>Years: ' + p[i].y + ' Months: ' + p[i].m + ' Days: ' + p[i].d + '</p>';
-        // } else if (f1.radw[1].checked && p[i].d) {
-        } else if (p[i].d) {
-            h += '<p class="pz">Weight: ' + p[i].d + '</p>';
+        // if (f1.radw[0].checked && (nate[i].y || nate[i].m || nate[i].d)) {
+        if (nate[i].y || nate[i].m || nate[i].d) {
+            h += '<p class="pz">Weight:<br>Years: ' + nate[i].y + ' Months: ' + nate[i].m + ' Days: ' + nate[i].d + '</p>';
+        // } else if (f1.radw[1].checked && nate[i].d) {
+        } else if (nate[i].d) {
+            h += '<p class="pz">Weight: ' + nate[i].d + '</p>';
         }
         var a2 = '<b>Drag me</b> to pinpoint a location<br><a class="bluelink" href="javascript:r5(' + i + ')">Remove me</a>';
-        if (p[i].marker.dragged == 1) {
+        if (nate[i].marker.dragged == 1) {
             a2 += '&nbsp;&nbsp;&nbsp;&nbsp;<a class="bluelink" href="javascript:reset(' + i + ')">Reset location</a>';
         }
         h += '<p class="pz">' + a2 + '</p></div>';
