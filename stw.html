@@ -141,7 +141,7 @@ Although you can use them, for a more unique website, replace these images with 
             return;
         };
         i--;
-        console.log(i);
+        // console.log(i);
         place = resp.data[i].place;
         dalat = place.location.latitude.toString(),
         dalng = place.location.longitude.toString(),
@@ -153,7 +153,7 @@ Although you can use them, for a more unique website, replace these images with 
                     year:0,
                     month:0,
                     day:7});
-        return window.setTimeout(delayRecursion, 900, resp, i);
+        return window.setTimeout(delayRecursion, 1000, resp, i);
         return;
     }
 

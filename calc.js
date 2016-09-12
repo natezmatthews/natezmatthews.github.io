@@ -239,56 +239,56 @@ function setBounds() {
 }
 
 function createMarker(point, html, ico, d) {
-    console.log("CreateMarker");
-    // var icon = null,
-    //     shadow = null,
-    //     visible = true;
-    // if (ico) {
-    //     icon = "images/paleblue_MarkerM.png";
-    //     shadow = {
-    //         url: 'images/shadow50.png',
-    //         size: new google.maps.Size(37, 34),
-    //         origin: new google.maps.Point(0, 0),
-    //         anchor: new google.maps.Point(10, 34)
-    //     };
-    // } else {
-    //     // if (!f1.disp.checked) 
-    //     visible = false;
-    // }
-    // var marker = new google.maps.Marker({
-    //     position: point,
-    //     map: map,
-    //     icon: icon,
-    //     shadow: shadow,
-    //     visible: visible
-    // });
-    // if (d) marker.setDraggable(true);
-    // google.maps.event.addListener(marker, "click", function() {
-    //     var h = "";
-    //     if (!ico) {
-    //         if (marker.dragged != 1) {
-    //             h = formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
-    //         } else {
-    //             h = formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
-    //         }
-    //     } else {
-    //         h = html;
-    //     }
-    //     displayError(h);
-    //     //alert(h);
-    //     infoWindow.content = h;
-    //     //infoWindow.open(map, marker);
-    // });
-    // google.maps.event.addListener(marker, 'dragstart', function() {
-    //     saveLatLng(marker.i, marker.getPosition());
-    //     closeInfo();
-    // });
-    // google.maps.event.addListener(marker, 'dragend', function() {
-    //     sameMap = 1;
-    //     calculate();
-    //     marker.dragged = 1;
-    // });
-    // return marker;
+    // console.log("CreateMarker");
+    var icon = null,
+        shadow = null,
+        visible = true;
+    if (ico) {
+        icon = "images/paleblue_MarkerM.png";
+        shadow = {
+            url: 'images/shadow50.png',
+            size: new google.maps.Size(37, 34),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(10, 34)
+        };
+    } else {
+        // if (!f1.disp.checked) 
+        visible = false;
+    }
+    var marker = new google.maps.Marker({
+        position: point,
+        map: map,
+        icon: icon,
+        shadow: shadow,
+        visible: visible
+    });
+    if (d) marker.setDraggable(true);
+    google.maps.event.addListener(marker, "click", function() {
+        var h = "";
+        if (!ico) {
+            if (marker.dragged != 1) {
+                h = formatInfo(splitAddress(p[marker.i].text), "x", "", marker.i);
+            } else {
+                h = formatInfo("Current location:", marker.getPosition().lat(), marker.getPosition().lng(), marker.i);
+            }
+        } else {
+            h = html;
+        }
+        displayError(h);
+        //alert(h);
+        infoWindow.content = h;
+        //infoWindow.open(map, marker);
+    });
+    google.maps.event.addListener(marker, 'dragstart', function() {
+        saveLatLng(marker.i, marker.getPosition());
+        closeInfo();
+    });
+    google.maps.event.addListener(marker, 'dragend', function() {
+        sameMap = 1;
+        calculate();
+        marker.dragged = 1;
+    });
+    return marker;
 }
 
 function closeInfo() {
