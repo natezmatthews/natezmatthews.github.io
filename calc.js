@@ -535,9 +535,10 @@ function calculate() {
                 MM.setMap(map);
                 MM.h1 = h1;
                 MM.h2 = h2;
-                geocoder.geocode({
-                    'latLng': point
-                }, revGeoCallback);
+                console.log("Here?");
+                // geocoder.geocode({
+                //     'latLng': point
+                // }, revGeoCallback);
             }
             // if (tries >= 5000) {
             //     displayError('The center of distance for these ' + nate.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
