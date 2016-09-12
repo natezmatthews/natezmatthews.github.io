@@ -149,14 +149,16 @@ Although you can use them, for a more unique website, replace these images with 
                 place = response.data[i].place;
                 dalat = place.location.latitude;
                 dalng = place.location.longitude;
-                console.log(dalat);
-                console.log(dalng);
-                rdalat = roundx(dalat,6);
-                rdalng = roundx(dalng,6);
-                console.log(rdalat);
-                console.log(rdalng);
-                console.log(typeof rdalat);
-                console.log(typeof rdalng);
+                // console.log(dalat);
+                // console.log(dalng);
+                // rdalat = roundx(dalat,6);
+                // rdalng = roundx(dalng,6);
+                // console.log(rdalat);
+                // console.log(rdalng);
+                // console.log(typeof rdalat);
+                // console.log(typeof rdalng);
+                ttfn = new google.maps.LatLng(dalat,dalng,"",null,1);
+                console.log(ttfn);
                 // mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
                 nate.push({Address:place.name,
                             lat: dalat,
