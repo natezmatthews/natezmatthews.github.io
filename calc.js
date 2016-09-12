@@ -228,25 +228,25 @@ function selectText(myDiv) {
     }
 }
 
-function setBounds() {
-    datime = new Date();
-    console.log("setBounds " + datime.getSeconds() + ":" + datime.getMilliseconds());
-    var bounds = new google.maps.LatLngBounds();
-    var point;
-    if (nate.length || MM) {
-        if (MM) {
-            point = MM.getPosition();
-            bounds.extend(point);
-        }
-        for (i = 0; i < nate.length; i++) {
-            var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
-            bounds.extend(point);
-        }
-        mapLoaded = false;
-        map.fitBounds(bounds);
-        if (map.getZoom() > 15) map.setZoom(15);
-    }
-}
+// function setBounds() {
+//     datime = new Date();
+//     console.log("setBounds " + datime.getSeconds() + ":" + datime.getMilliseconds());
+//     var bounds = new google.maps.LatLngBounds();
+//     var point;
+//     if (nate.length || MM) {
+//         if (MM) {
+//             point = MM.getPosition();
+//             bounds.extend(point);
+//         }
+//         for (i = 0; i < nate.length; i++) {
+//             var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
+//             bounds.extend(point);
+//         }
+//         mapLoaded = false;
+//         map.fitBounds(bounds);
+//         if (map.getZoom() > 15) map.setZoom(15);
+//     }
+// }
 
 function createMarker(point, html, ico, d) {
     datime = new Date();
@@ -554,7 +554,7 @@ function calculate() {
                 //My flipping code:
                 var oplat = midlat * -1;
                 var oplng = (midlng % 360) - 180;
-                geoNames(oplat, oplng, 1);
+                // geoNames(oplat, oplng, 1);
                 var point = new google.maps.LatLng(oplat, oplng);
                 // var h1 = formatInfo('<b>' + mTxt[cI] + '</b>', oplat, oplng, -1);
                 var h1 = formatInfo('<b>Filler</b>', oplat, oplng, -1);
@@ -563,10 +563,10 @@ function calculate() {
                 MM.setMap(map);
                 MM.h1 = h1;
                 MM.h2 = h2;
-                console.log("Here?");
-                // geocoder.geocode({
-                //     'latLng': point
-                // }, revGeoCallback);
+                // console.log("Here?");
+                geocoder.geocode({
+                    'latLng': point
+                }, revGeoCallback);
             }
             // if (tries >= 5000) {
             //     displayError('The center of distance for these ' + nate.length + ' places could not be precisely located. The displayed center of distance is probably accurate to within two degrees.');
