@@ -138,8 +138,10 @@ Although you can use them, for a more unique website, replace these images with 
             console.log("Nate array now is:");
             console.log(nate);
             calculate();
+            return;
         };
         i--;
+        // console.log(i);
         place = resp.data[i].place;
         dalat = place.location.latitude.toString(),
         dalng = place.location.longitude.toString(),
@@ -151,7 +153,7 @@ Although you can use them, for a more unique website, replace these images with 
                     year:0,
                     month:0,
                     day:7});
-        window.setTimeout(delayRecursion, 1000, resp, i);
+        return window.setTimeout(delayRecursion, 1000, resp, i);
     }
 
     // Here we run a very simple test of the Graph API after login is
