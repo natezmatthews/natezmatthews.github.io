@@ -147,8 +147,8 @@ Although you can use them, for a more unique website, replace these images with 
             console.log(response);
             for (i in response.data) {
                 place = response.data[i].place;
-                dalat = place.location.latitude.toString(),
-                dalng = place.location.longitude.toString(),
+                dalat = place.location.latitude;
+                dalng = place.location.longitude;
                 mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
                 nate.push({Address:place.name,
                             lat: dalat,
