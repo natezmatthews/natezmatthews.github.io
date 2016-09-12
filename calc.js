@@ -251,7 +251,8 @@ function createMarker(point, html, ico, d) {
             anchor: new google.maps.Point(10, 34)
         };
     } else {
-        if (!f1.disp.checked) visible = false;
+        // if (!f1.disp.checked) 
+        visible = false;
     }
     var marker = new google.maps.Marker({
         position: point,
@@ -323,8 +324,8 @@ function clear2() {
 function clearGeocode() {
     nate[0].Address = "";
     nate[1].Address = "";
-    f1.latitude.value = "";
-    f1.longitude.value = "";
+    // f1.latitude.value = "";
+    // f1.longitude.value = "";
 }
 
 function clearWeights() {
@@ -771,21 +772,21 @@ function D(id) {
     return document.getElementById(id);
 }
 
-function switchLoc() {
-    var prev = rI;
-    if (f1.radr[0].checked) {
-        toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
-        rI = 0;
-    } else if (f1.radr[1].checked) {
-        toggleDivs(["DA2", "DB", "DA", "DR", "DB2", "DB3", "DL"], 2);
-        rI = 1;
-    } else {
-        toggleDivs(["DL", "DB", "DA", "DA2", "DR", "DB2", "DB3"], 2);
-        rI = 1;
-    }
-    if (prev != rI) clearGeocode();
-    // switchWeight();
-}
+// function switchLoc() {
+//     var prev = rI;
+//     if (f1.radr[0].checked) {
+//         toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
+//         rI = 0;
+//     } else if (f1.radr[1].checked) {
+//         toggleDivs(["DA2", "DB", "DA", "DR", "DB2", "DB3", "DL"], 2);
+//         rI = 1;
+//     } else {
+//         toggleDivs(["DL", "DB", "DA", "DA2", "DR", "DB2", "DB3"], 2);
+//         rI = 1;
+//     }
+//     if (prev != rI) clearGeocode();
+//     // switchWeight();
+// }
 
 // function switchWeight() {
 //     var prev = wI;
@@ -819,21 +820,21 @@ function switchLoc() {
 //     if (nate.length > 1) calculate()
 // }
 
-function switchMap() {
-    if (f1.large.checked) {
-        D("map").style.width = "48em";
-        D("map").style.height = "29.4em";
-    } else {
-        D("map").style.width = "30.1em";
-        D("map").style.height = "24.1em";
-    }
-    if (map) {
-        google.maps.event.trigger(map, 'resize');
-    }
-    if (nate.length > 0) {
-        setBounds();
-    }
-}
+// function switchMap() {
+//     if (f1.large.checked) {
+//         D("map").style.width = "48em";
+//         D("map").style.height = "29.4em";
+//     } else {
+//         D("map").style.width = "30.1em";
+//         D("map").style.height = "24.1em";
+//     }
+//     if (map) {
+//         google.maps.event.trigger(map, 'resize');
+//     }
+//     if (nate.length > 0) {
+//         setBounds();
+//     }
+// }
 
 function getTimes(l) {
     years = getInput(cnate[rI].Year.value, l);
@@ -1083,29 +1084,29 @@ function loopG() {
     }
 }
 
-function dispStart() {
-    switchLoc();
-    toggleDivs(["DB", "DB2", "DB3"], 1);
-    f1.add.focus();
-}
+// function dispStart() {
+//     switchLoc();
+//     toggleDivs(["DB", "DB2", "DB3"], 1);
+//     f1.add.focus();
+// }
 
-function dispProceed() {
-    switchLoc();
-    toggleDivs(["DB2", "DB", "DB3"], 1);
-}
+// function dispProceed() {
+//     switchLoc();
+//     toggleDivs(["DB2", "DB", "DB3"], 1);
+// }
 
-function ok1() {
-    D("DE").style.display = "none";
-    pause = 0;
-    if (addresses.length > 1) dispProceed();
-    if (D("ok").value == "Retry" || D("ok").value == "Resume") {
-        request = -1;
-        launchG();
-        return false;
-    }
-    appendToList();
-    loopG();
-}
+// function ok1() {
+//     D("DE").style.display = "none";
+//     pause = 0;
+//     if (addresses.length > 1) dispProceed();
+//     if (D("ok").value == "Retry" || D("ok").value == "Resume") {
+//         request = -1;
+//         launchG();
+//         return false;
+//     }
+//     appendToList();
+//     loopG();
+// }
 
 function skip() {
     D("DE").style.display = "none";
@@ -1122,15 +1123,15 @@ function cancelGeocode() {
     dispMsg("", 2);
 }
 
-function contin() {
-    D("DE").style.display = "none";
-    dispMsg("Please wait...", 2);
-    if (f1.radr[1].checked) {
-        launchG();
-    } else {
-        launchL();
-    }
-}
+// function contin() {
+//     D("DE").style.display = "none";
+//     dispMsg("Please wait...", 2);
+//     if (f1.radr[1].checked) {
+//         launchG();
+//     } else {
+//         launchL();
+//     }
+// }
 
 function validateLl(s, j) {
     var d = ["ns", "ew"];
@@ -1170,74 +1171,74 @@ function triggerMid() {
     }
 }
 
-function save(meet) {
-    if (!map || !map.getCenter()) return;
-    var u = "",
-        i = 0,
-        u2 = "",
-        l = "",
-        n = "",
-        a = "",
-        y = "",
-        m = "",
-        d = "",
-        m1 = "",
-        m2 = "",
-        pl = nate.length;
-    if (!meet) {
-        u2 = "cl=" + roundx(map.getCenter().lat(), 5) + "&cn=" + roundx(map.getCenter().lng(), 5) + "&z=" + map.getZoom() + "&x=" + f1.large.checked * 1 + "&c=" + cI + "&p=" + f1.disp.checked * 1 + "&r=" + rI + "&w=" + wI
-    }
-    if (pl > 0) {
-        var yr = false,
-            mn = false,
-            da = false;
-        for (j = 0; j < nate.length; j++) {
-            if (nate[j].y != 0) yr = true;
-            if (nate[j].m != 0) mn = true;
-            if (nate[j].d != 0) da = true;
-        }
-        if (MM) {
-            u += "ml=" + roundx(MM.getPosition().lat(), 5) + "&mn=" + roundx(MM.getPosition().lng(), 5) + "&";
-        }
-        var e = "Microsoft Internet Explorer";
-        var h = location.href + "?";
-        h = h.substring(0, h.indexOf("?"));
-        var limit = 2083 + 1927 * (navigator.appName != e) - h.length - u.length - u2.length - 3 * (yr + mn + da) * (meet == 0) - 10; //extra 10 is for &l=, &n=, &a=, extra ampersand
-        var a1 = getLength(i, yr, mn, da, meet, "");
-        while (i < pl && l.length + n.length + a.length + y.length + m.length + d.length + a1.tot.length < limit) {
-            l += a1.l;
-            n += a1.n;
-            a += a1.a;
-            if (!meet) {
-                if (yr) y += a1.y;
-                if (mn) m += a1.m;
-                if (da) d += a1.d;
-            }
-            i++;
-            if (i < pl) a1 = getLength(i, yr, mn, da, meet, "|");
-        }
-        u += "l=" + l + "&n=" + n + "&a=" + a;
-    }
+// function save(meet) {
+//     if (!map || !map.getCenter()) return;
+//     var u = "",
+//         i = 0,
+//         u2 = "",
+//         l = "",
+//         n = "",
+//         a = "",
+//         y = "",
+//         m = "",
+//         d = "",
+//         m1 = "",
+//         m2 = "",
+//         pl = nate.length;
+//     if (!meet) {
+//         u2 = "cl=" + roundx(map.getCenter().lat(), 5) + "&cn=" + roundx(map.getCenter().lng(), 5) + "&z=" + map.getZoom() + "&x=" + f1.large.checked * 1 + "&c=" + cI + "&p=" + f1.disp.checked * 1 + "&r=" + rI + "&w=" + wI
+//     }
+//     if (pl > 0) {
+//         var yr = false,
+//             mn = false,
+//             da = false;
+//         for (j = 0; j < nate.length; j++) {
+//             if (nate[j].y != 0) yr = true;
+//             if (nate[j].m != 0) mn = true;
+//             if (nate[j].d != 0) da = true;
+//         }
+//         if (MM) {
+//             u += "ml=" + roundx(MM.getPosition().lat(), 5) + "&mn=" + roundx(MM.getPosition().lng(), 5) + "&";
+//         }
+//         var e = "Microsoft Internet Explorer";
+//         var h = location.href + "?";
+//         h = h.substring(0, h.indexOf("?"));
+//         var limit = 2083 + 1927 * (navigator.appName != e) - h.length - u.length - u2.length - 3 * (yr + mn + da) * (meet == 0) - 10; //extra 10 is for &l=, &n=, &a=, extra ampersand
+//         var a1 = getLength(i, yr, mn, da, meet, "");
+//         while (i < pl && l.length + n.length + a.length + y.length + m.length + d.length + a1.tot.length < limit) {
+//             l += a1.l;
+//             n += a1.n;
+//             a += a1.a;
+//             if (!meet) {
+//                 if (yr) y += a1.y;
+//                 if (mn) m += a1.m;
+//                 if (da) d += a1.d;
+//             }
+//             i++;
+//             if (i < pl) a1 = getLength(i, yr, mn, da, meet, "|");
+//         }
+//         u += "l=" + l + "&n=" + n + "&a=" + a;
+//     }
 
-    if (i < pl) {
-        var m3 = "save";
-        if (meet) m3 = "transfer";
-        m2 += " Your browser can " + m3 + " the midpoint for all places along with the first " + i + " place markers.";
-    }
+//     if (i < pl) {
+//         var m3 = "save";
+//         if (meet) m3 = "transfer";
+//         m2 += " Your browser can " + m3 + " the midpoint for all places along with the first " + i + " place markers.";
+//     }
 
-    if (!meet) {
-        if (yr) u += "&y=" + y;
-        if (mn) u += "&m=" + m;
-        if (da) u += "&d=" + d;
-        if (u.length > 2) u += "&";
-        m1 = "Click ok to refresh the page. You can then save the page/map in your Favorites/Bookmarks.";
-        a = confirm(m1 + m2);
-        if (a) window.location.search = "?" + u + u2;
-    } else {
-        m1 = "Click ok to transfer the midpoint marker and other data to a page with a searchable map where you can search for points of interest near the midpoint.";
-        a = confirm(m1 + m2);
-        if (a) window.location = "meet/index.html?" + u;
-    }
+//     if (!meet) {
+//         if (yr) u += "&y=" + y;
+//         if (mn) u += "&m=" + m;
+//         if (da) u += "&d=" + d;
+//         if (u.length > 2) u += "&";
+//         m1 = "Click ok to refresh the page. You can then save the page/map in your Favorites/Bookmarks.";
+//         a = confirm(m1 + m2);
+//         if (a) window.location.search = "?" + u + u2;
+//     } else {
+//         m1 = "Click ok to transfer the midpoint marker and other data to a page with a searchable map where you can search for points of interest near the midpoint.";
+//         a = confirm(m1 + m2);
+//         if (a) window.location = "meet/index.html?" + u;
+//     }
 }
 
 function getLength(i, yr, mn, da, meet, v) {
