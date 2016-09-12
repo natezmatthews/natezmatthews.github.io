@@ -163,7 +163,7 @@ Although you can use them, for a more unique website, replace these images with 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
 
-            delayRecursion(resp,response.data.length)
+            delayRecursion(response,response.data.length)
 
             // for (i in response.data) {
             //     place = response.data[i].place;
