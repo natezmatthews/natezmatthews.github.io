@@ -133,6 +133,23 @@ Although you can use them, for a more unique website, replace these images with 
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    function delayRecursion(resp,i) {
+        if(i < 1) return;
+        i--;
+        place = resp.data[i].place;
+        dalat = place.location.latitude.toString(),
+        dalng = place.location.longitude.toString(),
+        mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
+        nate.push({Address:place.name,
+                    lat: dalat,
+                    lng: dalng,
+                    marker:mkr,
+                    year:0,
+                    month:0,
+                    day:7});
+        window.setTimeout(delayRecursion, 1000, resp, i);
+    }
+
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
@@ -145,24 +162,27 @@ Although you can use them, for a more unique website, replace these images with 
 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
-            for (i in response.data) {
-                place = response.data[i].place;
-                dalat = place.location.latitude.toString(),
-                dalng = place.location.longitude.toString(),
-                mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
-                nate.push({Address:place.name,
-                            lat: dalat,
-                            lng: dalng,
-                            marker:mkr,
-                            year:0,
-                            month:0,
-                            day:7});
-                // var point = new google.maps.LatLng(roundx(r[i].lat, 6), roundx(r[i].lng, 6));
-                // nate[l].marker = createMarker(point, "", null, 1);
-                // nate[element].Address = place.name;
-                // nate[element].lat = place.location.latitude.toString();
-                // nate[element].lng = place.location.longitude.toString();
-            }
+
+            delayRecursion(resp,response.data.length)
+
+            // for (i in response.data) {
+            //     place = response.data[i].place;
+            //     dalat = place.location.latitude.toString(),
+            //     dalng = place.location.longitude.toString(),
+            //     mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
+            //     nate.push({Address:place.name,
+            //                 lat: dalat,
+            //                 lng: dalng,
+            //                 marker:mkr,
+            //                 year:0,
+            //                 month:0,
+            //                 day:7});
+            //     // var point = new google.maps.LatLng(roundx(r[i].lat, 6), roundx(r[i].lng, 6));
+            //     // nate[l].marker = createMarker(point, "", null, 1);
+            //     // nate[element].Address = place.name;
+            //     // nate[element].lat = place.location.latitude.toString();
+            //     // nate[element].lng = place.location.longitude.toString();
+            // }
 
             console.log("Nate array now is:");
             console.log(nate);
