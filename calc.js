@@ -1239,7 +1239,7 @@ function triggerMid() {
 //         a = confirm(m1 + m2);
 //         if (a) window.location = "meet/index.html?" + u;
 //     }
-}
+// }
 
 function getLength(i, yr, mn, da, meet, v) {
     var a1 = new Object();
