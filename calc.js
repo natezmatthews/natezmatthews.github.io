@@ -383,6 +383,8 @@ function appendToList() {
 }
 
 function calculate() {
+    datime = new Date()
+    console.log("Calculate " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (nate.length > 1 || par) {
         var midlat = 0,
             midlng = 0;
