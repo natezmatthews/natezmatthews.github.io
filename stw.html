@@ -134,7 +134,11 @@ Although you can use them, for a more unique website, replace these images with 
     }(document, 'script', 'facebook-jssdk'));
 
     function delayRecursion(resp,i) {
-        if(i < 1) return;
+        if(i < 0){
+            console.log("Nate array now is:");
+            console.log(nate);
+            calculate();
+        };
         i--;
         place = resp.data[i].place;
         dalat = place.location.latitude.toString(),
@@ -184,8 +188,8 @@ Although you can use them, for a more unique website, replace these images with 
             //     // nate[element].lng = place.location.longitude.toString();
             // }
 
-            console.log("Nate array now is:");
-            console.log(nate);
+            // console.log("Nate array now is:");
+            // console.log(nate);
 
             // par=1;
             // for (var i = 0; i < nate.length; i++) {
@@ -198,7 +202,7 @@ Although you can use them, for a more unique website, replace these images with 
             // days=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,7);
             // launch();
             // par=0;
-            calculate();
+            // calculate();
         });
     }
 
