@@ -31,6 +31,8 @@ var infoWindow, geoOverLimit;
 // document.write(calc);
 
 function initialize() {
+    datime = new Date();
+    console.log("initialize " + datime.getSeconds() + ":" + datime.getMilliseconds());
     // f1 = D("frm"); // f1 now is the form
     // p = f1.places; // Number of documented places
     // nate.length = 0;
@@ -180,10 +182,14 @@ function initialize() {
 }
 
 // function unload() {
+    datime = new Date();
+    console.log("unload " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     setCookie('ckData1', f1.large.checked * 1, rI + f1.radr[2].checked * 1, wI, cI, f1.disp.checked * 1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
 // }
 
 // function readCookie(cookieName) {
+    datime = new Date();
+    console.log("readCookie " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     var theCookie = "" + document.cookie;
 //     var ind = theCookie.indexOf(cookieName);
 //     if (ind == -1 || cookieName == "") return "";
@@ -203,6 +209,8 @@ function initialize() {
 // }
 
 function selectText(myDiv) {
+    datime = new Date();
+    console.log("selectText " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (window.getSelection) {
         var selection = window.getSelection();
         if (selection.setBaseAndExtent) {
@@ -221,6 +229,8 @@ function selectText(myDiv) {
 }
 
 function setBounds() {
+    datime = new Date();
+    console.log("setBounds " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var bounds = new google.maps.LatLngBounds();
     var point;
     if (nate.length || MM) {
@@ -239,6 +249,8 @@ function setBounds() {
 }
 
 function createMarker(point, html, ico, d) {
+    datime = new Date();
+    console.log("createMarker " + datime.getSeconds() + ":" + datime.getMilliseconds());
     datime = new Date()
     console.log("createMarker " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var icon = null,
@@ -293,10 +305,14 @@ function createMarker(point, html, ico, d) {
 }
 
 function closeInfo() {
+    datime = new Date();
+    console.log("closeInfo " + datime.getSeconds() + ":" + datime.getMilliseconds());
     D("DE").style.display = "none";
 }
 
 function clearAll() {
+    datime = new Date();
+    console.log("clearAll " + datime.getSeconds() + ":" + datime.getMilliseconds());
     par = 0;
     closeInfo();
     dispMsg('Clearing...', 2);
@@ -304,6 +320,8 @@ function clearAll() {
 }
 
 function clear2() {
+    datime = new Date();
+    console.log("clear2 " + datime.getSeconds() + ":" + datime.getMilliseconds());
     D("DE").style.display = "none";
     for (i = nate.length - 1; i >= 0; i--) {
         nate[i].marker.setMap(null);
@@ -324,6 +342,8 @@ function clear2() {
 }
 
 function clearGeocode() {
+    datime = new Date();
+    console.log("clearGeocode " + datime.getSeconds() + ":" + datime.getMilliseconds());
     nate[0].Address = "";
     nate[1].Address = "";
     // f1.latitude.value = "";
@@ -331,6 +351,8 @@ function clearGeocode() {
 }
 
 function clearWeights() {
+    datime = new Date();
+    console.log("clearWeights " + datime.getSeconds() + ":" + datime.getMilliseconds());
     for (i = 0; i < 2; i++) {
         nate[i].year = "";
         nate[i].month = "";
@@ -343,6 +365,8 @@ function clearWeights() {
 }
 
 function removeOptionSelected() {
+    datime = new Date();
+    console.log("removeOptionSelected " + datime.getSeconds() + ":" + datime.getMilliseconds());
     par = 0;
     closeInfo();
     var i = p.selectedIndex;
@@ -366,6 +390,8 @@ function removeOptionSelected() {
 }
 
 function appendToList() {
+    datime = new Date();
+    console.log("appendToList " + datime.getSeconds() + ":" + datime.getMilliseconds());
     dispMsg("Adding...", addresses.length);
     var r = f1.results;
     var i = M.max(r.selectedIndex, 0);
@@ -384,6 +410,8 @@ function appendToList() {
 }
 
 function calculate() {
+    datime = new Date();
+    console.log("calculate " + datime.getSeconds() + ":" + datime.getMilliseconds());
     datime = new Date()
     console.log("Calculate " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (nate.length > 1 || par) {
@@ -552,6 +580,8 @@ function calculate() {
 }
 
 function geoNames(wlat, wlng, attempt) {
+    datime = new Date();
+    console.log("geoNames " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var request;
     try {
         request = new XMLHttpRequest();
@@ -593,6 +623,8 @@ function geoNames(wlat, wlng, attempt) {
 }
 
 function getInfoForWindow(wikiurl, lat, lng) {
+    datime = new Date();
+    console.log("getInfoForWindow " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var extract, imgurl, title = wikiurl.substr(wikiurl.lastIndexOf("/") + 1);
     $.when(
         $.getJSON("http://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles=" + title + "&format=json&callback=?",
@@ -621,6 +653,8 @@ function getInfoForWindow(wikiurl, lat, lng) {
 }
 
 function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
+    datime = new Date();
+    console.log("makeInfoWindow " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var contentString = "<img src='" + imgurl + "' style='width:370px;'><h1>" + decodeURI(title) + "</h1><div>" + extract + "</div><a href='http://" + wikiurl + "'>" + wikiurl + "</a>";
     var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -636,6 +670,8 @@ function makeInfoWindow(extract, imgurl, wikiurl, lat, lng, title) {
 }
 
 function saveLatLng(i, ll) {
+    datime = new Date();
+    console.log("saveLatLng " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (isNaN(nate[i].lat)) {
         nate[i].lat = ll.lat();
         nate[i].lng = ll.lng();
@@ -643,6 +679,8 @@ function saveLatLng(i, ll) {
 }
 
 function reset(i) {
+    datime = new Date();
+    console.log("reset " + datime.getSeconds() + ":" + datime.getMilliseconds());
     closeInfo();
     nate[i].marker.dragged = 0;
     var point = new google.maps.LatLng(nate[i].lat, nate[i].lng);
@@ -651,11 +689,15 @@ function reset(i) {
 }
 
 function r5(i) {
+    datime = new Date();
+    console.log("r5 " + datime.getSeconds() + ":" + datime.getMilliseconds());
     p.selectedIndex = i;
     removeOptionSelected();
 }
 
 function remove(obj) {
+    datime = new Date();
+    console.log("remove " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (obj) {
         obj.setMap(null);
     }
@@ -663,6 +705,8 @@ function remove(obj) {
 }
 
 function appendOptionLast(combo, item) {
+    datime = new Date();
+    console.log("appendOptionLast " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var elOptNew = document.createElement('option');
     elOptNew.text = item;
     elOptNew.value = item;
@@ -675,6 +719,8 @@ function appendOptionLast(combo, item) {
 }
 
 function dispCount() {
+    datime = new Date();
+    console.log("dispCount " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var l = nate.length;
     var m = "s";
     switch (l) {
@@ -688,11 +734,15 @@ function dispCount() {
 }
 
 function dispMsg(s, l) {
+    datime = new Date();
+    console.log("dispMsg " + datime.getSeconds() + ":" + datime.getMilliseconds());
     // if (l > 1) D("msg").innerHTML = s;
     console.log("Display Msg: " + s);
 }
 
 function displayError(e) {
+    datime = new Date();
+    console.log("displayError " + datime.getSeconds() + ":" + datime.getMilliseconds());
     console.log("Display Error: " + e);
     // D("DE").innerHTML = e;
     // toggleDivs(["DE"], 1);
@@ -700,14 +750,20 @@ function displayError(e) {
 }
 
 function rad(dg) {
+    datime = new Date();
+    console.log("rad " + datime.getSeconds() + ":" + datime.getMilliseconds());
     return (dg * Math.PI / 180);
 }
 
 function deg(rd) {
+    datime = new Date();
+    console.log("deg " + datime.getSeconds() + ":" + datime.getMilliseconds());
     return (rd * 180 / Math.PI);
 }
 
 function splitAddress(s) {
+    datime = new Date();
+    console.log("splitAddress " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var t = s.split(/,/);
     if (t.length > 3 || t.length > 2 && /\d/g.test(t[0])) {
         s = t[0] + "<br>";
@@ -720,6 +776,8 @@ function splitAddress(s) {
 }
 
 function normalizeLongitude(lon) {
+    datime = new Date();
+    console.log("normalizeLongitude " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var n = Math.PI;
     if (lon > n) {
         lon = lon - 2 * n
@@ -730,6 +788,8 @@ function normalizeLongitude(lon) {
 }
 
 function normalizeLatitude(point) {
+    datime = new Date();
+    console.log("normalizeLatitude " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (Math.abs(point.lat) > rad90) {
         point.lat = rad180 - point.lat - 2 * rad180 * (point.lat < -rad90);
         point.lon = normalizeLongitude(point.lon - rad180);
@@ -738,6 +798,8 @@ function normalizeLatitude(point) {
 }
 
 function trim(s) {
+    datime = new Date();
+    console.log("trim " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (s.charCodeAt(0) > 32 && s.charCodeAt(s.length - 1) > 32)
         return s;
     else {
@@ -746,6 +808,8 @@ function trim(s) {
 }
 
 function rTrim(s) {
+    datime = new Date();
+    console.log("rTrim " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (s.charCodeAt(s.length - 1) > 32)
         return s;
     else {
@@ -754,16 +818,22 @@ function rTrim(s) {
 }
 
 function roundx(n, exp) {
+    datime = new Date();
+    console.log("roundx " + datime.getSeconds() + ":" + datime.getMilliseconds());
     return M.round(n * M.pow(10, exp)) / M.pow(10, exp);
 }
 
 // function lockWeights() {
+    datime = new Date();
+    console.log("lockWeights " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     f1.w0.disabled = (nate.length > 0);
 //     f1.w1.disabled = (nate.length > 0);
 // }
 
 // Toggle which divs of the menu are shown
 function toggleDivs(divs, block) {
+    datime = new Date();
+    console.log("toggleDivs " + datime.getSeconds() + ":" + datime.getMilliseconds());
     for (i = 0; i < divs.length; i++) {
         if (i < block) {
             D(divs[i]).style.display = "block";
@@ -774,10 +844,14 @@ function toggleDivs(divs, block) {
 }
 
 function D(id) {
+    datime = new Date();
+    console.log("D " + datime.getSeconds() + ":" + datime.getMilliseconds());
     return document.getElementById(id);
 }
 
 // function switchLoc() {
+    datime = new Date();
+    console.log("switchLoc " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     var prev = rI;
 //     if (f1.radr[0].checked) {
 //         toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
@@ -794,6 +868,8 @@ function D(id) {
 // }
 
 // function switchWeight() {
+    datime = new Date();
+    console.log("switchWeight " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     var prev = wI;
 //     if (f1.radw[0].checked) {
 //         if (f1.radr[0].checked) {
@@ -814,6 +890,8 @@ function D(id) {
 // }
 
 // function changeMethod() {
+    datime = new Date();
+    console.log("changeMethod " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     closeInfo();
 //     if (f1.method[2].checked) {
 //         cI = 2;
@@ -826,6 +904,8 @@ function D(id) {
 // }
 
 // function switchMap() {
+    datime = new Date();
+    console.log("switchMap " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     if (f1.large.checked) {
 //         D("map").style.width = "48em";
 //         D("map").style.height = "29.4em";
@@ -842,6 +922,8 @@ function D(id) {
 // }
 
 function getTimes(l) {
+    datime = new Date();
+    console.log("getTimes " + datime.getSeconds() + ":" + datime.getMilliseconds());
     years = getInput(cnate[rI].Year.value, l);
     months = getInput(cnate[rI].Month.value, l);
     days = getInput(cnate[rI].Day.value, l);
@@ -853,6 +935,8 @@ function getTimes(l) {
 }
 
 function getInput(s, l) {
+    datime = new Date();
+    console.log("getInput " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var sText = rTrim(s);
     sText = sText.replace(/\r\n/g, '\n');
     var r = sText.split('\n');
@@ -869,6 +953,8 @@ function getInput(s, l) {
 }
 
 function validateTimes(a, l) {
+    datime = new Date();
+    console.log("validateTimes " + datime.getSeconds() + ":" + datime.getMilliseconds());
     console.log("Fix Validate Times Later");
     // var a1 = ""
     // //     m = ["time", "weight"];
@@ -967,6 +1053,8 @@ function launch(p1) {
 }
 
 function launchL() {
+    datime = new Date();
+    console.log("launchL " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (addressIndex >= nate.length - 1 || cancel) {
         clearWeights();
         clearGeocode();
@@ -999,6 +1087,8 @@ function launchL() {
 }
 
 function launchG() {
+    datime = new Date();
+    console.log("launchG " + datime.getSeconds() + ":" + datime.getMilliseconds());
     // D("DE").style.display = "none";
     geocoder.geocode({
         'address': nate[addressIndex].Address
@@ -1006,6 +1096,8 @@ function launchG() {
 }
 
 function gCallback(res, status) {
+    datime = new Date();
+    console.log("gCallback " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (cancel || request >= addressIndex) return false;
     // var r = f1.results;
     if (status != "OK") {
@@ -1075,6 +1167,8 @@ function gCallback(res, status) {
 }
 
 function loopG() {
+    datime = new Date();
+    console.log("loopG " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (!pause) {
         if (addressIndex < addresses.length - 1 && !cancel) {
             addressIndex++;
@@ -1090,17 +1184,23 @@ function loopG() {
 }
 
 // function dispStart() {
+    datime = new Date();
+    console.log("dispStart " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     switchLoc();
 //     toggleDivs(["DB", "DB2", "DB3"], 1);
 //     f1.add.focus();
 // }
 
 // function dispProceed() {
+    datime = new Date();
+    console.log("dispProceed " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     switchLoc();
 //     toggleDivs(["DB2", "DB", "DB3"], 1);
 // }
 
 // function ok1() {
+    datime = new Date();
+    console.log("ok1 " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     D("DE").style.display = "none";
 //     pause = 0;
 //     if (addresses.length > 1) dispProceed();
@@ -1114,6 +1214,8 @@ function loopG() {
 // }
 
 function skip() {
+    datime = new Date();
+    console.log("skip " + datime.getSeconds() + ":" + datime.getMilliseconds());
     D("DE").style.display = "none";
     pause = 0;
     if (addresses.length > 1) dispProceed();
@@ -1121,6 +1223,8 @@ function skip() {
 }
 
 function cancelGeocode() {
+    datime = new Date();
+    console.log("cancelGeocode " + datime.getSeconds() + ":" + datime.getMilliseconds());
     D("DE").style.display = "none";
     cancel = 1;
     if (nate.length > 1) calculate();
@@ -1129,6 +1233,8 @@ function cancelGeocode() {
 }
 
 // function contin() {
+    datime = new Date();
+    console.log("contin " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     D("DE").style.display = "none";
 //     dispMsg("Please wait...", 2);
 //     if (f1.radr[1].checked) {
@@ -1139,6 +1245,8 @@ function cancelGeocode() {
 // }
 
 function validateLl(s, j) {
+    datime = new Date();
+    console.log("validateLl " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var d = ["ns", "ew"];
     var pl = ["90(\\.0+)?|[0-8]?\\d", "180(\\.0+)?|(0?\\d?\\d|1[0-7]\\d)"];
     var ps = "^(-|[" + d[j] + "]\\s*)?(" + pl[j] + "([^\\w.-]+[0-5]?\\d){0,2}(\\.\\d+)?)(\\s*[" + d[j] + "])?$";
@@ -1147,6 +1255,8 @@ function validateLl(s, j) {
 }
 
 function latLonToDecimal(s) {
+    datime = new Date();
+    console.log("latLonToDecimal " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var t = s.replace(/-/, "");
     var pos = t.search(/[\d.]/);
     t = t.substring(pos);
@@ -1160,6 +1270,8 @@ function latLonToDecimal(s) {
 }
 
 function openPlace() {
+    datime = new Date();
+    console.log("openPlace " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var i = p.selectedIndex;
     if (i > -1) {
         closeInfo();
@@ -1171,12 +1283,16 @@ function openPlace() {
 }
 
 function triggerMid() {
+    datime = new Date();
+    console.log("triggerMid " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (MM) {
         google.maps.event.trigger(MM, 'click');
     }
 }
 
 // function save(meet) {
+    datime = new Date();
+    console.log("save " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     if (!map || !map.getCenter()) return;
 //     var u = "",
 //         i = 0,
@@ -1247,6 +1363,8 @@ function triggerMid() {
 // }
 
 function getLength(i, yr, mn, da, meet, v) {
+    datime = new Date();
+    console.log("getLength " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var a1 = new Object();
     a1.l = v + roundx(nate[i].marker.getPosition().lat(), 6);
     a1.n = v + roundx(nate[i].marker.getPosition().lng(), 6);
@@ -1262,6 +1380,8 @@ function getLength(i, yr, mn, da, meet, v) {
 }
 
 function popMessage(msg) {
+    datime = new Date();
+    console.log("popMessage " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var s = '"resizeable=0,left=' + (screen.width / 2 - 180) + ',top=' + (screen.height / 2 - 120) + ',width=360,height=240"';
     messagewin = window.open("message.php", "messagewin", s);
     D("frm2").target = "messagewin";
@@ -1270,6 +1390,8 @@ function popMessage(msg) {
 }
 
 function revGeoCallback(results, status) {
+    datime = new Date();
+    console.log("revGeoCallback " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (status == google.maps.GeocoderStatus.OK) {
         if (results[0]) {
             var near = '<p class="pz">Nearest address:<br>' + splitAddress(results[0].formatted_address) + '</p>';
@@ -1285,6 +1407,8 @@ function revGeoCallback(results, status) {
 }
 
 function formatInfo(s, lat, lng, i) {
+    datime = new Date();
+    console.log("formatInfo " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var h = '<div><p class="pz">' + s + '</p>';
     if (!isNaN(lat)) {
         h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + roundx(lat, 6) + '<br>' + roundx(lng, 6) + '</div><div class="DCL"></div>';
