@@ -133,30 +133,6 @@ Although you can use them, for a more unique website, replace these images with 
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    function delayRecursion(resp,i) {
-        if(i < 1){
-            console.log("Nate array now is:");
-            console.log(nate);
-            calculate();
-            return;
-        };
-        i--;
-        // console.log(i);
-        place = resp.data[i].place;
-        dalat = place.location.latitude.toString(),
-        dalng = place.location.longitude.toString(),
-        mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
-        nate.push({Address:place.name,
-                    lat: dalat,
-                    lng: dalng,
-                    marker:mkr,
-                    year:0,
-                    month:0,
-                    day:7});
-        return window.setTimeout(delayRecursion, 1000, resp, i);
-        return;
-    }
-
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
@@ -169,31 +145,26 @@ Although you can use them, for a more unique website, replace these images with 
 
         FB.api('/me/tagged_places', function(response) {
             console.log(response);
-
-            delayRecursion(response,response.data.length)
-
-            // for (i in response.data) {
-            //     place = response.data[i].place;
-            //     dalat = place.location.latitude.toString(),
-            //     dalng = place.location.longitude.toString(),
-            //     mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
-            //     nate.push({Address:place.name,
-            //                 lat: dalat,
-            //                 lng: dalng,
-            //                 marker:mkr,
-            //                 year:0,
-            //                 month:0,
-            //                 day:7});
-            //     // var point = new google.maps.LatLng(roundx(r[i].lat, 6), roundx(r[i].lng, 6));
-            //     // nate[l].marker = createMarker(point, "", null, 1);
-            //     // nate[element].Address = place.name;
-            //     // nate[element].lat = place.location.latitude.toString();
-            //     // nate[element].lng = place.location.longitude.toString();
-            // }
-
-            // console.log("Nate array now is:");
-            // console.log(nate);
-
+            for (i in response.data) {
+                place = response.data[i].place;
+                dalat = place.location.latitude.toString(),
+                dalng = place.location.longitude.toString(),
+                mkr = createMarker(new google.maps.LatLng(roundx(dalat,6), roundx(dalng,6)),"",null,1);
+                nate.push({Address:place.name,
+                            lat: dalat,
+                            lng: dalng,
+                            marker:mkr,
+                            year:0,
+                            month:0,
+                            day:7});
+                // var point = new google.maps.LatLng(roundx(r[i].lat, 6), roundx(r[i].lng, 6));
+                // nate[l].marker = createMarker(point, "", null, 1);
+                // nate[element].Address = place.name;
+                // nate[element].lat = place.location.latitude.toString();
+                // nate[element].lng = place.location.longitude.toString();
+            }
+            console.log("Nate array now is:");
+            console.log(nate);
             // par=1;
             // for (var i = 0; i < nate.length; i++) {
             //     nate[i].year = 0
@@ -205,7 +176,7 @@ Although you can use them, for a more unique website, replace these images with 
             // days=Array.apply(null, Array(response.data.length)).map(Number.prototype.valueOf,7);
             // launch();
             // par=0;
-            // calculate();
+            calculate();
         });
     }
 
