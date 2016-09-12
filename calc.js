@@ -239,7 +239,8 @@ function setBounds() {
 }
 
 function createMarker(point, html, ico, d) {
-    // console.log("CreateMarker");
+    datime = new Date()
+    console.log("createMarker " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var icon = null,
         shadow = null,
         visible = true;
@@ -1274,7 +1275,7 @@ function revGeoCallback(results, status) {
             var h1 = MM.h1;
             var h2 = MM.h2;
             MM.setMap(null);
-            // MM = createMarker(MM.getPosition(), h1 + near + h2, 1, 0);
+            MM = createMarker(MM.getPosition(), h1 + near + h2, 1, 0);
             MM.setMap(map);
             MM.h1 = h1;
             MM.h2 = h2;
