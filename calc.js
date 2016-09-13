@@ -182,14 +182,14 @@ function initialize() {
 }
 
 // function unload() {
-    datime = new Date();
-    console.log("unload " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("unload " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     setCookie('ckData1', f1.large.checked * 1, rI + f1.radr[2].checked * 1, wI, cI, f1.disp.checked * 1, map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
 // }
 
 // function readCookie(cookieName) {
-    datime = new Date();
-    console.log("readCookie " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("readCookie " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     var theCookie = "" + document.cookie;
 //     var ind = theCookie.indexOf(cookieName);
 //     if (ind == -1 || cookieName == "") return "";
@@ -824,8 +824,8 @@ function roundx(n, exp) {
 }
 
 // function lockWeights() {
-    datime = new Date();
-    console.log("lockWeights " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("lockWeights " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     f1.w0.disabled = (nate.length > 0);
 //     f1.w1.disabled = (nate.length > 0);
 // }
@@ -868,8 +868,8 @@ function D(id) {
 // }
 
 // function switchWeight() {
-    datime = new Date();
-    console.log("switchWeight " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("switchWeight " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     var prev = wI;
 //     if (f1.radw[0].checked) {
 //         if (f1.radr[0].checked) {
@@ -890,8 +890,8 @@ function D(id) {
 // }
 
 // function changeMethod() {
-    datime = new Date();
-    console.log("changeMethod " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("changeMethod " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     closeInfo();
 //     if (f1.method[2].checked) {
 //         cI = 2;
@@ -904,8 +904,8 @@ function D(id) {
 // }
 
 // function switchMap() {
-    datime = new Date();
-    console.log("switchMap " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("switchMap " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     if (f1.large.checked) {
 //         D("map").style.width = "48em";
 //         D("map").style.height = "29.4em";
@@ -995,6 +995,8 @@ function validateTimes(a, l) {
 }
 
 function launch(p1) {
+    datime = new Date();
+    console.log("launch " + datime.getSeconds() + ":" + datime.getMilliseconds());
     // if (!p1) par = 0;
     var l;
     if (!map) return;
@@ -1184,23 +1186,23 @@ function loopG() {
 }
 
 // function dispStart() {
-    datime = new Date();
-    console.log("dispStart " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("dispStart " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     switchLoc();
 //     toggleDivs(["DB", "DB2", "DB3"], 1);
 //     f1.add.focus();
 // }
 
 // function dispProceed() {
-    datime = new Date();
-    console.log("dispProceed " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("dispProceed " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     switchLoc();
 //     toggleDivs(["DB2", "DB", "DB3"], 1);
 // }
 
 // function ok1() {
-    datime = new Date();
-    console.log("ok1 " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("ok1 " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     D("DE").style.display = "none";
 //     pause = 0;
 //     if (addresses.length > 1) dispProceed();
@@ -1233,8 +1235,8 @@ function cancelGeocode() {
 }
 
 // function contin() {
-    datime = new Date();
-    console.log("contin " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("contin " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     D("DE").style.display = "none";
 //     dispMsg("Please wait...", 2);
 //     if (f1.radr[1].checked) {
@@ -1291,8 +1293,8 @@ function triggerMid() {
 }
 
 // function save(meet) {
-    datime = new Date();
-    console.log("save " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("save " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     if (!map || !map.getCenter()) return;
 //     var u = "",
 //         i = 0,
