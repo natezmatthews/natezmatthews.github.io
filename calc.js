@@ -234,10 +234,10 @@ function setBounds() {
     var bounds = new google.maps.LatLngBounds();
     var point;
     if (nate.length || MM) {
-        // if (MM) {
-        //     point = MM.getPosition();
-        //     bounds.extend(point);
-        // }
+        if (MM) {
+            point = MM.getPosition();
+            bounds.extend(point);
+        }
         // for (i = 0; i < nate.length; i++) {
         //     var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
         //     bounds.extend(point);
