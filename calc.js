@@ -236,14 +236,20 @@ function setBounds() {
     if (nate.length || MM) {
         if (MM) {
             point = MM.getPosition();
+            console.log("MM is ");
+            console.log(point);
             bounds.extend(point);
+            console.log(bounds);
         }
         for (i = 0; i < nate.length; i++) {
             var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
+            console.log(i + " is ");
+            console.log(point);
             bounds.extend(point);
+            console.log(bounds);
         }
         mapLoaded = false;
-        console.log(bounds);
+        // console.log(bounds);
         // map.fitBounds(bounds);
         if (map.getZoom() > 15) map.setZoom(15);
     }
