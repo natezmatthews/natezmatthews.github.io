@@ -243,7 +243,8 @@ function setBounds() {
             bounds.extend(point);
         }
         mapLoaded = false;
-        map.fitBounds(bounds);
+        console.log(bounds);
+        // map.fitBounds(bounds);
         if (map.getZoom() > 15) map.setZoom(15);
     }
 }
