@@ -236,12 +236,12 @@ function setBounds() {
     if (nate.length || MM) {
         if (MM) {
             point = MM.getPosition();
-            bounds.extend(point);
+            // bounds.extend(point);
         }
-        // for (i = 0; i < nate.length; i++) {
-        //     var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
-        //     bounds.extend(point);
-        // }
+        for (i = 0; i < nate.length; i++) {
+            var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
+            // bounds.extend(point);
+        }
         mapLoaded = false;
         map.fitBounds(bounds);
         if (map.getZoom() > 15) map.setZoom(15);
@@ -412,8 +412,6 @@ function appendToList() {
 function calculate() {
     datime = new Date();
     console.log("calculate " + datime.getSeconds() + ":" + datime.getMilliseconds());
-    datime = new Date()
-    console.log("Calculate " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (nate.length > 1 || par) {
         var midlat = 0,
             midlng = 0;
@@ -850,8 +848,8 @@ function D(id) {
 }
 
 // function switchLoc() {
-    datime = new Date();
-    console.log("switchLoc " + datime.getSeconds() + ":" + datime.getMilliseconds());
+    // datime = new Date();
+    // console.log("switchLoc " + datime.getSeconds() + ":" + datime.getMilliseconds());
 //     var prev = rI;
 //     if (f1.radr[0].checked) {
 //         toggleDivs(["DA", "DB", "DA2", "DR", "DB2", "DB3", "DL"], 2);
