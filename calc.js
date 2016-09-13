@@ -240,10 +240,10 @@ function setBounds() {
         }
         for (i = 0; i < nate.length; i++) {
             var point = new google.maps.LatLng(nate[i].marker.getPosition().lat(), nate[i].marker.getPosition().lng());
-            // bounds.extend(point);
+            bounds.extend(point);
         }
         mapLoaded = false;
-        map.fitBounds(bounds);
+        // map.fitBounds(bounds);
         if (map.getZoom() > 15) map.setZoom(15);
     }
 }
