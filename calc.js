@@ -552,6 +552,10 @@ function calculate() {
                     midlat = parlat;
                     midlng = parlng;
                 }
+                console.log("midlat");
+                console.log(midlat);
+                console.log("midlng");
+                console.log(midlng);
                 par = 0;
                 if (MM) MM = remove(MM);
                 //My flipping code:
@@ -563,6 +567,8 @@ function calculate() {
                 var h1 = formatInfo('<b>Filler</b>', oplat, oplng, -1);
                 var h2 = '<p class="pz"><a href="javascript:save(1)">Find nearby points of interest</a></p></div>';
                 MM = createMarker(point, h1 + h2, 1, 0);
+                console.log("MM created is");
+                console.log(MM);
                 MM.setMap(map);
                 MM.h1 = h1;
                 MM.h2 = h2;
