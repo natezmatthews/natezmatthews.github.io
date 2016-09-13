@@ -250,7 +250,7 @@ function setBounds() {
         }
         mapLoaded = false;
         // console.log(bounds);
-        // map.fitBounds(bounds);
+        map.fitBounds(bounds);
         if (map.getZoom() > 15) map.setZoom(15);
     }
 }
@@ -459,7 +459,7 @@ function calculate() {
             console.log(midlng);
             hyp = sqrt(x * x + y * y);
             midlat = atan2(z, hyp);
-             console.log("midlng1");
+            console.log("midlat1");
             console.log(midlat);
             // if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
             if (abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
