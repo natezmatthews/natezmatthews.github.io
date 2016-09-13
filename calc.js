@@ -243,15 +243,13 @@ function setBounds() {
             bounds.extend(point);
         }
         mapLoaded = false;
-        // map.fitBounds(bounds);
+        map.fitBounds(bounds);
         if (map.getZoom() > 15) map.setZoom(15);
     }
 }
 
 function createMarker(point, html, ico, d) {
     datime = new Date();
-    console.log("createMarker " + datime.getSeconds() + ":" + datime.getMilliseconds());
-    datime = new Date()
     console.log("createMarker " + datime.getSeconds() + ":" + datime.getMilliseconds());
     var icon = null,
         shadow = null,
