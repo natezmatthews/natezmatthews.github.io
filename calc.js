@@ -418,8 +418,8 @@ function calculate() {
     datime = new Date();
     console.log("calculate " + datime.getSeconds() + ":" + datime.getMilliseconds());
     if (nate.length > 1 || par) {
-        var midlat = 0,
-            midlng = 0;
+        var midlat = 0;
+        var midlng = 0;
         var x = 0;
         var y = 0;
         var z = 0;
@@ -455,8 +455,12 @@ function calculate() {
             y = y / totdays;
             z = z / totdays;
             midlng = atan2(y, x);
+            console.log("midlng1");
+            console.log(midlng);
             hyp = sqrt(x * x + y * y);
             midlat = atan2(z, hyp);
+             console.log("midlng1");
+            console.log(midlat);
             // if (cI != 2 && abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
             if (abs(x) < 1.0e-9 && abs(y) < 1.0e-9 && abs(z) < 1.0e-9) {
                 if (MM) MM = remove(MM);
