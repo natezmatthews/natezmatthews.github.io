@@ -1,20 +1,127 @@
-<!doctype html>
-
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<!-- index.html: HTML for Nate Matthews' site-->
-	<title>Nate Matthews</title>
 	<meta charset="utf-8" />
-	<!--<meta name="viewport" content="width=device-width"; initial-scale=1.0 /;>-->
-	<link rel="stylesheet" href="style.css">
+	<title>Responsive Resume</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!--Custom fonts. To improve load times, remove this and update the h1 styling in style.css--> 
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<!-- favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	
+	<!-- just in case viewer is using Internet Explorer -->
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
 </head>
 
 <body>
-	<h1>Nate Matthews</h1>
-	<p><img src="portrait.JPG" width="518" height="346" alt="Portrait"></p>
-	<p><a href="https://github.com/natezmatthews">GitHub</a></p>
-	<p><a href="https://www.linkedin.com/in/natezmatthews">LinkedIn</a></p>
-</body>
+    
+    <!-- Header-->
+    <header>
+		<h1>Nate Z Matthews</h1>
+		<p>Data analysis, programming, communication</p>
+	</header>
+	
+	<div class="container">
+		
+		<!-- Introduction-->
+		<section class="center">
+			<h1>I use Python, SQL, Linux, and git to turn messy real-world health data into insights, and—the hard part—I communicate them well. </h1>
+			<p>
+				I am seeking a bioinformatics role at an organization with a strong culture of teaching and learning. I have a perpetually curious and creative mind that craves interesting problems and exciting technologies, but especially the intersection of the two.
 
+			</p>
+		</section>
+	</div> <!-- End container-->
+	
+	<!-- Spotlight -->
+	<section class="spotlight">
+		<div class="container">
+			<div class="row">
+				<div class="grid-3">
+					<h1>Python Project: QueryHoner</h1>
+					<p>Jupyter Notebook that accelerates the steps of developing and testing a complicated SQL query: Data exploration, data validation, testing your dataframe, and surfacing unusual examples to compare to the source of truth.</p>
+					<a href="https://github.com/natezmatthews/queryhoner">QueryHoner on GitHub</a>
+                </div>
+                <div class="grid-3">
+                    <h1>JS Project: Future Perfect</h1>
+                    <p>Web app showing dates on which it will have been twice as long
+                        since one event in your life as since another. Example output: <br>
+                        "On MM/DD/YYYY it will have been twice as long since you
+                        were born as since you graduated from college."</p>
+                    <a href="http://natezmatthews.github.io/futureperfect.html">Future Perfect Webpage</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	
+	<!-- New container-->
+	<div class="container">
+	
+		<section class="education">	
+			<h2>B.A. Economics from Tufts University, Medford MA.</h2>
+		</section>
+		
+		<hr>
+			
+		<!--Experience Tables-->
+		<section class="experience">
+			<div class="row">
+				<div class="grid-2">
+					<h2><strong>Performance Analysis Associate/Senior Associate</strong><br>at athenahealth inc.</h2>
+					<p>July 2015 - Today</p>
+				</div>
+				<div class="grid-4">
+					<ul>
+						<li>Found and scoped medical coding automation opportunities clearing 20,000 insurance claims for billing each month, using SQL, Excel, and Python.</li>
+						<li>Set up the Perl and Oracle backend for a Tableau dashboard of performance metrics.</li>
+                        <li>Identified an API bug affecting 30,000 charges each month, and communicated the solution through datasets and charts to business analysts, developers, and clients.</li>
+						<li>Created a SQL Snippet Library, a Wiki Schema Browser, a revamped New Hire Training curriculum, a Team Resources page, and an internal blog recognizing shelved projects.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		
+		<hr>
+		
+		<section>
+			<!--List of skills-->
+			<div class="row">
+				<div class="grid-2">
+					<h1>Skills</h1>
+					<ul>
+						<li>Python</li>
+						<li>SQL</li>
+						<li>Linux/Unix</li>
+						<li>Git</li>
+						<li>C/C++</li>
+                        <li>Git/GitHub/GitLab</li>
+                        <li>Javascript</li>
+						<li>HTML/CSS</li>
+					</ul>
+				</div>
+				
+				<div class="grid-4">
+					<h1>How to contact me</h1>
+					<p> Email: natezmatthews [at] gmail.com </p>
+                    <p> Cell Phone: 206-861-4299 </p>
+                    <p> LinkedIn: <a href="https://www.linkedin.com/in/natezmatthews">https://www.linkedin.com/in/natezmatthews</a> </p>
+				</div>
+			</div>
+		</section>
+		
+		
+		
+		<!--Footer-->
+		<footer class="center">
+			<hr>
+			<span>&copy; Nate Matthews 2017</span>
+		</footer>
+		
+	</div><!-- End Container -->
+	
+</body>
 </html>
